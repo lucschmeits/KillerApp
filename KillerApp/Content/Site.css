@@ -5,12 +5,12 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -22,3 +22,112 @@ select,
 textarea {
     max-width: 280px;
 }
+/*Google Fonts*/
+body {
+    font-family: 'Merriweather', serif;
+}
+
+/* Menu bar CSS */
+.sec-nav {
+    float: right;
+    margin-top: 30px;
+    margin-left: 30px;
+    padding-right: 15px;
+}
+
+.logo {
+    max-height: 50px;
+}
+
+.navbar {
+    font-family: 'Lato', sans-serif;
+}
+
+.navbar-nav {
+    float: none;
+    margin-top: 15px;
+}
+
+    .navbar-nav > li {
+        float: none;
+        display: inline-block;
+    }
+
+/*Banner CSS*/
+.header-banner {
+    background: url('../Images/banner.jpeg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #cccccc;
+    margin-bottom: 3%
+}
+
+.banner-content {
+    padding: 285px 0;
+    margin-top: 30px;
+}
+
+/*Features CSS*/
+.shipping {
+    background-color: #f8f8f8;
+}
+
+.delivery {
+    background-color: #ebebeb;
+}
+
+.money {
+    background-color: #f8f8f8;
+}
+
+.feature-content {
+    padding: 20%;
+}
+
+    .feature-content > h5 {
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+    }
+
+.feature-icon {
+    font-size: 30px;
+    color: #BD6B17;
+}
+
+#features {
+    margin-bottom: 3%;
+}
+
+/*Collection CSS*/
+.collection {
+    margin-bottom: 29px;
+}
+
+.collection-left {
+    padding-left: 0;
+}
+
+.collection-right {
+    padding-right: 0;
+}
+
+.img-opacity {
+    opacity: 0.5;
+    transition: .35s ease-in-out;
+}
+
+    .img-opacity:hover {
+        opacity: 1;
+        transition: .35s ease-in-out;
+    }
+/*Shop CSS*/
+.page-header {
+    border-bottom: none;
+}
+
+    .page-header > h3 {
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+    }
