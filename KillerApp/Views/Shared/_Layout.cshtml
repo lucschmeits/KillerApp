@@ -36,15 +36,77 @@
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("About", "About", "Home")</li>
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Producten" ? "active" : "")">@Html.ActionLink("Producten", "Producten", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="body-content">
         @RenderBody()
-        <hr />
+
         <footer>
-            <p>&copy; @DateTime.Now.Year - KillerProducts</p>
+            <div class="footer-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="footer-img">
+                                <img class="img-responsive" src="../../Images/logo1.png" alt="logo" />
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                Aenean commodo ligula eget dolor. Aenean massa.
+                                Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-title">
+                                <h4>Brands</h4>
+                            </div>
+                            <ul class="brand-list">
+                                <li>Apple</li>
+                                <li>Samsung</li>
+                                <li>HP</li>
+                                <li>Acer</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-title">
+                                <h4>Support</h4>
+                            </div>
+                            <ul class="brand-list">
+                                <li>Terms & Conditions</li>
+                                <li>Shipping & Return</li>
+                                <li>F.A.Q</li>
+                                <li>Contact</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-title">
+                                <h4>Contact</h4>
+                            </div>
+                            <p>
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                                <span>Miami, S Miami Ave, SW 20th, Store No.1</span>
+                            </p>
+                            <p>
+                                <i class="glyphicon glyphicon-earphone"></i>
+                                <span>+0123 456 789</span>
+                            </p>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>
+                                <span>office@yoursite.com</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="second-footer">
+                    <p>&copy; @DateTime.Now.Year - KillerProducts</p>
+                </div>
+            </div>
         </footer>
     </div>
 

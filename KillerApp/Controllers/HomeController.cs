@@ -26,5 +26,11 @@ namespace KillerApp.Controllers
 
             return View();
         }
+
+        public ActionResult Producten()
+        {
+            ViewBag.Message = "Your product page.";
+            return View();
+        }
     }
 }
