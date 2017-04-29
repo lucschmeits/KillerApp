@@ -53,6 +53,23 @@ body {
         display: inline-block;
     }
 
+.menu-icon {
+    font-size: 20px;
+    color: #000000;
+}
+
+    .menu-icon:hover {
+        color: #bd6b17;
+    }
+
+.menu-icon-cart {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
 /*Banner CSS
 .header-banner {
     background: url('../Images/bannerSamung.png') no-repeat;
@@ -190,7 +207,37 @@ body {
 .second-footer {
     margin-top: 3%;
 }
+/*About CSS*/
+.aboutshop {
+    background: #f8f8f8;
+    min-height: 352px;
+    max-height: 352px;
+    padding: 30px;
+}
 
+    .aboutshop > h3 {
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+    }
+
+#about {
+    margin-bottom: 2%;
+}
+
+#team {
+    margin-bottom: 2%;
+}
+
+    #team > .container > h2 {
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+.team {
+    text-align: center;
+}
 /*Bootstrap overrides*/
 .navbar-default {
     background: #ffffff;
@@ -212,3 +259,7 @@ body {
 .navbar-default .navbar-nav > li > a {
     color: #000000;
 }
+
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: #bd6b17;
+    }

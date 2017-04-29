@@ -154,6 +154,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\about.jpeg" />
+    <Content Include="Images\aboutshop.jpeg" />
     <Content Include="Images\banner.jpeg" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\bannerSamung.png" />
@@ -161,7 +163,16 @@
     <Content Include="Images\collection1.jpeg" />
     <Content Include="Images\collection2.jpeg" />
     <Content Include="Images\collection3.jpeg" />
+    <Content Include="Images\contact.jpg" />
+    <Content Include="Images\iphone.jpeg" />
+    <Content Include="Images\iphone1.jpeg" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\one.jpg" />
+    <Content Include="Images\person1.jpg" />
+    <Content Include="Images\person2.jpeg" />
+    <Content Include="Images\person3.jpeg" />
+    <Content Include="Images\products.jpeg" />
+    <Content Include="Images\samsung.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
