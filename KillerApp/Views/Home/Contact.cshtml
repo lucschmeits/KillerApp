@@ -4,3 +4,69 @@
 <div class="header-banner">
     <img src="../../Images/contact.jpg" class="img-responsive" alt="banner" />
 </div>
+<section id="contact-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center adres">
+                <div class="contact-content">
+                    <i class="glyphicon glyphicon-map-marker feature-icon"></i>
+                    <h5>address</h5>
+                    <p>33 King Street, Suite 133</p>
+                    <p>Miami, Florida</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center phone">
+                <div class="contact-content">
+                    <i class="glyphicon glyphicon-phone feature-icon"></i>
+                    <h5>phone</h5>
+                    <p>Sales: <a href="tel:+0123456789">+0123 456 789</a></p>
+                    <p>Support: <a href="tel:+0123456789">+0987 654 321</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center email">
+                <div class="contact-content">
+                    <i class="glyphicon glyphicon-envelope feature-icon"></i>
+                    <h5>email</h5>
+                    <p>Sales: <a href="mailto:sales@yoursite.com">sales@yoursite.com</a></p>
+                    <p>Support: <a href="mailto:sales@yoursite.com">support@yoursite.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 map">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-6 form">
+                <form class="contactform" datatoggle="validator">
+                    <div class="form-group">
+                        <input id="name" class="form-control" type="text" placeholder="FULL NAME" />
+                    </div>
+                    <div class="form-group">
+                        <input id="mail" class="form-control" type="email" placeholder="EMAIL" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" rows="5" placeholder="MESSAGE"></textarea>
+                    </div>
+                    <button id="form-submit" class="btn btn-default btn-send" type="submit">SEND</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function initMap() {
+        var uluru = { lat: 51.451691, lng: 5.481597 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>

@@ -32,5 +32,10 @@ namespace KillerApp.Controllers
             ViewBag.Message = "Your product page.";
             return View();
         }
+
+        public ActionResult Account()
+        {
+            return View();
+        }
     }
 }
