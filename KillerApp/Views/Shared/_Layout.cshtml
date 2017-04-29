@@ -24,8 +24,8 @@
                 <!-- @Html.ActionLink("KillerProducts", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) -->
             </div>
             <div class="sec-nav">
-                <a href="@Url.Action("Index", "Home")">
-                    <i class="glyphicon glyphicon-user menu-icon"></i>
+                <a href="@Url.Action("Account", "Home")">
+                    <i class="glyphicon glyphicon-user menu-icon @(ViewContext.RouteData.Values["Action"].ToString() == "Account" ? "menu-icon-active" : "")"></i>
                 </a>
                 <a href="@Url.Action("Index", "Home")">
                     <i class="glyphicon glyphicon-shopping-cart menu-icon menu-icon-cart"></i>
