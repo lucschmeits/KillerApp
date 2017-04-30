@@ -156,6 +156,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\about.jpeg" />
     <Content Include="Images\aboutshop.jpeg" />
+    <Content Include="Images\account.jpeg" />
     <Content Include="Images\banner.jpeg" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\bannerSamung.png" />

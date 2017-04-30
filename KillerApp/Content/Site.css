@@ -174,6 +174,19 @@ body {
 #shop {
     margin-bottom: 2%;
 }
+
+.product-overlay {
+    background: #bd6b17;
+    position: absolute;
+    padding: 220px 170px 240px 176px;
+    opacity: 0.7;
+    display: none;
+    transition: .90s ease-in-out;
+}
+
+.product:hover .product-overlay {
+    display: block;
+}
 /*Footer CSS*/
 .footer-info {
     background: #f8f8f8;
@@ -207,9 +220,12 @@ body {
 
     .brand-list > li {
         margin-bottom: 10px;
-        color: #bd6b17;
-        font-weight: 700;
     }
+
+        .brand-list > li > a {
+            color: #bd6b17;
+            font-weight: 700;
+        }
 
 .second-footer {
     margin-top: 3%;
@@ -320,6 +336,18 @@ body {
 #login {
     margin-bottom: 2%;
 }
+
+.login-form > h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.register-form > h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 /*Bootstrap overrides*/
 .navbar-default {
     background: #ffffff;
@@ -352,4 +380,5 @@ body {
     border-radius: 0;
     padding: 20px;
     height: 100%;
+    font-family: 'Lato', sans-serif;
 }
