@@ -165,6 +165,9 @@
     <Content Include="Images\collection2.jpeg" />
     <Content Include="Images\collection3.jpeg" />
     <Content Include="Images\contact.jpg" />
+    <Content Include="Images\homebanner.jpeg" />
+    <Content Include="Images\homebanner1.jpg" />
+    <Content Include="Images\homebanner2.jpeg" />
     <Content Include="Images\iphone.jpeg" />
     <Content Include="Images\iphone1.jpeg" />
     <Content Include="Images\logo1.png" />
@@ -180,6 +183,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

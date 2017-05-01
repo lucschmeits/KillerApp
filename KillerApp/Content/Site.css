@@ -178,15 +178,37 @@ body {
 .product-overlay {
     background: #bd6b17;
     position: absolute;
-    padding: 220px 170px 240px 176px;
+    padding: 50.5% 34% 61% 34%;
     opacity: 0.7;
     display: none;
-    transition: .90s ease-in-out;
 }
 
-.product:hover .product-overlay {
-    display: block;
+.product-icon {
+    font-size: 30px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 5px;
+    color: #000;
 }
+
+    .product-icon:hover {
+        color: #bd6b17;
+    }
+
+.product-overlay-content {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    color: #fff;
+}
+
+    .product-overlay-content > h4 {
+        font-weight: 700;
+    }
 /*Footer CSS*/
 .footer-info {
     background: #f8f8f8;
