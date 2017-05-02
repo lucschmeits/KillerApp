@@ -195,20 +195,75 @@ body {
         color: #bd6b17;
     }
 
-.product-overlay-content {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    font-family: 'Lato', sans-serif;
-    text-transform: uppercase;
-    margin-left: 10%;
-    margin-bottom: 5%;
-    color: #fff;
+.product-product {
+    background: #bd6b17;
 }
 
-    .product-overlay-content > h4 {
+.img-product {
+    opacity: 1;
+}
+
+.product-hover-icons {
+    position: absolute;
+    z-index: 2;
+    bottom: 46%;
+    right: 36%;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s, ease-in-out 0.3s;
+    -moz-transition: opacity 0.3s, ease-in-out 0.3s;
+    -o-transition: opacity 0.3s, ease-in-out 0.3s;
+    transition: opacity 0.3s, ease-in-out 0.3s;
+}
+
+.product:hover .product-hover-icons {
+    right: 36%;
+    text-align: center;
+    visibility: visible;
+    opacity: 1;
+}
+
+.product-hover-details {
+    position: absolute;
+    z-index: 2;
+    bottom: 5%;
+    left: 10%;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    -webkit-transition: opacity 0.3s, ease-in-out 0.3s;
+    -moz-transition: opacity 0.3s, ease-in-out 0.3s;
+    -o-transition: opacity 0.3s, ease-in-out 0.3s;
+    transition: opacity 0.3s, ease-in-out 0.3s;
+}
+
+    .product-hover-details > h4 {
         font-weight: 700;
     }
+
+.product:hover .product-hover-details {
+    bottom: 8%;
+    left: 10%;
+    text-align: left;
+    visibility: visible;
+    opacity: 1;
+}
+
+.product-list {
+    list-style: none;
+    overflow: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.show-products {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 /*Footer CSS*/
 .footer-info {
     background: #f8f8f8;

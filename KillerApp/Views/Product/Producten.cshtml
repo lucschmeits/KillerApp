@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Producten";
+}
+
+<div class="header-banner">
+    <img src="../../Images/products.jpeg" class="img-responsive" alt="banner" />
+</div>
+
+<section id="producten">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-3 sidebar">
+                <div class="widget-prijs">
+                    <h5>Filter by price</h5>
+                </div>
+                <div class="prijs-filter widget">
+                    <h5>Price filter</h5>
+                    <ul>
+                        <li><a href="#">&euro; 100 - &euro; 200</a></li>
+                        <li><a href="#">&euro; 200 - &euro; 300</a></li>
+                        <li><a href="#">&euro; 300 - &euro; 400</a></li>
+                        <li><a href="#">&euro; 400 - &euro; 500</a></li>
+                        <li><a href="#">&euro; 500 - &euro; 600</a></li>
+                    </ul>
+                </div>
+                <div class="categorie-filter widget">
+                    <h5>Catgories</h5>
+                    <ul>
+                        <li><a href="#">catgeorie 1</a><span class="pull-right">(16)</span></li>
+                        <li><a href="#">catgeorie 2</a><span class="pull-right">(7)</span></li>
+                        <li><a href="#">catgeorie 3</a><span class="pull-right">(11)</span></li>
+                        <li><a href="#">catgeorie 4</a><span class="pull-right">(4)</span></li>
+                        <li><a href="#">catgeorie 5</a><span class="pull-right">(13)</span></li>
+                        <li><a href="#">catgeorie 6</a><span class="pull-right">(8)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-9 product-content">
+                <p class="show-products">
+                    Showing <strong>1-8</strong> of <strong>36</strong> items.
+                    <span class="pull-right space-right">
+                        <select class="selectpicker">
+                            <optgroup label="Sort By:">
+                                <option>Default</option>
+                                <option>Popularity</option>
+                                <option>Newness</option>
+                                <option>Rating</option>
+                                <option>Price Low to High</option>
+                                <option>Price High to Low</option>
+                            </optgroup>
+                        </select>
+                    </span>
+                </p>
+                <ul class="product-list">
+                    <li class="col-md-6 product">
+                        <div class="product-product">
+                            <h5 class="product-price">&euro;299,99</h5>
+                            <a>
+                                <img class="img-responsive  img-product" alt="product" src="../../Images/iphone1.jpeg" />
+                            </a>
+                            <div class="product-hover-icons">
+                                <a href="@Url.Action("Index", "Product")"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
+                                <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                            </div>
+                            <div class="product-hover-details">
+                                <h4>Title</h4>
+                                <p>Category</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 product">
+                        <div class="product-product">
+                            <h5 class="product-price">&euro;559,99</h5>
+                            <a>
+                                <img class="img-responsive  img-product" alt="product" src="../../Images/samsung.jpeg" />
+                            </a>
+                            <div class="product-hover-icons">
+                                <a href="@Url.Action("Index", "Product")"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
+                                <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                            </div>
+                            <div class="product-hover-details">
+                                <h4>Title</h4>
+                                <p>Category</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
