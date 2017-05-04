@@ -193,6 +193,7 @@ body {
 
     .product-icon:hover {
         color: #bd6b17;
+        background: #000000;
     }
 
 .product-product {
@@ -263,6 +264,44 @@ body {
 .show-products {
     padding-left: 15px;
     padding-right: 15px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+.product-filter {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+}
+
+.filter-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .filter-list > li {
+        margin-bottom: 3%;
+    }
+
+        .filter-list > li > a {
+            color: #bd6b17;
+        }
+
+            .filter-list > li > a:hover {
+                color: #844a10;
+            }
+
+.prijs-filter {
+    margin-bottom: 15%;
+}
+
+.widget-prijs {
+    margin-bottom: 15%;
+}
+
+.options {
+    font-family: 'Lato', sans-serif;
 }
 /*Footer CSS*/
 .footer-info {
@@ -424,6 +463,75 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
+}
+/*Cart CSS*/
+.shopping-items {
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+    .shopping-items > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+.cart-item img {
+    max-width: 50px;
+    -webkit-transition: ease-in-out 0.3s;
+    -moz-transition: ease-in-out 0.3s;
+    -ms-transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.3s;
+}
+
+.qty input[type="number"] {
+    max-width: 50px;
+    max-height: 40px;
+    border: 2px solid #ebebeb;
+    border-radius: 5px;
+    padding: 10px;
+    float: left;
+    outline: none !important;
+}
+
+table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td, table > tfoot > tr > th, table > tr > td {
+    padding: 15px;
+    line-height: 1.5;
+    vertical-align: top;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.image-cart > a > img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-backface-visibility: hidden;
+}
+
+.image-cart {
+    width: 105px;
+}
+
+.cart-product-title {
+    color: #bd6b17;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.shopping-items > thead {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.cart-item > td {
+    font-family: 'Lato', sans-serif;
+}
+
+.btn-cart {
+    background: #bd6b17;
+    border: #bd6b17;
+    padding: 15%;
 }
 /*Bootstrap overrides*/
 .navbar-default {

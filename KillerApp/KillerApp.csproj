@@ -143,9 +143,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KortingController.cs" />
+    <Compile Include="Controllers\LeverancierController.cs" />
+    <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\VoorraadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,6 +170,7 @@
     <Content Include="Images\banner.jpeg" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\bannerSamung.png" />
+    <Content Include="Images\cart.jpeg" />
     <Content Include="Images\collection.jpeg" />
     <Content Include="Images\collection1.jpeg" />
     <Content Include="Images\collection2.jpeg" />
@@ -214,10 +221,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Producten.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
+    <Content Include="Views\Cart\Winkelmand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Coupon\" />
+    <Folder Include="Views\Korting\" />
+    <Folder Include="Views\Leverancier\" />
+    <Folder Include="Views\Overzicht\" />
+    <Folder Include="Views\Voorraad\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

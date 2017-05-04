@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Winkelmand";
+}
+
+<div class="header-banner">
+    <img src="../../Images/cart.jpeg" class="img-responsive" alt="banner" />
+</div>
+
+<section id="cart">
+    <div class="shopping-cart">
+        <div class="container">
+            <table class="shopping-items">
+                <thead>
+                    <tr>
+                        <th class="image">&nbsp;</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart-item">
+                        <td class="image-cart"><a href="#"><img src="../../Images/one.jpg" alt=""></a></td>
+                        <td><a class="cart-product-title" href="#">WOMEN'S JEANS</a></td>
+                        <td>&euro;69</td>
+                        <td class="qty"><input step="1" min="0" name="cart" value="1" title="Qty" class="qty" size="4" type="number"></td>
+                        <td>&euro;69</td>
+                        <td class="remove"><a href="#x" class="btn btn-danger">×</a></td>
+                    </tr>
+                    <tr class="cart-item">
+                        <td class="image-cart"><a href="#"><img src="../../Images/one.jpg" alt=""></a></td>
+                        <td><a class="cart-product-title" href="#">WOMEN'S SHIRT</a></td>
+                        <td>&euro;39</td>
+                        <td class="qty"><input step="1" min="0" name="cart" value="2" title="Qty" class="qty" size="4" type="number"></td>
+                        <td>&euro;78</td>
+                        <td class="remove"><a href="#x" class="btn btn-danger">×</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input class="form-control rounded" id="coupon-code" placeholder="COUPON CODE" type="text">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-cart" type="button"><i class=" menu-icon-cart glyphicon glyphicon-tag"></i> <span>Apply Coupon</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="update-cart col-sm-6">
+                    <button class="pull-right btn btn-default" type="button"><i class="glyphicon glyphicon-refresh"></i> <span>Update Cart</span></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 cart-total">
+                    <h4>CART TOTAL</h4>
+                    <p>Subtotal: <span>$147</span></p>
+                    <p>Shipping: <span>Free</span></p>
+                    <p>Total: <span>$147</span></p>
+                </div>
+                <div class="col-sm-6 cart-checkout">
+                    <a href="#" class="btn btn-primary"><i class="menu-icon-cart glyphicon glyphicon-shopping-cart"></i> <span>Continue Shopping</span></a>
+                    <a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> <span>Proceed to Checkout</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
