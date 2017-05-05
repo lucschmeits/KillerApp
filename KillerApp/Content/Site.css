@@ -478,7 +478,6 @@ body {
     max-width: 50px;
     -webkit-transition: ease-in-out 0.3s;
     -moz-transition: ease-in-out 0.3s;
-    -ms-transition: ease-in-out 0.3s;
     transition: ease-in-out 0.3s;
 }
 
@@ -530,9 +529,90 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
 
 .btn-cart {
     background: #bd6b17;
-    border: #bd6b17;
-    padding: 15%;
+    height: 62px;
+    border-radius: 0;
+    border: 1px solid #bd6b17;
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    transition: .35s ease-in-out;
+    text-transform: uppercase;
 }
+
+    .btn-cart:hover, .btn-cart:focus, .btn-cart:active {
+        color: #000;
+        background: transparent;
+        border: 1px solid #bd6b17;
+        transition: .35s ease-in-out;
+    }
+
+.btn-cart-grey {
+    background: #2F4F4F;
+    height: 62px;
+    border-radius: 0;
+    border: 1px solid #2F4F4F;
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    transition: .35s ease-in-out;
+    text-transform: uppercase;
+}
+
+    .btn-cart-grey:hover, .btn-cart-grey:focus, .btn-cart-grey:active {
+        color: #000;
+        background: transparent;
+        border: 1px solid #2F4F4F;
+        transition: .35s ease-in-out;
+    }
+
+.cart-checkout > a {
+    float: right;
+}
+
+.cart-checkout {
+    margin: 5% 0 5% 0;
+}
+
+.btn-cart-a {
+    padding: 15px 20px 15px 20px;
+    background: #2F4F4F;
+    border: 1px solid #2F4F4F;
+    border-radius: 0;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    transition: .35s ease-in-out;
+}
+
+    .btn-cart-a:hover, .btn-cart-a:active, .btn-cart-a:focus {
+        background: transparent;
+        color: #000000;
+        transition: .35s ease-in-out;
+    }
+
+.btn-cart-a-orange {
+    padding: 15px 20px 15px 20px;
+    background: #bd6b17;
+    border: 1px solid #bd6b17;
+    border-radius: 0;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    transition: .35s ease-in-out;
+}
+
+    .btn-cart-a-orange:hover, .btn-cart-a-orange:active, .btn-cart-a-orange:focus {
+        background: transparent;
+        color: #000000;
+        transition: .35s ease-in-out;
+    }
+
+.cart-total {
+    font-family: 'Lato', sans-serif;
+    margin: 5% 0 5% 0;
+}
+
+    .cart-total > h4 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 /*Bootstrap overrides*/
 .navbar-default {
     background: #ffffff;
