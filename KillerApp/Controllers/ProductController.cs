@@ -13,5 +13,10 @@ namespace KillerApp.Controllers
         {
             return View("Producten");
         }
+
+        public ActionResult Product()
+        {
+            return View();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 81px;
     padding-bottom: 20px;
 }
 
@@ -7,10 +7,6 @@ a:hover, a:focus {
     text-decoration: none;
 }
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    /*padding-left: 15px;
-    padding-right: 15px;*/
-}
 
 /* Override the default bootstrap behavior where horizontal description lists
    will truncate terms that are too long to fit in the left column
@@ -20,11 +16,7 @@ a:hover, a:focus {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    /* max-width: 280px; */
-}
+
 /*Google Fonts*/
 body {
     font-family: 'Merriweather', serif;
@@ -254,6 +246,35 @@ body {
     opacity: 1;
 }
 
+.collection-hover-details {
+    position: absolute;
+    z-index: 2;
+    bottom: 5%;
+    left: 10%;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    -webkit-transition: opacity 0.3s, ease-in-out 0.3s;
+    -moz-transition: opacity 0.3s, ease-in-out 0.3s;
+    -o-transition: opacity 0.3s, ease-in-out 0.3s;
+    transition: opacity 0.3s, ease-in-out 0.3s;
+}
+
+    .collection-hover-details > h4 {
+        font-weight: 700;
+    }
+
+.img-opacity:hover .collection-hover-details {
+    bottom: 8%;
+    left: 10%;
+    text-align: left;
+    visibility: visible;
+    opacity: 1;
+}
+
 .product-list {
     list-style: none;
     overflow: auto;
@@ -302,6 +323,7 @@ body {
 
 .options {
     font-family: 'Lato', sans-serif;
+    overflow: auto;
 }
 /*Footer CSS*/
 .footer-info {
@@ -430,11 +452,19 @@ body {
     width: 100%;
     border-radius: 0;
     padding: 4%;
+    border: 1px solid #bd6b17;
     background-color: #bd6b17;
     color: #FFFFFF;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
+    transition: .35s ease-in-out;
 }
+
+    .btn-send:hover, .btn-send:focus, .btn-send:active, .btn-send:active:focus {
+        background: transparent;
+        border: 1px solid #bd6b17;
+        color: #000000;
+    }
 
 #contact-info {
     margin-bottom: 2%;
@@ -478,11 +508,12 @@ body {
     max-width: 50px;
     -webkit-transition: ease-in-out 0.3s;
     -moz-transition: ease-in-out 0.3s;
+    -o-transition: ease-in-out 0.3s;
     transition: ease-in-out 0.3s;
 }
 
 .qty input[type="number"] {
-    max-width: 50px;
+    max-width: 70px;
     max-height: 40px;
     border: 2px solid #ebebeb;
     border-radius: 5px;
@@ -600,6 +631,7 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
     .btn-cart-a-orange:hover, .btn-cart-a-orange:active, .btn-cart-a-orange:focus {
         background: transparent;
         color: #000000;
+        border: 1px solid #bd6b17;
         transition: .35s ease-in-out;
     }
 
@@ -613,6 +645,143 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
         font-weight: 700;
         text-transform: uppercase;
     }
+/*Single product CSS*/
+.product-info {
+    background: #f8f8f8;
+    padding: 30px;
+    font-family: 'Lato', sans-serif;
+}
+
+    .product-info > h4 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+.info > p > i {
+    margin-right: 20px;
+}
+
+.aantal > input {
+    margin: 2% 0 2% 1%;
+}
+
+#single-product {
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 15;
+    margin: 0;
+    padding: 0 25px 25px 0;
+    text-align: right;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+    background-image: none;
+}
+
+.nav-tabs {
+    border-bottom: 3px solid #ebebeb;
+}
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: #bd6b17;
+        background: none;
+        border: none;
+        border-bottom: 3px solid #bd6b17 !important;
+    }
+
+    .nav-tabs > li > a:hover {
+        background: none;
+        border: none;
+    }
+
+    .nav-tabs > li > a {
+        border: none;
+    }
+
+.product-info-tabs {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+    .product-info-tabs > li > a {
+        color: #bd6b17;
+        text-transform: uppercase;
+    }
+
+#product-content-info {
+    font-family: 'Lato', sans-serif;
+}
+
+.review-content {
+    font-family: 'Lato', sans-serif;
+    border-bottom: 3px solid #e3e3e3;
+}
+
+    .review-content > h4 {
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+.review-stars {
+    color: #e2a740;
+}
+
+.review-form {
+    margin-top: 5%;
+}
+
+    .review-form > h4 {
+        font-family: 'Lato', sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+.btn-send > i {
+    margin-right: 10px;
+}
+/* ------------------- Section Styling - Not needed for carousel styling ------------------- */
+
+.section-white {
+    padding: 10px 0;
+}
+
+.section-white {
+    background-color: #fff;
+    color: #555;
+}
+
+@media screen and (min-width: 768px) {
+    .section-white {
+        padding: 1.5em 0;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        max-width: 930px;
+    }
+}
+
 /*Bootstrap overrides*/
 .navbar-default {
     background: #ffffff;
@@ -646,4 +815,8 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
     padding: 20px;
     height: 100%;
     font-family: 'Lato', sans-serif;
+}
+
+.navbar {
+    min-height: 81px;
 }

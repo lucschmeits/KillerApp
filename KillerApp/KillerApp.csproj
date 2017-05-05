@@ -222,6 +222,7 @@
     <Content Include="Views\Product\Producten.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Cart\Winkelmand.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
