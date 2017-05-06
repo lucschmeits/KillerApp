@@ -13,5 +13,10 @@ namespace KillerApp.Controllers
         {
             return View("Account");
         }
+
+        public ActionResult Klant()
+        {
+            return View("KlantHome");
+        }
     }
 }

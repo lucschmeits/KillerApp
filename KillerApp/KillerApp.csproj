@@ -181,6 +181,9 @@
     <Content Include="Images\homebanner2.jpeg" />
     <Content Include="Images\iphone.jpeg" />
     <Content Include="Images\iphone1.jpeg" />
+    <Content Include="Images\laptop.jpg" />
+    <Content Include="Images\laptop1.jpg" />
+    <Content Include="Images\laptop2.jpeg" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\one.jpg" />
     <Content Include="Images\person1.jpg" />
@@ -223,6 +226,7 @@
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Cart\Winkelmand.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Account\KlantHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
