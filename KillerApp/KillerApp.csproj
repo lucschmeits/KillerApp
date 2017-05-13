@@ -154,6 +154,7 @@
     <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VoorraadController.cs" />
+    <Compile Include="DAL\Context\ProductSQL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,7 +246,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAL\Context\" />
     <Folder Include="DAL\Interface\" />
     <Folder Include="DAL\Repo\" />
     <Folder Include="Models\" />
