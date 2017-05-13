@@ -143,10 +143,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BeheerController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KlantController.cs" />
     <Compile Include="Controllers\KortingController.cs" />
     <Compile Include="Controllers\LeverancierController.cs" />
     <Compile Include="Controllers\OverzichtController.cs" />
@@ -167,9 +169,11 @@
     <Content Include="Images\about.jpeg" />
     <Content Include="Images\aboutshop.jpeg" />
     <Content Include="Images\account.jpeg" />
+    <Content Include="Images\accountKlant.jpeg" />
     <Content Include="Images\banner.jpeg" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\bannerSamung.png" />
+    <Content Include="Images\beheerhome.jpeg" />
     <Content Include="Images\cart.jpeg" />
     <Content Include="Images\collection.jpeg" />
     <Content Include="Images\collection1.jpeg" />
@@ -185,6 +189,7 @@
     <Content Include="Images\laptop1.jpg" />
     <Content Include="Images\laptop2.jpeg" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\man.png" />
     <Content Include="Images\one.jpg" />
     <Content Include="Images\person1.jpg" />
     <Content Include="Images\person2.jpeg" />
@@ -227,9 +232,22 @@
     <Content Include="Views\Cart\Winkelmand.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Account\KlantHome.cshtml" />
+    <Content Include="Views\Account\BeheerderHome.cshtml" />
+    <Content Include="Views\Beheer\Leverancier.cshtml" />
+    <Content Include="Views\Beheer\Producten.cshtml" />
+    <Content Include="Views\Beheer\Klanten.cshtml" />
+    <Content Include="Views\Beheer\Accounts.cshtml" />
+    <Content Include="Views\Beheer\Facturen.cshtml" />
+    <Content Include="Views\Beheer\Kortingscodes.cshtml" />
+    <Content Include="Views\Beheer\Korting.cshtml" />
+    <Content Include="Views\Klant\Orders.cshtml" />
+    <Content Include="Views\Klant\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAL\Context\" />
+    <Folder Include="DAL\Interface\" />
+    <Folder Include="DAL\Repo\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Coupon\" />
     <Folder Include="Views\Korting\" />

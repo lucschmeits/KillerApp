@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Info";
+}
+
+<section id="info-klant">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 titel-info">
+                <h2>customer Info</h2>
+            </div>
+            <div class="col-md-4 klant-info">
+                <p>Naam : </p>
+                <p>Account number : </p>
+                <a href="@Url.Action("Klant", "Account")">Back</a>
+            </div>
+            <div class="col-md-8 update-info">
+                @using (Html.BeginForm("info", "Klant", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <input id="naam" type="text" class="form-control" value="naam" />
+                    </div>
+                    <div class="form-group">
+                        <input id="mail" type="email" class="form-control" value="mail" />
+                    </div>
+                    <div class="form-group">
+                        <input id="wachtwoord" type="password" class="form-control" value="wachtwoord" />
+                    </div>
+                    <div class="form-group">
+                        <input id="straat" type="text" class="form-control" value="straat" />
+                    </div>
+                    <div class="form-group">
+                        <input id="huisnr" type="text" class="form-control" value="huisnr" />
+                    </div>
+                    <div class="form-group">
+                        <input id="postcode" type="text" class="form-control" value="postcode" />
+                    </div>
+                    <div class="form-group">
+                        <input id="woonplaats" type="text" class="form-control" value="woonplaats" />
+                    </div>
+                    <div class="form-group">
+                        <input id="land" type="text" class="form-control" value="land" />
+                    </div>
+                    <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Orders";
+}
+
+<section id="info-order">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 titel-info">
+                <h2>order Info</h2>
+            </div>
+            <div class="col-md-4 klant-info">
+                <p>Naam : </p>
+                <p>Account number : </p>
+                <a href="@Url.Action("Klant", "Account")">Back</a>
+            </div>
+            <div class="col-md-8 order-info">
+
+                <p>Datum : </p>
+                <p>Coupon : </p>
+                <p>Product 1 : {naam}  Aantal : </p>
+            </div>
+        </div>
+    </div>
+</section>
