@@ -154,10 +154,54 @@
     <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VoorraadController.cs" />
+    <Compile Include="DAL\Context\AfbeeldingSQL.cs" />
+    <Compile Include="DAL\Context\BeheerderSQL.cs" />
+    <Compile Include="DAL\Context\BeoordelingSQL.cs" />
+    <Compile Include="DAL\Context\ConSQL.cs" />
+    <Compile Include="DAL\Context\CouponSQL.cs" />
+    <Compile Include="DAL\Context\GebruikerSQL.cs" />
+    <Compile Include="DAL\Context\KlantSQL.cs" />
+    <Compile Include="DAL\Context\KortingSQL.cs" />
+    <Compile Include="DAL\Context\LeverancierSQL.cs" />
+    <Compile Include="DAL\Context\OrderSQL.cs" />
+    <Compile Include="DAL\Context\ProductCategorieSQL.cs" />
     <Compile Include="DAL\Context\ProductSQL.cs" />
+    <Compile Include="DAL\Interface\IAfbeelding.cs" />
+    <Compile Include="DAL\Interface\IBeheerder.cs" />
+    <Compile Include="DAL\Interface\IBeoordeling.cs" />
+    <Compile Include="DAL\Interface\ICoupon.cs" />
+    <Compile Include="DAL\Interface\IGebruiker.cs" />
+    <Compile Include="DAL\Interface\IKlant.cs" />
+    <Compile Include="DAL\Interface\IKorting.cs" />
+    <Compile Include="DAL\Interface\ILeverancier.cs" />
+    <Compile Include="DAL\Interface\IOrder.cs" />
+    <Compile Include="DAL\Interface\IProduct.cs" />
+    <Compile Include="DAL\Interface\IProductCategorie.cs" />
+    <Compile Include="DAL\Repo\AfbeeldingRepo.cs" />
+    <Compile Include="DAL\Repo\BeheerderRepo.cs" />
+    <Compile Include="DAL\Repo\BeoordelingRepo.cs" />
+    <Compile Include="DAL\Repo\CouponRepo.cs" />
+    <Compile Include="DAL\Repo\GebruikerRepo.cs" />
+    <Compile Include="DAL\Repo\KlantRepo.cs" />
+    <Compile Include="DAL\Repo\KortingRepo.cs" />
+    <Compile Include="DAL\Repo\LeverancierRepo.cs" />
+    <Compile Include="DAL\Repo\OrderRepo.cs" />
+    <Compile Include="DAL\Repo\ProductCategorieRepo.cs" />
+    <Compile Include="DAL\Repo\ProductRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Afbeelding.cs" />
+    <Compile Include="Models\Beheerder.cs" />
+    <Compile Include="Models\Beoordeling.cs" />
+    <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Coupon.cs" />
+    <Compile Include="Models\Gebruiker.cs" />
+    <Compile Include="Models\Klant.cs" />
+    <Compile Include="Models\Korting.cs" />
+    <Compile Include="Models\Leverancier.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAL\Interface\" />
-    <Folder Include="DAL\Repo\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Coupon\" />
     <Folder Include="Views\Korting\" />
     <Folder Include="Views\Leverancier\" />
