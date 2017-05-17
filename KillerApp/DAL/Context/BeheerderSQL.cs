@@ -11,13 +11,11 @@ namespace KillerApp.DAL.Context
 {
     public class BeheerderSQL : IBeheerder
     {
-        private readonly ConSQL _sql = new ConSQL();
-
         public void CreateBeheerder(int id)
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var query1 = "INSERT INTO Beheerder (id) VALUES (@newID)";
                 var command1 = new SqlCommand(query1, con);
@@ -36,7 +34,7 @@ namespace KillerApp.DAL.Context
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "DELETE FROM Beheerder WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);
@@ -56,7 +54,7 @@ namespace KillerApp.DAL.Context
             var returnList = new List<Beheerder>();
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "SELECT * FROM Gebruiker INNER JOIN Beheerder ON Gebruiker.id = Beheerder.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Beheerder)";
                 var command = new SqlCommand(cmdString, con);
@@ -86,7 +84,7 @@ namespace KillerApp.DAL.Context
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "SELECT * FROM Gebruiker g WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);

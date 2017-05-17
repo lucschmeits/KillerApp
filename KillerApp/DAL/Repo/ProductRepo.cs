@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KillerApp.DAL.Interface;
+using KillerApp.Models;
 
 namespace KillerApp.DAL.Repo
 {
@@ -13,6 +14,26 @@ namespace KillerApp.DAL.Repo
         public ProductRepo(IProduct productInterface)
         {
             _productInterface = productInterface;
+        }
+
+        public List<Product> RetrieveAll()
+        {
+            return _productInterface.RetrieveAll();
+        }
+
+        public void CreateProduct(Product p)
+        {
+            _productInterface.CreateProduct(p);
+        }
+
+        public Product RetrieveProduct(int id)
+        {
+            return _productInterface.RetrieveProduct(id);
+        }
+
+        public void DeleteProduct(int id)
+        {
+            _productInterface.DeleteProduct(id);
         }
     }
 }

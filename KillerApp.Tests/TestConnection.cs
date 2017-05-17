@@ -9,13 +9,12 @@ namespace KillerApp.Tests
     [TestClass]
     public class TestConnection
     {
-        private ConSQL _sql = new ConSQL();
         private bool _state;
 
         [TestMethod]
         public void TestMethod1()
         {
-            var con = new SqlConnection(_sql.ConnectionString);
+            var con = new SqlConnection(ConSQL.ConnectionString);
             con.Open();
             if (con.State == ConnectionState.Open)
             {

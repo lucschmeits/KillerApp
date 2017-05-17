@@ -11,13 +11,11 @@ namespace KillerApp.DAL.Context
 {
     public class KlantSQL : IKlant
     {
-        private readonly ConSQL _sql = new ConSQL();
-
         public void CreateKlant(int id, Klant k)
         {
-            var con = new SqlConnection(_sql.ConnectionString);
             try
             {
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var query1 = "INSERT INTO Klant (id, straat, huisNr, postcode, woonplaats, land) VALUES (@newID, @straat, @huisNr, @postcode, @woonplaats, @land)";
                 var command1 = new SqlCommand(query1, con);
@@ -41,7 +39,7 @@ namespace KillerApp.DAL.Context
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "DELETE FROM Klant WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);
@@ -61,7 +59,7 @@ namespace KillerApp.DAL.Context
             var returnList = new List<Klant>();
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "SELECT * FROM Gebruiker INNER JOIN Klant ON Gebruiker.id = Klant.id WHERE Gebruiker.id IN(SELECT id FROM Klant)";
                 var command = new SqlCommand(cmdString, con);
@@ -96,7 +94,7 @@ namespace KillerApp.DAL.Context
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var cmdString = "SELECT * FROM Gebruiker g INNER JOIN Klant AS k ON g.id = k.id WHERE g.id = @id";
                 var command = new SqlCommand(cmdString, con);
@@ -131,7 +129,7 @@ namespace KillerApp.DAL.Context
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
                 var query =
                     "UPDATE Gebruiker SET naam = @naam, e-mail = @email, wachtwoord = @wachtwoord WHERE id = @id";

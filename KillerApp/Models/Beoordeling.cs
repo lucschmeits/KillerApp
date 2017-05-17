@@ -11,5 +11,7 @@ namespace KillerApp.Models
         public string Titel { get; set; }
         public string Omschrijving { get; set; }
         public double Cijfer { get; set; }
+
+        public Product Product { get; set; }
     }
 }

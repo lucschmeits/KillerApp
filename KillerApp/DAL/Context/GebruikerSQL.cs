@@ -11,24 +11,21 @@ namespace KillerApp.DAL.Context
 {
     public class GebruikerSQL : IGebruiker
     {
-        private readonly ConSQL _sql = new ConSQL();
-
         public int CreateGebruiker(Gebruiker g)
         {
             try
             {
-                var con = new SqlConnection(_sql.ConnectionString);
+                var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                int ID;
                 var query = "INSERT INTO Gebruiker (naam, [e-mail], wachtwoord) VALUES(@naam, @email, @wachtwoord);SELECT CAST(scope_identity() AS int)";
                 var cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@naam", g.Naam);
                 cmd.Parameters.AddWithValue("@email", g.Email);
                 cmd.Parameters.AddWithValue("@wachtwoord", g.Wachtwoord);
 
-                ID = (int)cmd.ExecuteScalar();
+                var id = (int)cmd.ExecuteScalar();
                 con.Close();
-                return ID;
+                return id;
             }
             catch (Exception ex)
             {

@@ -9,6 +9,6 @@ namespace KillerApp.DAL.Context
 {
     public class ConSQL
     {
-        public string ConnectionString = ConfigurationManager.ConnectionStrings["killerappCon"].ConnectionString;
+        public static string ConnectionString = ConfigurationManager.ConnectionStrings["killerappCon"].ConnectionString;
     }
 }
