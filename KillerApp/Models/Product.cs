@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using KillerApp.DAL.Context;
+using KillerApp.DAL.Repo;
 
 namespace KillerApp.Models
 {
@@ -17,5 +20,21 @@ namespace KillerApp.Models
         public Categorie Categorie { get; set; }
         public Leverancier Leverancier { get; set; }
         public List<Korting> Kortingen { get; set; }
+
+        public static List<Product> All()
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+
+            return repo.RetrieveAll();
+        }
+
+        public static Product ProductById(int id)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+
+            return repo.RetrieveProduct(id);
+        }
     }
 }

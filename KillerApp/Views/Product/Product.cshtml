@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Product";
 }
-
+@model KillerApp.Models.Product
 <section id="single-product">
     <div class="container">
         <div class="row">
@@ -38,22 +38,19 @@
             </div>
             <div class="col-sm-6 col-md-5">
                 <div class="product-info">
-                    <h4>Title</h4>
+                    <h4>@Html.DisplayFor(model => model.Naam)</h4>
                     <p>
-                        Bacon ipsum dolor amet bresaola shoulder kevin,
-                        chuck beef burgdoggen pork alcatra prosciutto turkey salami.
-                        Spare ribs jerky tenderloin,
-                        boudin tongue turkey jowl bresaola landjaeger prosciutto shankle ribeye burgdoggen kielbasa venison.
+                        @Html.DisplayFor(model => model.Omschrijving)
                     </p>
                     <div class="product-specs">
                         <div class="info">
-                            <p><i class="glyphicon glyphicon-tag"></i><span>Price: &euro;69</span></p>
+                            <p><i class="glyphicon glyphicon-tag"></i><span>Price: &euro;@Html.DisplayFor(model => model.Prijs)</span></p>
                         </div>
                         <div class="info">
-                            <p><i class="glyphicon glyphicon-heart-empty"></i><span>Category: <a href="#"> Women's</a>, <a href="#">Jeans</a></span></p>
+                            <p><i class="glyphicon glyphicon-heart-empty"></i><span>Category: <a href="#"> @Html.DisplayFor(model => model.Categorie.Naam)</a></span></p>
                         </div>
                         <div class="info">
-                            <p><i class="glyphicon glyphicon-menu-hamburger"></i><span>SKU: 1456842493</span></p>
+                            <p><i class="glyphicon glyphicon-menu-hamburger"></i><span>SKU: @Html.DisplayFor(model => model.Id)</span></p>
                         </div>
                         <div class="info">
                             <p><i class="glyphicon glyphicon-star-empty"></i><span>Reviews: <i class="glyphicon glyphicon-star"></i> <i class="glyphicon glyphicon-star"></i> <i class="glyphicon glyphicon-star"></i> <i class="glyphicon glyphicon-star"></i> <i class="glyphicon glyphicon-star-empty"></i></span></p>

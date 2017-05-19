@@ -87,6 +87,7 @@
     <Compile Include="TestGebruiker.cs" />
     <Compile Include="TestProduct.cs" />
     <Compile Include="TestBeoordeling.cs" />
+    <Compile Include="TestOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

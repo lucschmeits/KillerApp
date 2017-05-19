@@ -95,7 +95,10 @@ namespace KillerApp.DAL.Context
                     c.Id = reader.GetInt32(0);
                     c.Percentage = reader.GetDecimal(1);
                     c.Code = reader.GetString(2);
-                    c.Omschrijving = reader.GetString(3);
+                    if (!reader.IsDBNull(3))
+                    {
+                        c.Omschrijving = reader.GetString(3);
+                    }
                 }
                 con.Close();
                 return c;

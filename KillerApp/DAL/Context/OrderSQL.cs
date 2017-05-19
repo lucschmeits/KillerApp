@@ -60,7 +60,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Order";
+                var cmdString = "SELECT * FROM [Order]";
                 var command = new SqlCommand(cmdString, con);
                 var reader = command.ExecuteReader();
 
@@ -97,7 +97,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Order WHERE id = @id";
+                var cmdString = "SELECT * FROM [Order] WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
@@ -106,7 +106,10 @@ namespace KillerApp.DAL.Context
                 {
                     o.Id = reader.GetInt32(0);
                     o.Datum = reader.GetDateTime(1);
-                    o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
+                    if (!reader.IsDBNull(2))
+                    {
+                        o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
+                    }
                     o.Klant = klantRepo.RetrieveKlant(reader.GetInt32(3));
                     o.Producten = productRepo.RetrieveProductByOrder(reader.GetInt32(0));
                 }

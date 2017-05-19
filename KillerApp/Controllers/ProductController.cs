@@ -11,12 +11,15 @@ namespace KillerApp.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View("Producten");
+            var products = KillerApp.Models.Product.All();
+            return View("Producten", products);
         }
 
-        public ActionResult Product()
+        // GET Product/{id}
+        public ActionResult Product(int id)
         {
-            return View();
+            var p = KillerApp.Models.Product.ProductById(id);
+            return View(p);
         }
     }
 }

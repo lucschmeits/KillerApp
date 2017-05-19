@@ -165,7 +165,6 @@ namespace KillerApp.DAL.Context
                 var command1 = new SqlCommand(query1, con);
                 command1.Parameters.AddWithValue("@id", p.Id);
                 command1.Parameters.AddWithValue("@naam", p.Naam);
-
                 command1.Parameters.AddWithValue("@prijs", p.Prijs);
                 command1.Parameters.AddWithValue("@categorieId", p.Categorie.Id);
                 command1.Parameters.AddWithValue("@leveranciersId", p.Leverancier.Id);
