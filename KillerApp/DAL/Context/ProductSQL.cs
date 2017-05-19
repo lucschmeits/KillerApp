@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using KillerApp.DAL.Interface;
+using KillerApp.DAL.Repo;
 using KillerApp.Models;
 
 namespace KillerApp.DAL.Context
@@ -13,7 +14,28 @@ namespace KillerApp.DAL.Context
     {
         public void CreateProduct(Product p)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var query1 = "INSERT INTO Product (naam, voorraad, prijs, categorieId, leveranciersId, omschrijving) VALUES (@naam, @voorraad, @prijs, @categorieId, @leveranciersId, @omschrijving)";
+                var command1 = new SqlCommand(query1, con);
+
+                command1.Parameters.AddWithValue("@naam", p.Naam);
+                command1.Parameters.AddWithValue("@voorraad", p.Voorraad);
+                command1.Parameters.AddWithValue("@prijs", p.Prijs);
+                command1.Parameters.AddWithValue("@categorieId", p.Categorie.Id);
+                command1.Parameters.AddWithValue("@leveranciersId", p.Leverancier.Id);
+                command1.Parameters.AddWithValue("@omschrijving", p.Omschrijving);
+
+                command1.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void DeleteProduct(int id)
@@ -37,6 +59,16 @@ namespace KillerApp.DAL.Context
 
         public List<Product> RetrieveAll()
         {
+            var categorieSql = new ProductCategorieSQL();
+            var categorieRepo = new ProductCategorieRepo(categorieSql);
+            var leverancierSql = new LeverancierSQL();
+            var leverancierRepo = new LeverancierRepo(leverancierSql);
+            var kortingSql = new KortingSQL();
+            var kortingRepo = new KortingRepo(kortingSql);
+            var afbeeldingSql = new AfbeeldingSQL();
+            var afbeeldingRepo = new AfbeeldingRepo(afbeeldingSql);
+            var beoordelingSql = new BeoordelingSQL();
+            var beoordelingRepo = new BeoordelingRepo(beoordelingSql);
             var productList = new List<Product>();
             try
             {
@@ -53,12 +85,15 @@ namespace KillerApp.DAL.Context
                     p.Naam = reader.GetString(1);
                     p.Voorraad = reader.GetInt32(2);
                     p.Prijs = reader.GetDecimal(3);
-                    //p.Categorie = reader.GetInt32(4);
-                    //p.Leverancier = reader.GetInt32(5);
-                    //p.Kortingen
-                    //p.Afbeeldingen
-                    //p.Beoordelingen
-                    //p.Omschrijving
+                    p.Categorie = categorieRepo.RetrieveCategorie(reader.GetInt32(4));
+                    p.Leverancier = leverancierRepo.RetrieveLeverancier(reader.GetInt32(5));
+                    p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
+                    p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
+                    p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    if (!reader.IsDBNull(6))
+                    {
+                        p.Omschrijving = reader.GetString(6);
+                    }
                     productList.Add(p);
                 }
                 con.Close();
@@ -73,6 +108,16 @@ namespace KillerApp.DAL.Context
 
         public Product RetrieveProduct(int id)
         {
+            var categorieSql = new ProductCategorieSQL();
+            var categorieRepo = new ProductCategorieRepo(categorieSql);
+            var leverancierSql = new LeverancierSQL();
+            var leverancierRepo = new LeverancierRepo(leverancierSql);
+            var kortingSql = new KortingSQL();
+            var kortingRepo = new KortingRepo(kortingSql);
+            var afbeeldingSql = new AfbeeldingSQL();
+            var afbeeldingRepo = new AfbeeldingRepo(afbeeldingSql);
+            var beoordelingSql = new BeoordelingSQL();
+            var beoordelingRepo = new BeoordelingRepo(beoordelingSql);
             try
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
@@ -90,12 +135,15 @@ namespace KillerApp.DAL.Context
                     p.Naam = reader.GetString(1);
                     p.Voorraad = reader.GetInt32(2);
                     p.Prijs = reader.GetDecimal(3);
-                    //p.Categorie = reader.GetInt32(4);
-                    //p.Leverancier = reader.GetInt32(5);
-                    //p.Kortingen
-                    //p.Afbeeldingen
-                    //p.Beoordelingen
-                    //p.Omschrijving
+                    p.Categorie = categorieRepo.RetrieveCategorie(reader.GetInt32(4));
+                    p.Leverancier = leverancierRepo.RetrieveLeverancier(reader.GetInt32(5));
+                    p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
+                    p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
+                    p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    if (!reader.IsDBNull(6))
+                    {
+                        p.Omschrijving = reader.GetString(6);
+                    }
                 }
                 con.Close();
                 return p;
@@ -109,11 +157,42 @@ namespace KillerApp.DAL.Context
 
         public void UpdateProduct(Product p)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var query1 = "UPDATE Product SET naam = @naam, prijs = @prijs, categorieId = @categorieId, leveranciersId = @leveranciersId, omschrijving = @omschrijving WHERE id = @id";
+                var command1 = new SqlCommand(query1, con);
+                command1.Parameters.AddWithValue("@id", p.Id);
+                command1.Parameters.AddWithValue("@naam", p.Naam);
+
+                command1.Parameters.AddWithValue("@prijs", p.Prijs);
+                command1.Parameters.AddWithValue("@categorieId", p.Categorie.Id);
+                command1.Parameters.AddWithValue("@leveranciersId", p.Leverancier.Id);
+                command1.Parameters.AddWithValue("@omschrijving", p.Omschrijving);
+
+                command1.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Product> RetrieveProductByOrder(int id)
         {
+            var categorieSql = new ProductCategorieSQL();
+            var categorieRepo = new ProductCategorieRepo(categorieSql);
+            var leverancierSql = new LeverancierSQL();
+            var leverancierRepo = new LeverancierRepo(leverancierSql);
+            var kortingSql = new KortingSQL();
+            var kortingRepo = new KortingRepo(kortingSql);
+            var afbeeldingSql = new AfbeeldingSQL();
+            var afbeeldingRepo = new AfbeeldingRepo(afbeeldingSql);
+            var beoordelingSql = new BeoordelingSQL();
+            var beoordelingRepo = new BeoordelingRepo(beoordelingSql);
             var productList = new List<Product>();
             try
             {
@@ -131,22 +210,25 @@ namespace KillerApp.DAL.Context
                     p.Naam = reader.GetString(1);
                     p.Voorraad = reader.GetInt32(2);
                     p.Prijs = reader.GetDecimal(3);
-                    //p.Categorie = reader.GetInt32(4);
-                    //p.Leverancier = reader.GetInt32(5);
-                    //p.Kortingen
-                    //p.Afbeeldingen
-                    //p.Beoordelingen
-                    //p.Omschrijving
+                    p.Categorie = categorieRepo.RetrieveCategorie(reader.GetInt32(4));
+                    p.Leverancier = leverancierRepo.RetrieveLeverancier(reader.GetInt32(5));
+                    p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
+                    p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
+                    p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    if (!reader.IsDBNull(6))
+                    {
+                        p.Omschrijving = reader.GetString(6);
+                    }
                     productList.Add(p);
                 }
                 con.Close();
+                return productList;
             }
             catch (Exception ex)
             {
                 //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
                 throw ex;
             }
-            return productList;
         }
     }
 }

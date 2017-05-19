@@ -17,5 +17,7 @@ namespace KillerApp.DAL.Interface
         void DeleteBeoordeling(int id);
 
         void UpdateBeoordeling(Beoordeling b);
+
+        List<Beoordeling> BeoordelingByProduct(int id);
     }
 }

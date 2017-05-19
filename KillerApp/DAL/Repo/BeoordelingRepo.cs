@@ -35,5 +35,10 @@ namespace KillerApp.DAL.Repo
         {
             _beoordelingInterface.DeleteBeoordeling(id);
         }
+
+        public List<Beoordeling> BeoordelingByProduct(int id)
+        {
+            return _beoordelingInterface.BeoordelingByProduct(id);
+        }
     }
 }

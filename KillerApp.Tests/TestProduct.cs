@@ -29,5 +29,16 @@ namespace KillerApp.Tests
 
             Assert.AreEqual(72, p.Voorraad);
         }
+
+        [TestMethod]
+        public void TestRetrieveProductsByOrder()
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+
+            var pList = repo.RetrieveProductByOrder(1);
+
+            Assert.AreEqual(238, pList[0].Id);
+        }
     }
 }

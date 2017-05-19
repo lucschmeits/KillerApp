@@ -70,7 +70,7 @@ namespace KillerApp.DAL.Context
                     b.Id = reader.GetInt32(0);
                     b.Titel = reader.GetString(1);
                     b.Omschrijving = reader.GetString(2);
-                    b.Cijfer = reader.GetDouble(3);
+                    b.Cijfer = reader.GetDecimal(3);
                     // b.Product =
                     returnList.Add(b);
                 }
@@ -100,7 +100,7 @@ namespace KillerApp.DAL.Context
                     b.Id = reader.GetInt32(0);
                     b.Titel = reader.GetString(1);
                     b.Omschrijving = reader.GetString(2);
-                    b.Cijfer = reader.GetDouble(3);
+                    b.Cijfer = reader.GetDecimal(3);
                     // b.Product =
                 }
                 con.Close();
@@ -134,6 +134,38 @@ namespace KillerApp.DAL.Context
                 // throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
                 throw ex;
             }
+        }
+
+        public List<Beoordeling> BeoordelingByProduct(int id)
+        {
+            var returnList = new List<Beoordeling>();
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "SELECT * FROM Beoordeling WHERE productId = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var b = new Beoordeling();
+                    b.Id = reader.GetInt32(0);
+                    b.Titel = reader.GetString(1);
+                    b.Omschrijving = reader.GetString(2);
+                    b.Cijfer = reader.GetDecimal(3);
+                    // b.Product =
+                    returnList.Add(b);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+            return returnList;
         }
     }
 }
