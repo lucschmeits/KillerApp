@@ -10,6 +10,6 @@ namespace KillerApp.Models
         public int Id { get; set; }
         public string Naam { get; set; }
         public string Omschrijving { get; set; }
-        public List<Categorie> SubCategories { get; set; }
+        public Categorie HoofdCategorie { get; set; }
     }
 }

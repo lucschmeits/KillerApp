@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KillerApp.DAL.Interface;
+using KillerApp.Models;
 
 namespace KillerApp.DAL.Repo
 {
@@ -13,6 +14,21 @@ namespace KillerApp.DAL.Repo
         public OrderRepo(IOrder orderInterface)
         {
             _orderInterface = orderInterface;
+        }
+
+        public List<Order> RetrieveAll()
+        {
+            return _orderInterface.RetrieveAll();
+        }
+
+        public void CreateOrder(Order o)
+        {
+            _orderInterface.CreateOrder(o);
+        }
+
+        public Order RetrieveOrder(int id)
+        {
+            return _orderInterface.RetrieveOrder(id);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace KillerApp.Models
     public class Korting
     {
         public int Id { get; set; }
-        public double Percentage { get; set; }
+        public decimal Percentage { get; set; }
         public string Omschrijving { get; set; }
     }
 }

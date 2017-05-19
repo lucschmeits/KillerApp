@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using KillerApp.Models;
 
 namespace KillerApp.DAL.Interface
 {
-    public class IKorting
+    public interface IKorting
     {
+        List<Korting> RetrieveAll();
+
+        void CreateKorting(Korting k, int productId);
+
+        List<Korting> RetrieveKortingByProduct(int id);
+
+        void DeleteKorting(int id);
+
+        // void UpdateKorting(Korting k);
     }
 }

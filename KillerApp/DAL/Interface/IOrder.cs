@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using KillerApp.Models;
 
 namespace KillerApp.DAL.Interface
 {
-    public class IOrder
+    public interface IOrder
     {
+        List<Order> RetrieveAll();
+
+        void CreateOrder(Order o);
+
+        Order RetrieveOrder(int id);
     }
 }
