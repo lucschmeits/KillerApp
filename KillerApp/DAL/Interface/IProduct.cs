@@ -17,5 +17,7 @@ namespace KillerApp.DAL.Interface
         void DeleteProduct(int id);
 
         void UpdateProduct(Product p);
+
+        List<Product> RetrieveProductByOrder(int id);
     }
 }

@@ -21,9 +21,9 @@ namespace KillerApp.DAL.Repo
             return _orderInterface.RetrieveAll();
         }
 
-        public void CreateOrder(Order o)
+        public void CreateOrder(Order o, Shoppingcart cart)
         {
-            _orderInterface.CreateOrder(o);
+            _orderInterface.CreateOrder(o, cart);
         }
 
         public Order RetrieveOrder(int id)

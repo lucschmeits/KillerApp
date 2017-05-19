@@ -87,6 +87,7 @@ namespace KillerApp.DAL.Context
                 con.Open();
                 var cmdString = "SELECT * FROM Korting WHERE productId = @id";
                 var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())

@@ -35,5 +35,10 @@ namespace KillerApp.DAL.Repo
         {
             _productInterface.DeleteProduct(id);
         }
+
+        public List<Product> RetrieveProductByOrder(int id)
+        {
+            return _productInterface.RetrieveProductByOrder(id);
+        }
     }
 }

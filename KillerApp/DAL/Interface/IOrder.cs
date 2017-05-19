@@ -10,7 +10,7 @@ namespace KillerApp.DAL.Interface
     {
         List<Order> RetrieveAll();
 
-        void CreateOrder(Order o);
+        void CreateOrder(Order o, Shoppingcart cart);
 
         Order RetrieveOrder(int id);
     }
