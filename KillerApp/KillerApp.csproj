@@ -154,6 +154,7 @@
     <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VoorraadController.cs" />
+    <Compile Include="DAL\Auth.cs" />
     <Compile Include="DAL\Context\AfbeeldingSQL.cs" />
     <Compile Include="DAL\Context\BeheerderSQL.cs" />
     <Compile Include="DAL\Context\BeoordelingSQL.cs" />
