@@ -21,6 +21,8 @@ namespace KillerApp.Models
         public Leverancier Leverancier { get; set; }
         public List<Korting> Kortingen { get; set; }
 
+        public decimal GemiddeldeBeoordeling { get; set; }
+
         public static List<Product> All()
         {
             var sql = new ProductSQL();
@@ -35,6 +37,25 @@ namespace KillerApp.Models
             var repo = new ProductRepo(sql);
 
             return repo.RetrieveProduct(id);
+        }
+
+        public decimal GemiddeldeScore(Product product)
+        {
+            if (product.Beoordelingen.Count == 0)
+            {
+                return 0;
+            }
+            if(product.Beoordelingen.Count > 0)
+            {
+                decimal totaal = 0;
+                foreach (var b in product.Beoordelingen)
+                {
+                    totaal = b.Cijfer + totaal;
+                }
+                totaal = totaal / product.Beoordelingen.Count;
+                return totaal;
+            }
+            return 0;
         }
     }
 }
