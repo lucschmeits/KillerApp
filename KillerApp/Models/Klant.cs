@@ -22,5 +22,12 @@ namespace KillerApp.Models
             var krepo = new KlantRepo(ksql);
             krepo.CreateKlant(id, k);
         }
+
+        public static List<Klant> RetrieveAll()
+        {
+            var ksql = new KlantSQL();
+            var krepo = new KlantRepo(ksql);
+            return krepo.RetrieveAll();
+        }
     }
 }

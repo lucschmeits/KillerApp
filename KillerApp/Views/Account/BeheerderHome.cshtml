@@ -1,5 +1,13 @@
-﻿@{
+﻿@using KillerApp.Models
+@{
     ViewBag.Title = "Beheerder";
+    var leveranciers = ViewData["Leveranciers"] as List<Leverancier>;
+    var producten = ViewData["Producten"] as List<Product>;
+    var klanten = ViewData["Klanten"] as List<Klant>;
+    var kortingen = ViewData["Kortingen"] as List<Korting>;
+    var coupons = ViewData["Coupons"] as List<Coupon>;
+    var orders = ViewData["Orders"] as List<Order>;
+    var beheerders = ViewData["Beheerders"] as List<Beheerder>;
 }
 <div class="header-banner">
     <img src="../../Images/beheerhome.jpeg" class="img-responsive" alt="banner" />
@@ -27,16 +35,16 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Leverancier 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Leverancier 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Leverancier 3</a>
-                    </p>
-                </div>
+                    @if (leveranciers != null)
+                    {
+                        foreach (var leverancier in leveranciers)
+                        {
+                            <p>
+                                <a href="#x">@leverancier.Naam</a>
+                            </p>
+                        }
+                    }
+                  </div>
                 <div class="account-info-content" id="Producten">
                     <h4>
                         Producten <span class="pull-right">
@@ -45,15 +53,17 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Product 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Product 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Product 3</a>
-                    </p>
+                    @if (producten != null)
+                    {
+                        foreach (var product in producten)
+                        {
+                            <p>
+                                <a href="#x">@product.Naam</a>
+                            </p>
+                        }
+                    }
+                   
+                
                 </div>
                 <div class="account-info-content" id="Klanten">
                     <h4>
@@ -63,15 +73,17 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Klant 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Klant 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Klant 3</a>
-                    </p>
+                    @if (klanten != null)
+                    {
+                        foreach (var klant in klanten)
+                        {
+                            <p>
+                                <a href="#x">@klant.Naam</a>
+                            </p>
+                        }
+                    }
+                    
+                   
                 </div>
                 <div class="account-info-content" id="Accounts">
                     <h4>
@@ -81,33 +93,37 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Account 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Account 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Account 3</a>
-                    </p>
+                    @if (beheerders != null)
+                    {
+                        foreach (var beheerder in beheerders)
+                        {
+                            <p>
+                                <a href="#x">@beheerder.Naam</a>
+                            </p>
+                        }
+                    }
+                   
+                    
                 </div>
                 <div class="account-info-content" id="Facturen">
                     <h4>
-                        Facturen <span class="pull-right">
+                        Orders <span class="pull-right">
                             <a href="@Url.Action("Facturen", "Beheer")" class="btn btn-primary btn-account-a-orange">
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Factuur 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Factuur 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Factuur 3</a>
-                    </p>
+                    @if (orders != null)
+                    {
+                        foreach (var order in orders)
+                        {
+                            <p>
+                                <a href="#x">@order.Id - @order.Klant.Naam</a>
+                            </p>
+                        }
+                    }
+                   
+                  
                 </div>
                 <div class="account-info-content" id="Kortingscodes">
                     <h4>
@@ -117,15 +133,17 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Kortingscode 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Kortingscode 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Kortingscode 3</a>
-                    </p>
+                    @if (coupons != null)
+                    {
+                        foreach (var coupon in coupons)
+                        {
+                            <p>
+                                <a href="#x">@coupon.Id - @coupon.Code</a>
+                            </p>
+                        }
+                    }
+                   
+                 
                 </div>
                 <div class="account-info-content" id="Korting">
                     <h4>
@@ -135,15 +153,17 @@
                             </a>
                         </span>
                     </h4>
-                    <p>
-                        <a href="#x">Korting 1</a>
-                    </p>
-                    <p>
-                        <a href="#x">Korting 2</a>
-                    </p>
-                    <p>
-                        <a href="#x">Korting 3</a>
-                    </p>
+                    @if (kortingen != null)
+                    {
+                        foreach (var korting in kortingen)
+                        {
+                            <p>
+                                <a href="#x">@korting.Id - @korting.Percentage</a>
+                            </p>
+                        }
+                    }
+                   
+
                 </div>
             </div>
         </div>

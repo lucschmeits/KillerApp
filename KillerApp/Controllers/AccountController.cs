@@ -92,6 +92,20 @@ namespace KillerApp.Controllers
             {
                 
                 var beheerder = (Beheerder)Session["beheerder"];
+                ViewData["Leveranciers"] = (from leverancier in Leverancier.RetrieveAll()
+                                            select leverancier).Take(5).ToList();
+                ViewData["Producten"] = (from product in Product.All()
+                    select product).Take(5).ToList();
+                ViewData["Klanten"] = (from klant in Models.Klant.RetrieveAll()
+                    select klant).Take(5).ToList();
+                ViewData["Kortingen"] = (from korting in Korting.RetrieveAll()
+                    select korting).Take(5).ToList();
+                ViewData["Coupons"] = (from coupon in Coupon.RetrieveAll()
+                    select coupon).Take(5).ToList();
+                ViewData["Orders"] = (from order in Models.Order.RetrieveAll()
+                    select order).Take(5).ToList();
+                ViewData["Beheerders"] = (from beheerd in Models.Beheerder.RetrieveAll()
+                    select beheerd).Take(5).ToList();
                 return View("BeheerderHome", beheerder);
             }
            
