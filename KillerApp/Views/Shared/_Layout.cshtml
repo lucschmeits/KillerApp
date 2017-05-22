@@ -25,12 +25,31 @@
                 <!-- @Html.ActionLink("KillerProducts", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) -->
             </div>
             <div class="sec-nav">
-                <a class="menu-icon" href="@Url.Action("Index", "Account")">
-                    <i class="glyphicon glyphicon-user"></i>
-                </a>
-                <a class="menu-icon" href="@Url.Action("Index", "Cart")">
-                    <i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i>
-                </a>
+                @if (Session["klant"] != null)
+                {
+                    <a class="menu-icon" href="@Url.Action("Klant", "Account")">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                    <a class="menu-icon" href="@Url.Action("Index", "Cart")">
+                        <i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i>
+                    </a>
+                }
+                @if (Session["beheerder"] != null)
+                {
+                    <a class="menu-icon" href="@Url.Action("Beheerder", "Account")">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                }
+                @if (Session["klant"] == null && Session["beheerder"] == null)
+                {
+                    <a class="menu-icon" href="@Url.Action("Index", "Account")">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                    <a class="menu-icon" href="@Url.Action("Index", "Cart")">
+                        <i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i>
+                    </a>
+                }
+               
             </div>
             <div class="navbar-collapse collapse text-center">
                 <ul class="nav navbar-nav">
