@@ -293,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Coupon\" />
     <Folder Include="Views\Korting\" />
     <Folder Include="Views\Leverancier\" />

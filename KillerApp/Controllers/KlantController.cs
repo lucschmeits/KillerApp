@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KillerApp.Models;
 
 namespace KillerApp.Controllers
 {
@@ -14,14 +15,31 @@ namespace KillerApp.Controllers
             return View();
         }
 
-        public ActionResult Orders()
+        public ActionResult Orders(int id)
         {
-            return View();
+            if (Session["klant"] != null)
+            {
+                var klant = (Klant)Session["Klant"];
+                ViewData["Order"] = Models.Order.RetrieveOrder(id);
+                return View(klant);
+            }
+            return Index();
+           
         }
 
         public ActionResult Info()
         {
-            return View();
+            if (Session["klant"] != null)
+            {
+                var klant = (Klant)Session["Klant"];
+                return View("Info", klant);
+            }
+            return Index();
+        }
+
+        public ActionResult Update(FormCollection form)
+        {
+            return null;
         }
     }
 }

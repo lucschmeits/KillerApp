@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Info";
 }
-
+@model KillerApp.Models.Klant
 <section id="info-klant">
     <div class="container">
         <div class="row">
@@ -9,36 +9,36 @@
                 <h2>customer Info</h2>
             </div>
             <div class="col-md-4 klant-info">
-                <p>Naam : </p>
-                <p>Account number : </p>
+                <p>Naam : @Html.DisplayFor(model => model.Naam)</p>
+                <p>Account number : @Html.DisplayFor(model => model.Id)</p>
                 <a href="@Url.Action("Klant", "Account")">Back</a>
             </div>
             <div class="col-md-8 update-info">
-                @using (Html.BeginForm("info", "Klant", FormMethod.Post))
+                @using (Html.BeginForm("Update", "Klant", FormMethod.Post))
                 {
                     <div class="form-group">
-                        <input id="naam" type="text" class="form-control" value="naam" />
+                        <input id="naam" name="naam" type="text" class="form-control" value="@Html.DisplayFor(model => model.Naam)" />
                     </div>
                     <div class="form-group">
-                        <input id="mail" type="email" class="form-control" value="mail" />
+                        <input id="mail" name="email" type="email" class="form-control" value="@Html.DisplayFor(model => model.Email)" />
                     </div>
                     <div class="form-group">
-                        <input id="wachtwoord" type="password" class="form-control" value="wachtwoord" />
+                        <input id="wachtwoord" name="wachtwoord" type="password" class="form-control" value="@Html.DisplayFor(model => model.Wachtwoord)" />
                     </div>
                     <div class="form-group">
-                        <input id="straat" type="text" class="form-control" value="straat" />
+                        <input id="straat" name="straat" type="text" class="form-control" value="@Html.DisplayFor(model => model.Straat)" />
                     </div>
                     <div class="form-group">
-                        <input id="huisnr" type="text" class="form-control" value="huisnr" />
+                        <input id="huisnr" name="huisnr" type="text" class="form-control" value="@Html.DisplayFor(model => model.HuisNr)" />
                     </div>
                     <div class="form-group">
-                        <input id="postcode" type="text" class="form-control" value="postcode" />
+                        <input id="postcode" name="postcode" type="text" class="form-control" value="@Html.DisplayFor(model => model.Postcode)" />
                     </div>
                     <div class="form-group">
-                        <input id="woonplaats" type="text" class="form-control" value="woonplaats" />
+                        <input id="woonplaats" name="woonplaats" type="text" class="form-control" value="@Html.DisplayFor(model => model.Woonplaats)" />
                     </div>
                     <div class="form-group">
-                        <input id="land" type="text" class="form-control" value="land" />
+                        <input id="land" name="land" type="text" class="form-control" value="@Html.DisplayFor(model => model.Land)" />
                     </div>
                     <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
 

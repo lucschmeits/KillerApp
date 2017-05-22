@@ -69,7 +69,11 @@ namespace KillerApp.DAL.Context
                     var o = new Order();
                     o.Id = reader.GetInt32(0);
                     o.Datum = reader.GetDateTime(1);
-                    o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
+                    if (!reader.IsDBNull(2))
+                    {
+                        o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
+                    }
+                   
                     o.Klant = klantRepo.RetrieveKlant(reader.GetInt32(3));
                     o.Producten = productRepo.RetrieveProductByOrder(reader.GetInt32(0));
                     returnList.Add(o);
