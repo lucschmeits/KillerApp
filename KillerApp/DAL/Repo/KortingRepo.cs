@@ -21,9 +21,9 @@ namespace KillerApp.DAL.Repo
             return _kortingInterface.RetrieveAll();
         }
 
-        public void CreateKorting(Korting k, int productId)
+        public void CreateKorting(Korting k)
         {
-            _kortingInterface.CreateKorting(k, productId);
+            _kortingInterface.CreateKorting(k);
         }
 
         public List<Korting> RetrieveKortingByProduct(int id)

@@ -10,17 +10,17 @@ namespace KillerApp.DAL.Context
 {
     public class KortingSQL : IKorting
     {
-        public void CreateKorting(Korting k, int productId)
+        public void CreateKorting(Korting k)
         {
             try
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "INSERT INTO Korting (percentage, omschrijving, productId) VALUES (@percentage, @omschrijving, @productId)";
+                var cmdString = "INSERT INTO Korting (percentage, omschrijving) VALUES (@percentage, @omschrijving)";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@percentage", k.Percentage);
                 command.Parameters.AddWithValue("@omschrijving", k.Omschrijving);
-                command.Parameters.AddWithValue("@productId", productId);
+               // command.Parameters.AddWithValue("@productId", productId);
                 command.ExecuteNonQuery();
                 con.Close();
             }
@@ -89,7 +89,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Korting WHERE productId = @id";
+                var cmdString = "SELECT Korting.* FROM Korting INNER JOIN Korting_Product ON Korting.id = Korting_Product.kortingId WHERE Korting_Product.productId = @id";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();

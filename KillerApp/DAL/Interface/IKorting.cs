@@ -10,7 +10,7 @@ namespace KillerApp.DAL.Interface
     {
         List<Korting> RetrieveAll();
 
-        void CreateKorting(Korting k, int productId);
+        void CreateKorting(Korting k);
 
         List<Korting> RetrieveKortingByProduct(int id);
 

@@ -52,6 +52,26 @@ namespace KillerApp.Models
             var repo = new ProductRepo(sql);
             repo.UpdateProduct(p);
         }
+
+        public static void UpdateKortingProduct(List<Korting> kortingList, int productId)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+            repo.UpdateKortingProduct(kortingList, productId);
+        }
+
+        public static bool CheckKorting(List<Korting> kortingLijst, int id)
+        {
+            foreach (var korting in kortingLijst)
+            {
+                if (korting.Id == id)
+                {
+                    return true;
+                }
+                
+            }
+            return false;
+        }
         public decimal GemiddeldeScore(Product product)
         {
             if (product.Beoordelingen.Count == 0)

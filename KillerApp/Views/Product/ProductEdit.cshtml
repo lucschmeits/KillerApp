@@ -19,7 +19,7 @@
                 {
                     <p>Naam : @beheerder.Naam</p>
                     <p>Account Nr : @beheerder.Id</p>
-                    <p><a href="@Url.Action("Leverancier", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Producten", "Beheer")">Back</a></p>
                 }
 
             </div>
@@ -56,7 +56,7 @@
                                         <option value="@leverancier.Id">@leverancier.Naam</option>
                                     }
                                 }
-                            </select> 
+                            </select>
                         </div>
                         <p>Catgorie:</p>
                         <div class="form-group">
@@ -76,21 +76,20 @@
                             <select name="kortingId" class="form-control" multiple="multiple">
                                 @if (kortingen != null)
                                 {
-                                    @*<option selected="selected" value="@product.Kortingen">@product.Categorie.Naam</option>*@
-                                foreach (var korting in kortingen)
-                                {
-                                    foreach (var kortingProduct in product.Kortingen)
+
+                                    foreach (var korting in kortingen)
                                     {
-                                        if (korting.Id == kortingProduct.Id)
+
+                                        if (Product.CheckKorting(product.Kortingen, korting.Id))
                                         {
                                             <option selected="selected" value="@korting.Id">@korting.Percentage</option>
                                         }
                                         else
                                         {
-                                            <option  value="@korting.Id">@korting.Percentage</option>
+                                            <option value="@korting.Id">@korting.Percentage</option>
                                         }
-                                     }
-                                  }
+
+                                    }
                                 }
                             </select>
                         </div>

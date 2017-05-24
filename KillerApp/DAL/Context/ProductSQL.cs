@@ -229,5 +229,35 @@ namespace KillerApp.DAL.Context
                 throw ex;
             }
         }
+
+        public void UpdateKortingProduct(List<Korting> kortingList, int productId)
+        {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var query = "DELETE FROM Korting_Product WHERE productId = @productId";
+                var command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@productId", productId);
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                foreach (var korting in kortingList)
+                {
+                    command.CommandText = "INSERT INTO Korting_Product (kortingId, productId) VALUES (@kortingId, @productId)";
+                    command.Parameters.AddWithValue("@kortingId", korting.Id);
+                    command.Parameters.AddWithValue("@productId", productId);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                   
+                }
+                
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

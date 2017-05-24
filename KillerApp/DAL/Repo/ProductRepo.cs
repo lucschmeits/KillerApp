@@ -45,5 +45,10 @@ namespace KillerApp.DAL.Repo
         {
             _productInterface.UpdateProduct(p);
         }
+
+        public void UpdateKortingProduct(List<Korting> kortingList, int productId)
+        {
+            _productInterface.UpdateKortingProduct(kortingList, productId);
+        }
     }
 }

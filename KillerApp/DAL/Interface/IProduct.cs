@@ -19,5 +19,7 @@ namespace KillerApp.DAL.Interface
         void UpdateProduct(Product p);
 
         List<Product> RetrieveProductByOrder(int id);
+
+        void UpdateKortingProduct(List<Korting> kortingList, int productId);
     }
 }

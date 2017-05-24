@@ -68,6 +68,26 @@ namespace KillerApp.Controllers
             {
                 var product = new Product();
                
+                product.Categorie = new Categorie();
+                product.Leverancier = new Leverancier();
+                product.Kortingen = new List<Korting>();
+                product.Id = id;
+                product.Naam = form["naam"];
+                product.Omschrijving = form["omschrijving"];
+                product.Prijs = decimal.Parse(form["prijs"]);
+                product.Categorie.Id = Convert.ToInt32(form["catId"]);
+                product.Leverancier.Id = Convert.ToInt32(form["levId"]);
+                var kortingIds = form.GetValues("kortingId");
+                if (kortingIds != null)
+                {
+                    foreach (var KortingId in kortingIds)
+                    {
+                        var korting = new Korting();
+                        korting.Id = Convert.ToInt32(KortingId);
+                        product.Kortingen.Add(korting);
+                    }
+                    Models.Product.UpdateKortingProduct(product.Kortingen, product.Id);
+                }
                 Models.Product.UpdateProduct(product);
                 return RedirectToAction("Producten", "Beheer");
             }
