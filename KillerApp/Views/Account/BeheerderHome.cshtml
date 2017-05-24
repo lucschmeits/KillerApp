@@ -34,13 +34,18 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        <span class="pull-right">
+                            <a href="@Url.Action("New", "Leverancier")" c class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
+                            </a>
+                        </span>
                     </h4>
                     @if (leveranciers != null)
                     {
                         foreach (var leverancier in leveranciers)
                         {
                             <p>
-                                <a href="#x">@leverancier.Naam</a>
+                                <a href="@Url.Action("Edit", "Leverancier", new {id = leverancier.Id})">@leverancier.Naam</a>
                             </p>
                         }
                     }
@@ -52,13 +57,18 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        <span class="pull-right">
+                            <a href="@Url.Action("New", "Product")" class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-eye-open"></i><span>Add New</span>
+                            </a>
+                        </span>
                     </h4>
                     @if (producten != null)
                     {
                         foreach (var product in producten)
                         {
                             <p>
-                                <a href="#x">@product.Naam</a>
+                                <a href="@Url.Action("Edit", "Product", new {id = product.Id})">@product.Naam</a>
                             </p>
                         }
                     }

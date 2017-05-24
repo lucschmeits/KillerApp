@@ -68,7 +68,11 @@ namespace KillerApp.DAL.Context
                     c.Id = reader.GetInt32(0);
                     // c.SubCategories =
                     c.Naam = reader.GetString(2);
-                    c.Omschrijving = reader.GetString(3);
+                    if (!reader.IsDBNull(3))
+                    {
+                        c.Omschrijving = reader.GetString(3);
+                    }
+                   
                     returnList.Add(c);
                 }
                 con.Close();

@@ -39,6 +39,19 @@ namespace KillerApp.Models
             return repo.RetrieveProduct(id);
         }
 
+        public static void CreateProduct(Product p)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+            repo.CreateProduct(p);
+        }
+
+        public static void UpdateProduct(Product p)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+            repo.UpdateProduct(p);
+        }
         public decimal GemiddeldeScore(Product product)
         {
             if (product.Beoordelingen.Count == 0)

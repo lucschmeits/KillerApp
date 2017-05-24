@@ -242,8 +242,10 @@
     <Content Include="Images\person1.jpg" />
     <Content Include="Images\person2.jpeg" />
     <Content Include="Images\person3.jpeg" />
+    <Content Include="Images\productbeheer.jpg" />
     <Content Include="Images\products.jpeg" />
     <Content Include="Images\samsung.jpeg" />
+    <Content Include="Images\truck.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -290,13 +292,16 @@
     <Content Include="Views\Beheer\Korting.cshtml" />
     <Content Include="Views\Klant\Orders.cshtml" />
     <Content Include="Views\Klant\Info.cshtml" />
+    <Content Include="Views\Leverancier\LeverancierId.cshtml" />
+    <Content Include="Views\Leverancier\LeverancierNew.cshtml" />
+    <Content Include="Views\Product\ProductNew.cshtml" />
+    <Content Include="Views\Product\ProductEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Coupon\" />
     <Folder Include="Views\Korting\" />
-    <Folder Include="Views\Leverancier\" />
     <Folder Include="Views\Overzicht\" />
     <Folder Include="Views\Voorraad\" />
   </ItemGroup>

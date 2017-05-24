@@ -1,7 +1,42 @@
-﻿
+﻿@using KillerApp.Models
+
 @{
     ViewBag.Title = "Producten";
+    var producten = ViewData["producten"] as List<Product>;
+    var beheerder = ViewData["beheerder"] as Beheerder;
 }
+<div class="header-banner">
+    <img src="../../Images/productbeheer.jpg" class="img-responsive" alt="banner" />
+</div>
+<section id="productenBeheer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Producten</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Beheerder", "Account")">Back</a></p>
+                }
 
-<h2>Producten</h2>
+            </div>
+            <div class="col-md-10 beheer-content">
+                @if (producten != null)
+                {
+                    foreach (var product in producten)
+                    {
+                        <p>Naam : <a href="@Url.Action("Edit", "Product", new {id = product.Id})">@product.Naam</a> - Categorie : @product.Categorie.Naam</p>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 

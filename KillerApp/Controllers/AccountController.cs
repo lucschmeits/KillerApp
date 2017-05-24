@@ -37,9 +37,9 @@ namespace KillerApp.Controllers
                     return RedirectToAction("Beheerder");
                 }
             }
-           
-                return Index();
-          
+
+            return RedirectToAction("Index", "Account");
+
         }
 
         public ActionResult Registreer(FormCollection form)
@@ -56,7 +56,7 @@ namespace KillerApp.Controllers
             klant.Woonplaats = form["postcode-r"];
             klant.Land = form["land-r"];
             Models.Klant.CreateKlant(id, klant);
-            return Index();
+            return RedirectToAction("Index", "Account");
         }
         public ActionResult Klant()
         {
@@ -70,9 +70,9 @@ namespace KillerApp.Controllers
                 ViewData["Orders"] = klantOrders;
                 return View("KlantHome", klant);
             }
-           
-                return Index();
-          
+
+            return RedirectToAction("Index", "Account");
+
         }
 
         public ActionResult Order(int id)
@@ -83,7 +83,7 @@ namespace KillerApp.Controllers
                 ViewData["Order"] = Models.Order.RetrieveOrder(id);
                 return View(klant);
             }
-            return Index();
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Beheerder()
@@ -108,9 +108,9 @@ namespace KillerApp.Controllers
                     select beheerd).Take(5).ToList();
                 return View("BeheerderHome", beheerder);
             }
-           
-                return Index();
-          
+
+            return RedirectToAction("Index", "Account");
+
         }
     }
 }

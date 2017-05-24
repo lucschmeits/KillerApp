@@ -40,5 +40,10 @@ namespace KillerApp.DAL.Repo
         {
             return _productInterface.RetrieveProductByOrder(id);
         }
+
+        public void UpdateProduct(Product p)
+        {
+            _productInterface.UpdateProduct(p);
+        }
     }
 }

@@ -1,0 +1,71 @@
+﻿@using KillerApp.Models
+
+@{
+    ViewBag.Title = "LeverancierId";
+    var leverancier  = (Leverancier)ViewData["leverancier"];
+    var beheerder = ViewData["beheerder"] as Beheerder;
+}
+<section id="leverancierId">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Leverancier</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Leverancier", "Beheer")">Back</a></p>
+                }
+
+            </div>
+            <div class="col-md-10 beheer-content">
+                @if (leverancier != null)
+                {
+                    using (Html.BeginForm("Update", "Leverancier", new { id = leverancier.Id }, FormMethod.Post))
+                    {
+
+                        <p>Leveranciers NR:</p>
+                        <div class="form-group">
+                            <input id="levNr" name="levNr" type="text" class="form-control" value="@leverancier.LeveranciersNr" />
+                        </div>
+                        <p>Telefoon NR:</p>
+                        <div class="form-group">
+                            <input id="telefoon" name="telNr" type="text" class="form-control" value="@leverancier.TelefoonNr" />
+                        </div>
+                        <p>Naam:</p>
+                        <div class="form-group">
+                            <input id="naam" name="naam" type="text" class="form-control" value="@leverancier.Naam" />
+                        </div>
+                        <p>Plaats:</p>
+                        <div class="form-group">
+                            <input id="plaats" name="plaats" type="text" class="form-control" value="@leverancier.Plaats" />
+                        </div>
+                        <p>Straat:</p>
+                        <div class="form-group">
+                            <input id="straat" name="straat" type="text" class="form-control" value="@leverancier.Straat" />
+                        </div>
+                        <p>Huis NR:</p>
+                        <div class="form-group">
+                            <input id="huisNr" name="huisNr" type="text" class="form-control" value="@leverancier.HuisNr" />
+                        </div>
+                        <p>Postcode:</p>
+                        <div class="form-group">
+                            <input id="postcode" name="postcode" type="text" class="form-control" value="@leverancier.Postcode" />
+                        </div>
+                        <p>Land:</p>
+                        <div class="form-group">
+                            <input id="land" name="land" type="text" class="form-control" value="@leverancier.Land" />
+                        </div>
+                        <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

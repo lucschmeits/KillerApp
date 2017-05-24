@@ -25,5 +25,26 @@ namespace KillerApp.Models
             var lrepo = new LeverancierRepo(lsql);
             return lrepo.RetrieveAll();
         }
+
+        public static Leverancier RetrieveLeverancier(int id)
+        {
+            var lsql = new LeverancierSQL();
+            var lrepo = new LeverancierRepo(lsql);
+            return lrepo.RetrieveLeverancier(id);
+        }
+
+        public static void UpdateLeverancier(Leverancier l)
+        {
+            var lsql = new LeverancierSQL();
+            var lrepo = new LeverancierRepo(lsql);
+            lrepo.UpdateLeverancier(l);
+        }
+
+        public static void CreateLeverancier(Leverancier l)
+        {
+            var lsql = new LeverancierSQL();
+            var lrepo = new LeverancierRepo(lsql);
+            lrepo.CreateLeverancier(l);
+        }
     }
 }

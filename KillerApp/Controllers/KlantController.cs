@@ -12,7 +12,11 @@ namespace KillerApp.Controllers
         // GET: Klant
         public ActionResult Index()
         {
-            return View();
+            if (Session["klant"] != null)
+            {
+                return View();
+            }
+            return Redirect("/Account");
         }
 
         public ActionResult Orders(int id)
@@ -23,7 +27,7 @@ namespace KillerApp.Controllers
                 ViewData["Order"] = Models.Order.RetrieveOrder(id);
                 return View(klant);
             }
-            return Index();
+            return Redirect("/Account");
            
         }
 
@@ -34,7 +38,7 @@ namespace KillerApp.Controllers
                 var klant = (Klant)Session["Klant"];
                 return View("Info", klant);
             }
-            return Index();
+            return Redirect("/Account");
         }
 
         public ActionResult Update(FormCollection form)

@@ -16,7 +16,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var query1 = "INSERT INTO Beoordeling (leveranciersNr, naam, land, plaats, straat, huisNr, postcode, telefoonNr) VALUES (@LeveranciersNr, @Naam, @Land, @Plaats, @Straat, @HuisNr, @Postcode, @TelefoonNr)";
+                var query1 = "INSERT INTO Leverancier (leveranciersNr, naam, land, plaats, straat, huisNr, postcode, telefoonNr) VALUES (@LeveranciersNr, @Naam, @Land, @Plaats, @Straat, @HuisNr, @Postcode, @TelefoonNr)";
                 var command1 = new SqlCommand(query1, con);
 
                 command1.Parameters.AddWithValue("@LeveranciersNr", l.LeveranciersNr);

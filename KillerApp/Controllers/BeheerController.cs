@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using KillerApp.Models;
 
 namespace KillerApp.Controllers
 {
@@ -17,37 +18,80 @@ namespace KillerApp.Controllers
 
         public ActionResult Leverancier()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                ViewData["Leveranciers"] = Models.Leverancier.RetrieveAll();
+                ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Producten()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                ViewData["producten"] = Product.All();
+                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Klanten()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                Klant.RetrieveAll();
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Accounts()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                Beheerder.RetrieveAll();
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Facturen()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                Order.RetrieveAll();
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Kortingscodes()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                Coupon.RetrieveAll();
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Korting()
         {
-            return View();
+            if (Session["beheerder"] != null)
+            {
+                Models.Korting.RetrieveAll();
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
         }
+
+       
+
+       
+
+        
     }
 }

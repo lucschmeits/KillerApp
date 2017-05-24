@@ -65,7 +65,11 @@ namespace KillerApp.DAL.Context
                     var k = new Korting();
                     k.Id = reader.GetInt32(0);
                     k.Percentage = reader.GetDecimal(1);
-                    k.Omschrijving = reader.GetString(2);
+                    if (!reader.IsDBNull(2))
+                    {
+                        k.Omschrijving = reader.GetString(2);
+                    }
+                  
                     returnList.Add(k);
                 }
                 con.Close();
