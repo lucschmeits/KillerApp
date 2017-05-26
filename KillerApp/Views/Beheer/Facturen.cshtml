@@ -1,7 +1,44 @@
 ﻿
 @{
     ViewBag.Title = "Facturen";
+    var beheerder = ViewData["Beheerder"] as Beheerder;
+    var orders = ViewData["orders"] as List<Order>;
 }
 
-<h2>Facturen</h2>
+@using KillerApp.Models
+
+<div class="header-banner">
+    <img src="../../Images/facturen.jpeg" class="img-responsive" alt="banner" />
+</div>
+<section id="accountBeheer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Orders</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Beheerder", "Account")">Back</a></p>
+                }
+
+            </div>
+            <div class="col-md-10 beheer-content">
+                @if (orders != null)
+                {
+                    foreach (var order in orders)
+                    {
+                        <p>Naam : <a href="@Url.Action("Edit", "Order", new {id = order.Id})">ID : @order.Id</a> - Naam : @order.Klant.Naam</p>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 

@@ -25,6 +25,7 @@
                     <li><a href="#Kortingscodes">Kortingscodes</a></li>
                     <li><a href="#Korting">Korting</a></li>
                 </ul>
+                <p><a class="btn btn-uitloggen" href="@Url.Action("Loguit", "Account")">Uitloggen</a></p>
             </div>
             <div class="col-sm-10">
                 <div class="account-info-content" id="Leverancier">
@@ -34,7 +35,7 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
-                        <span class="pull-right">
+                        <span class="pull-right  btn-beheerderhome">
                             <a href="@Url.Action("New", "Leverancier")" c class="btn btn-primary btn-account-a-orange">
                                 <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
                             </a>
@@ -57,9 +58,9 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
-                        <span class="pull-right">
+                        <span class="pull-right btn-beheerderhome">
                             <a href="@Url.Action("New", "Product")" class="btn btn-primary btn-account-a-orange">
-                                <i class="glyphicon glyphicon-eye-open"></i><span>Add New</span>
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
                             </a>
                         </span>
                     </h4>
@@ -82,13 +83,18 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        @*<span class="pull-right btn-beheerderhome">
+                            <a href="@Url.Action("New", "Product")" class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
+                            </a>
+                        </span>*@
                     </h4>
                     @if (klanten != null)
                     {
                         foreach (var klant in klanten)
                         {
                             <p>
-                                <a href="#x">@klant.Naam</a>
+                                <a href="@Url.Action("edit", "Klant", new {id = klant.Id})">@klant.Naam</a>
                             </p>
                         }
                     }
@@ -102,13 +108,18 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        <span class="pull-right btn-beheerderhome">
+                            <a href="@Url.Action("New", "Beheer")" class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
+                            </a>
+                        </span>
                     </h4>
                     @if (beheerders != null)
                     {
                         foreach (var beheerder in beheerders)
                         {
                             <p>
-                                <a href="#x">@beheerder.Naam</a>
+                                <a href="@Url.Action("edit", "Beheer", new {id = beheerder.Id})">@beheerder.Naam</a>
                             </p>
                         }
                     }
@@ -128,7 +139,7 @@
                         foreach (var order in orders)
                         {
                             <p>
-                                <a href="#x">@order.Id - @order.Klant.Naam</a>
+                                <a href="@Url.Action("edit", "Order", new {id = order.Id})">@order.Id - @order.Klant.Naam</a>
                             </p>
                         }
                     }
@@ -148,7 +159,7 @@
                         foreach (var coupon in coupons)
                         {
                             <p>
-                                <a href="#x">@coupon.Id - @coupon.Code</a>
+                                <a href="@Url.Action("edit", "Coupon", new {id = coupon.Id})">@coupon.Id - @coupon.Code</a>
                             </p>
                         }
                     }

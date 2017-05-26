@@ -38,12 +38,57 @@ namespace KillerApp.Controllers
                 var klant = (Klant)Session["Klant"];
                 return View("Info", klant);
             }
-            return Redirect("/Account");
+            return RedirectToAction("Index", "Account");
+        }
+        public ActionResult Edit(int id)
+        {
+            if (Session["beheerder"] != null)
+            {
+                ViewData["beheerder"] = (Beheerder) Session["beheerder"];
+                var klant = Models.Klant.RetrieveKlant(id);
+                return View("KlantEdit", klant);
+            }
+            return RedirectToAction("Index", "Account");
+        }
+        public ActionResult Update(FormCollection form, int id)
+        {
+            var klant = new Klant();
+            klant.Id = id;
+            klant.Naam = form["naam"];
+            klant.Email = form["email"];
+            klant.Wachtwoord = form["wachtwoord"];
+            klant.Straat = form["straat"];
+            klant.HuisNr = form["huisnr"];
+            klant.Postcode = form["postcode"];
+            klant.Woonplaats = form["woonplaats"];
+            klant.Land = form["land"];
+
+            if (Session["beheerder"] != null)
+            {
+                Models.Klant.UpdateKlant(klant);
+                return RedirectToAction("Beheerder", "Account");
+            }
+            if (Session["klant"] != null)
+            {
+                Models.Klant.UpdateKlant(klant);
+                return RedirectToAction("Klant", "Account");
+            }
+            return RedirectToAction("Index", "Account");
         }
 
-        public ActionResult Update(FormCollection form)
+        public ActionResult Delete(int id)
         {
-            return null;
+            if (Session["beheerder"] != null)
+            {
+                Models.Klant.DeleteKlant(id);
+                return RedirectToAction("Beheerder", "Account");
+            }
+            if (Session["klant"] != null)
+            {
+                Models.Klant.DeleteKlant(id);
+                return RedirectToAction("Klant", "Account");
+            }
+            return RedirectToAction("Index", "Account");
         }
     }
 }

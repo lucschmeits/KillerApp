@@ -20,6 +20,7 @@
                     <p>Naam : @beheerder.Naam</p>
                     <p>Account Nr : @beheerder.Id</p>
                     <p><a href="@Url.Action("Producten", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Delete", "Product", new { id = product.Id })">Delete</a></p>
                 }
 
             </div>

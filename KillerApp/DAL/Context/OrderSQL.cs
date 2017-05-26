@@ -126,5 +126,24 @@ namespace KillerApp.DAL.Context
                 throw ex;
             }
         }
+
+        public void DeleteOrder(int id)
+        {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "DELETE FROM [Order] WHERE id = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+        }
     }
 }

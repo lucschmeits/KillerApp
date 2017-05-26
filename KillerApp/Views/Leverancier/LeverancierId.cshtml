@@ -17,6 +17,7 @@
                     <p>Naam : @beheerder.Naam</p>
                     <p>Account Nr : @beheerder.Id</p>
                     <p><a href="@Url.Action("Leverancier", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Delete", "Leverancier", new { id = leverancier.Id })">Delete</a></p>
                 }
 
             </div>

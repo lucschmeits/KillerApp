@@ -1,6 +1,10 @@
-﻿@{
-    ViewBag.Title = "Info";
+﻿
+@{
+    ViewBag.Title = "KlantEdit";
+    var beheerder = ViewData["beheerder"] as Beheerder;
 }
+
+@using KillerApp.Models
 @model KillerApp.Models.Klant
 <section id="info-klant">
     <div class="container">
@@ -9,13 +13,17 @@
                 <h2>customer Info</h2>
             </div>
             <div class="col-md-4 klant-info">
-                <p>Naam : @Html.DisplayFor(model => model.Naam)</p>
-                <p>Account number : @Html.DisplayFor(model => model.Id)</p>
-                <a href="@Url.Action("Klant", "Account")">Back</a>
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account number : @beheerder.Id</p>
+                }
+                
+                <a href="@Url.Action("Beheerder", "Account")">Back</a>
                 <p><a href="@Url.Action("Delete", "Klant", new {id = Model.Id})">Delete</a></p>
             </div>
             <div class="col-md-8 update-info">
-                @using (Html.BeginForm("Update", "Klant", new { id = Model.Id }, FormMethod.Post))
+                @using (Html.BeginForm("Update", "Klant", new {id = Model.Id}, FormMethod.Post))
                 {
                     <p>Naam:</p>
                     <div class="form-group">
@@ -27,7 +35,7 @@
                     </div>
                     <p>Wachtwoord:</p>
                     <div class="form-group">
-                        <input id="wachtwoord" name="wachtwoord" type="password" class="form-control" value="@Html.DisplayFor(model => model.Wachtwoord)" />
+                        <input readonly="readonly" id="wachtwoord" name="wachtwoord" type="password" class="form-control" value="@Html.DisplayFor(model => model.Wachtwoord)" />
                     </div>
                     <p>Straat:</p>
                     <div class="form-group">
@@ -56,3 +64,4 @@
         </div>
     </div>
 </section>
+

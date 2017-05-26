@@ -850,8 +850,26 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
     font-family: 'Lato', sans-serif;
     font-size: 20px;
 }
-/*Beheer account CSS*/
 
+.btn-uitloggen {
+    width: 100%;
+    border-radius: 0;
+    color: #FFFFFF;
+    background-color: #bd6b17;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    transition: .35s ease-in-out;
+}
+    .btn-uitloggen:hover {
+        color: #000000;
+        border: 1px solid #bd6b17;
+        background: transparent;
+        transition: .35s ease-in-out;
+    }
+/*Beheer account CSS*/
+.btn-beheerderhome {
+    margin-right: 1%;
+}
 /*Leverancier CSS*/
 #leverancier {
     margin-bottom: 5%;

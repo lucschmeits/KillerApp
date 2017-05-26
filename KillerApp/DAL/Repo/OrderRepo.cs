@@ -30,5 +30,10 @@ namespace KillerApp.DAL.Repo
         {
             return _orderInterface.RetrieveOrder(id);
         }
+
+        public void DeleteOrder(int id)
+        {
+            _orderInterface.DeleteOrder(id);
+        }
     }
 }

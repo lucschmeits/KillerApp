@@ -13,5 +13,10 @@ namespace KillerApp.Controllers
         {
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            return null;
+        }
     }
 }

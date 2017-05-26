@@ -17,6 +17,8 @@ namespace KillerApp.Models
 
         public Coupon Coupon { get; set; }
 
+
+
         public static List<Order> RetrieveAll()
         {
             var osql = new OrderSQL();
@@ -29,6 +31,13 @@ namespace KillerApp.Models
             var osql = new OrderSQL();
             var orepo = new OrderRepo(osql);
             return orepo.RetrieveOrder(id);
+        }
+
+        public static void DeleteOrder(int id)
+        {
+            var osql = new OrderSQL();
+            var orepo = new OrderRepo(osql);
+            orepo.DeleteOrder(id);
         }
     }
 }

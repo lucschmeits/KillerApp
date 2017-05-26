@@ -42,6 +42,21 @@ namespace KillerApp.Controllers
 
         }
 
+        public ActionResult Loguit()
+        {
+            if (Session["beheerder"] != null)
+            {
+                Session["beheerder"] = null;
+                return RedirectToAction("Index", "Account");
+            }
+            if (Session["klant"] != null)
+            {
+                Session["klant"] = null;
+                return RedirectToAction("Index", "Account");
+            }
+            return RedirectToAction("Index", "Account");
+        }
+
         public ActionResult Registreer(FormCollection form)
         {
             var gebruiker = new Gebruiker();
@@ -81,7 +96,7 @@ namespace KillerApp.Controllers
             {
                 var klant = (Klant)Session["Klant"];
                 ViewData["Order"] = Models.Order.RetrieveOrder(id);
-                return View(klant);
+                return RedirectToAction("Orders", "Klant", klant);
             }
             return RedirectToAction("Index", "Account");
         }

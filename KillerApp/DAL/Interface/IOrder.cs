@@ -13,5 +13,7 @@ namespace KillerApp.DAL.Interface
         void CreateOrder(Order o, Shoppingcart cart);
 
         Order RetrieveOrder(int id);
+
+        void DeleteOrder(int id);
     }
 }

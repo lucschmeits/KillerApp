@@ -36,6 +36,26 @@ namespace KillerApp.DAL.Context
 
         public void UpdateGebruiker(Gebruiker g)
         {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var query = "UPDATE Gebruiker SET naam = @naam, [e-mail] = @email, wachtwoord = @wachtwoord WHERE id = @id";
+                var cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id", g.Id);
+                cmd.Parameters.AddWithValue("@naam", g.Naam);
+                cmd.Parameters.AddWithValue("@email", g.Email);
+                cmd.Parameters.AddWithValue("@wachtwoord", g.Wachtwoord);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+               
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
     }
 }

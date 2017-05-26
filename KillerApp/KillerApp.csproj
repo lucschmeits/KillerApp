@@ -151,6 +151,7 @@
     <Compile Include="Controllers\KlantController.cs" />
     <Compile Include="Controllers\KortingController.cs" />
     <Compile Include="Controllers\LeverancierController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VoorraadController.cs" />
@@ -218,6 +219,7 @@
     <Content Include="Images\aboutshop.jpeg" />
     <Content Include="Images\account.jpeg" />
     <Content Include="Images\accountKlant.jpeg" />
+    <Content Include="Images\accounts.jpeg" />
     <Content Include="Images\banner.jpeg" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\bannerSamung.png" />
@@ -228,6 +230,9 @@
     <Content Include="Images\collection2.jpeg" />
     <Content Include="Images\collection3.jpeg" />
     <Content Include="Images\contact.jpg" />
+    <Content Include="Images\coupon.jpg" />
+    <Content Include="Images\customers.jpeg" />
+    <Content Include="Images\facturen.jpeg" />
     <Content Include="Images\homebanner.jpeg" />
     <Content Include="Images\homebanner1.jpg" />
     <Content Include="Images\homebanner2.jpeg" />
@@ -296,11 +301,16 @@
     <Content Include="Views\Leverancier\LeverancierNew.cshtml" />
     <Content Include="Views\Product\ProductNew.cshtml" />
     <Content Include="Views\Product\ProductEdit.cshtml" />
+    <Content Include="Views\Klant\KlantEdit.cshtml" />
+    <Content Include="Views\Beheer\BeheerEdit.cshtml" />
+    <Content Include="Views\Beheer\BeheerNew.cshtml" />
+    <Content Include="Views\Order\OrderEdit.cshtml" />
+    <Content Include="Views\Coupon\CouponEdit.cshtml" />
+    <Content Include="Views\Coupon\CouponNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Views\Coupon\" />
     <Folder Include="Views\Korting\" />
     <Folder Include="Views\Overzicht\" />
     <Folder Include="Views\Voorraad\" />

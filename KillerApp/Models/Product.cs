@@ -20,7 +20,7 @@ namespace KillerApp.Models
         public Categorie Categorie { get; set; }
         public Leverancier Leverancier { get; set; }
         public List<Korting> Kortingen { get; set; }
-
+        public int Aantal { get; set; }
         public decimal GemiddeldeBeoordeling { get; set; }
 
         public static List<Product> All()
@@ -58,6 +58,13 @@ namespace KillerApp.Models
             var sql = new ProductSQL();
             var repo = new ProductRepo(sql);
             repo.UpdateKortingProduct(kortingList, productId);
+        }
+
+        public static void DeleteProduct(int id)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+            repo.DeleteProduct(id);
         }
 
         public static bool CheckKorting(List<Korting> kortingLijst, int id)

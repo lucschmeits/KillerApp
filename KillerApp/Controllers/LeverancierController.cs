@@ -75,5 +75,15 @@ namespace KillerApp.Controllers
             }
             return RedirectToAction("Index", "Account");
         }
+
+        public ActionResult Delete(int id)
+        {
+            if (Session["beheerder"] != null)
+            {
+                Models.Leverancier.DeleteLeverancier(id);
+                return RedirectToAction("Leverancier", "Beheer");
+            }
+            return RedirectToAction("Index", "Account");
+        }
     }
 }

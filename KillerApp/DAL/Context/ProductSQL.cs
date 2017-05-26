@@ -218,6 +218,7 @@ namespace KillerApp.DAL.Context
                     {
                         p.Omschrijving = reader.GetString(6);
                     }
+                    p.Aantal = reader.GetInt32(7);
                     productList.Add(p);
                 }
                 con.Close();

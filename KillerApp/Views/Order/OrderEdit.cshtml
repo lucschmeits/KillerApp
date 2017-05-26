@@ -1,9 +1,11 @@
-﻿@using KillerApp.Models
+﻿
+@using KillerApp.Models
 @{
-    ViewBag.Title = "Orders";
-    var order = ViewData["Order"] as Order;
+    ViewBag.Title = "Order";
+    var order = ViewData["order"] as Order;
+    var beheerder = ViewData["Beheerder"] as Beheerder;
 }
-@model KillerApp.Models.Klant
+
 <section id="info-order">
     <div class="container">
         <div class="row">
@@ -11,9 +13,18 @@
                 <h2>order Info</h2>
             </div>
             <div class="col-md-4 klant-info">
-                <p>Naam : @Html.DisplayFor(model => model.Naam)</p>
-                <p>Account number : @Html.DisplayFor(model => model.Id)</p>
-                <a href="@Url.Action("Klant", "Account")">Back</a>
+                @if (beheerder != null && order != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account number : @beheerder.Id</p>
+                }
+                
+                <a href="@Url.Action("Facturen", "Beheer")">Back</a>
+                @if (order != null)
+                {
+                    <p><a href="@Url.Action("Delete", "Order", new {id = order.Id})">Delete</a></p>
+                }
+               
             </div>
             <div class="col-md-8 order-info">
                 @if (order != null)
@@ -23,7 +34,7 @@
                                 {
                                     @order.Coupon.Percentage
                                 }
-                </p>
+                    </p>
                     foreach (var product in order.Producten)
                     {
                         <p>Product @product.Id : @product.Naam   Prijs : &euro; @product.Prijs  Aantal : @product.Aantal</p>
@@ -35,3 +46,4 @@
         </div>
     </div>
 </section>
+

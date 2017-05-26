@@ -131,8 +131,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var query =
-                    "UPDATE Gebruiker SET naam = @naam, e-mail = @email, wachtwoord = @wachtwoord WHERE id = @id";
+                var query = "UPDATE Gebruiker SET naam = @naam, [e-mail] = @email, wachtwoord = @wachtwoord WHERE id = @id";
                 var cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@id", k.Id);
@@ -141,12 +140,12 @@ namespace KillerApp.DAL.Context
                 cmd.Parameters.AddWithValue("@wachtwoord", k.Wachtwoord);
 
                 cmd.ExecuteNonQuery();
-                cmd.CommandText = "UPDATE Klant SET straat = @straat, huisNr = @huisNr, postcode = @postcode, woonplaats = @woonplaats, land = @land";
+                cmd.CommandText = "UPDATE Klant SET straat = @straat, huisNr = @huisNr, postcode = @postcode, woonplaats = @woonplaats, land = @land WHERE id = @id";
                 cmd.Parameters.AddWithValue("@straat", k.Straat);
-                cmd.Parameters.AddWithValue("@straat", k.HuisNr);
-                cmd.Parameters.AddWithValue("@straat", k.Postcode);
-                cmd.Parameters.AddWithValue("@straat", k.Woonplaats);
-                cmd.Parameters.AddWithValue("@straat", k.Land);
+                cmd.Parameters.AddWithValue("@huisNr", k.HuisNr);
+                cmd.Parameters.AddWithValue("@postcode", k.Postcode);
+                cmd.Parameters.AddWithValue("@woonplaats", k.Woonplaats);
+                cmd.Parameters.AddWithValue("@land", k.Land);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
