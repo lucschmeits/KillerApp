@@ -16,6 +16,8 @@ namespace KillerApp.DAL.Interface
 
         void DeleteKorting(int id);
 
-        // void UpdateKorting(Korting k);
+        Korting RetrieveKortingById(int id);
+
+         void UpdateKorting(Korting k);
     }
 }

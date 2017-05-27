@@ -36,10 +36,11 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "DELETE FROM Korting WHERE id = @id";
+                var cmdString = "DELETE FROM Korting_Product WHERE kortingId = @id";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
-
+                command.ExecuteNonQuery();
+                command.CommandText = "DELETE FROM Korting WHERE id = @id";
                 command.ExecuteNonQuery();
                 con.Close();
             }
@@ -82,6 +83,41 @@ namespace KillerApp.DAL.Context
             return returnList;
         }
 
+        public Korting RetrieveKortingById(int id)
+        {
+           
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "SELECT * FROM Korting WHERE id = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                var k = new Korting();
+                while (reader.Read())
+                {
+                   
+                    k.Id = reader.GetInt32(0);
+                    k.Percentage = reader.GetDecimal(1);
+                    if (!reader.IsDBNull(2))
+                    {
+                        k.Omschrijving = reader.GetString(2);
+                    }
+
+                   
+                }
+                con.Close();
+                return k;
+            }
+            catch (Exception ex)
+            {
+                //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+          
+        }
+
         public List<Korting> RetrieveKortingByProduct(int id)
         {
             var returnList = new List<Korting>();
@@ -112,9 +148,25 @@ namespace KillerApp.DAL.Context
             return returnList;
         }
 
-        //public void UpdateKorting(Korting k)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void UpdateKorting(Korting k)
+        {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var query = "UPDATE Korting SET percentage = @percentage, omschrijving = @omschrijving WHERE id = @id";
+                var cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id", k.Id);
+                cmd.Parameters.AddWithValue("@percentage", k.Percentage);
+                cmd.Parameters.AddWithValue("@omschrijving", k.Omschrijving);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                // throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+        }
     }
 }

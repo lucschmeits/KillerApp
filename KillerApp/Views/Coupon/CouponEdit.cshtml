@@ -1,7 +1,52 @@
-﻿
+﻿@using KillerApp.Models
+
 @{
     ViewBag.Title = "CouponEdit";
+    var coupon = ViewData["coupon"] as Coupon;
+    var beheerder = ViewData["Beheerder"] as Beheerder;
 }
 
-<h2>CouponEdit</h2>
+<section id="leverancierId">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Beheer</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null && coupon != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Kortingscodes", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Delete", "Coupon", new { id = coupon.Id })">Delete</a></p>
+                }
+
+            </div>
+            <div class="col-md-10 beheer-content">
+                @if (coupon != null)
+                {
+                    using (Html.BeginForm("Update", "Coupon", new { id = coupon.Id }, FormMethod.Post))
+                    {
+
+                        <p>Code:</p>
+                        <div class="form-group">
+                            <input id="code" name="code" type="text" class="form-control" value="@coupon.Code" />
+                        </div>
+                        <p>Omschrijving:</p>
+                        <div class="form-group">
+                            <input id="omschrijving" name="omschrijving" type="text" class="form-control" value="@coupon.Omschrijving" />
+                        </div>
+                        <p>Percentage:</p>
+                        <div class="form-group">
+                            <input id="percentage" name="percentage" type="text" class="form-control" value="@coupon.Percentage" />
+                        </div>
+                        <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
 

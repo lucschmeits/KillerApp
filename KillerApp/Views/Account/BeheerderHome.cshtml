@@ -153,6 +153,11 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        <span class="pull-right btn-beheerderhome">
+                            <a href="@Url.Action("New", "Coupon")" class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
+                            </a>
+                        </span>
                     </h4>
                     @if (coupons != null)
                     {
@@ -173,13 +178,18 @@
                                 <i class="glyphicon glyphicon-eye-open"></i><span>View All</span>
                             </a>
                         </span>
+                        <span class="pull-right btn-beheerderhome">
+                            <a href="@Url.Action("New", "Korting")" class="btn btn-primary btn-account-a-orange">
+                                <i class="glyphicon glyphicon-plus"></i><span>Add New</span>
+                            </a>
+                        </span>
                     </h4>
                     @if (kortingen != null)
                     {
                         foreach (var korting in kortingen)
                         {
                             <p>
-                                <a href="#x">@korting.Id - @korting.Percentage</a>
+                                <a href="@Url.Action("Edit", "Korting", new {id = korting.Id})">@korting.Id - @korting.Percentage</a>
                             </p>
                         }
                     }

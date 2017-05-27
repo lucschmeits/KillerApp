@@ -1,7 +1,38 @@
-﻿
+﻿@using KillerApp.Models
+
 @{
     ViewBag.Title = "Korting";
+    var beheerder = ViewData["Beheerder"] as Beheerder;
+    var kortingen = ViewData["kortingen"] as List<Korting>;
 }
+<div class="header-banner">
+    <img src="../../Images/coupon.jpg" class="img-responsive" alt="banner" />
+</div>
+<section id="accountBeheer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Kortinscodes</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Beheerder", "Account")">Back</a></p>
+                }
 
-<h2>Korting</h2>
+            </div>
+            <div class="col-md-10 beheer-content">
+                @if (kortingen != null)
+                {
+                    foreach (var korting in kortingen)
+                    {
+                        <p><a href="@Url.Action("Edit", "Korting", new {id = korting.Id})">ID : @korting.Id</a> - Percentage : @korting.Percentage</p>
+                    }
 
+                }
+            </div>
+        </div>
+    </div>
+</section>

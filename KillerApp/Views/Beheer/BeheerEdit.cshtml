@@ -10,14 +10,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 leverancier-titel">
-                <h2>Product</h2>
+                <h2>Beheer</h2>
             </div>
             <div class="col-md-2 personal-info">
                 @if (beheerder != null && beheerderId != null)
                 {
                     <p>Naam : @beheerder.Naam</p>
                     <p>Account Nr : @beheerder.Id</p>
-                    <p><a href="@Url.Action("Producten", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Accounts", "Beheer")">Back</a></p>
                     <p><a href="@Url.Action("Delete", "Beheer", new { id = beheerderId.Id })">Delete</a></p>
                 }
 

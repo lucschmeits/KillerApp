@@ -20,5 +20,34 @@ namespace KillerApp.Models
             var krepo = new KortingRepo(ksql);
             return krepo.RetrieveAll();
         }
+
+        public static Korting RetrieveKortingById(int id)
+        {
+            var ksql = new KortingSQL();
+            var krepo = new KortingRepo(ksql);
+            return krepo.RetrieveKortingById(id);
+        }
+
+        public static void DeleteKorting(int id)
+        {
+            var ksql = new KortingSQL();
+            var krepo = new KortingRepo(ksql);
+            krepo.DeleteKorting(id);
+        }
+
+        public static void UpdateKorting(Korting k)
+        {
+            var ksql = new KortingSQL();
+            var krepo = new KortingRepo(ksql);
+            krepo.UpdateKorting(k);
+        }
+
+        public static void CreateKorting(Korting k)
+        {
+            var ksql = new KortingSQL();
+            var krepo = new KortingRepo(ksql);
+            krepo.CreateKorting(k);
+        }
+
     }
 }

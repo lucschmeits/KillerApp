@@ -307,11 +307,12 @@
     <Content Include="Views\Order\OrderEdit.cshtml" />
     <Content Include="Views\Coupon\CouponEdit.cshtml" />
     <Content Include="Views\Coupon\CouponNew.cshtml" />
+    <Content Include="Views\Korting\KortingEdit.cshtml" />
+    <Content Include="Views\Korting\KortingNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Views\Korting\" />
     <Folder Include="Views\Overzicht\" />
     <Folder Include="Views\Voorraad\" />
   </ItemGroup>

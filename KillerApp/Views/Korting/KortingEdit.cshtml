@@ -1,10 +1,10 @@
-﻿
+﻿@using KillerApp.Models
+
 @{
-    ViewBag.Title = "CouponNew";
+    ViewBag.Title = "KortingEdit";
+    var korting = ViewData["korting"] as Korting;
     var beheerder = ViewData["Beheerder"] as Beheerder;
 }
-
-@using KillerApp.Models
 
 <section id="leverancierId">
     <div class="container">
@@ -13,41 +13,37 @@
                 <h2>Beheer</h2>
             </div>
             <div class="col-md-2 personal-info">
-                @if (beheerder != null)
+                @if (beheerder != null && korting != null)
                 {
                     <p>Naam : @beheerder.Naam</p>
                     <p>Account Nr : @beheerder.Id</p>
-                    <p><a href="@Url.Action("Kortingscodes", "Beheer")">Back</a></p>
-                   
+                    <p><a href="@Url.Action("Korting", "Beheer")">Back</a></p>
+                    <p><a href="@Url.Action("Delete", "Korting", new { id = korting.Id })">Delete</a></p>
                 }
 
             </div>
             <div class="col-md-10 beheer-content">
-                
-                    @using (Html.BeginForm("Save", "Coupon", FormMethod.Post))
+                @if (korting != null)
+                {
+                    using (Html.BeginForm("Update", "Korting", new { id = korting.Id }, FormMethod.Post))
                     {
 
-                        <p>Code:</p>
+                        <p>Percentage:</p>
                         <div class="form-group">
-                            <input id="code" name="code" type="text" class="form-control" value="" />
+                            <input id="percentage" name="percentage" type="text" class="form-control" value="@korting.Percentage" />
                         </div>
                         <p>Omschrijving:</p>
                         <div class="form-group">
-                            <input id="omschrijving" name="omschrijving" type="text" class="form-control" value="" />
+                            <input id="omschrijving" name="omschrijving" type="text" class="form-control" value="@korting.Omschrijving" />
                         </div>
-                        <p>Percentage:</p>
-                        <div class="form-group">
-                            <input id="percentage" name="percentage" type="text" class="form-control" value="" />
-                        </div>
+                       
                         <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
                     }
 
-                
+                }
             </div>
         </div>
     </div>
 </section>
-
-
 
 

@@ -89,7 +89,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Kortingscoupon";
+                var cmdString = "SELECT * FROM Kortingscoupon WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
