@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KillerApp.Models;
 
 namespace KillerApp.Controllers
 {
@@ -10,7 +11,16 @@ namespace KillerApp.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["producten"] = (from product in Models.Product.All()
+            var productList = new List<Product>();
+            foreach (var product in Models.Product.All())
+            {
+                if (product.Kortingen != null)
+                {
+                    product.NiewPrijs = product.NewPrijs(product).ToString("C");
+                }
+                productList.Add(product);
+            }
+            ViewData["producten"] = (from product in productList
                 select product).Reverse().Take(3).Reverse().ToList();
             return View();
         }

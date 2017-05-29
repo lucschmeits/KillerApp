@@ -94,7 +94,14 @@
                         <li class="col-md-4 product">
 
                             <div class="product-product">
+                            @if (@product.NiewPrijs != "€ 0,00")
+                            {
+                                <h5 class="product-price"><span class="oldprijs">&euro; @product.Prijs</span><span class="newprijs"> @product.NiewPrijs</span></h5>
+                            }
+                            else
+                            {
                                 <h5 class="product-price">&euro;@product.Prijs</h5>
+                            }
                                 <a>
                                     <img class="img-responsive img-product" alt="product" src="../../Images/iphone.jpeg"/>
                                 </a>
