@@ -13,7 +13,17 @@ namespace KillerApp.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            ViewData["producten"] = Models.Product.All();
+            var productList = new List<Product>();
+        
+            foreach (var product in Models.Product.All())
+            {
+                if (product.Kortingen != null)
+                {
+                    product.NiewPrijs = product.NewPrijs(product).ToString("C");
+                }
+                productList.Add(product);
+            }
+            ViewData["producten"] = productList;
             ViewData["categorieen"] = Models.Categorie.RetrieveAll();
             return View("Producten");
         }
@@ -28,7 +38,16 @@ namespace KillerApp.Controllers
         public ActionResult Search(FormCollection form)
         {
             string search = form["search"];
-            ViewData["producten"] = (from product in Models.Product.All()
+            var productList = new List<Product>();
+            foreach (var product in Models.Product.All())
+            {
+                if (product.Kortingen != null)
+                {
+                    product.NiewPrijs = product.NewPrijs(product).ToString("C");
+                }
+                productList.Add(product);
+            }
+            ViewData["producten"] = (from product in productList
                 where product.Naam.Contains(search)
                 select product).ToList();
             ViewData["categorieen"] = Models.Categorie.RetrieveAll();
@@ -37,7 +56,16 @@ namespace KillerApp.Controllers
 
         public ActionResult Price(int min, int max)
         {
-            ViewData["producten"] = (from product in Models.Product.All()
+            var productList = new List<Product>();
+            foreach (var product in Models.Product.All())
+            {
+                if (product.Kortingen != null)
+                {
+                    product.NiewPrijs = product.NewPrijs(product).ToString("C");
+                }
+                productList.Add(product);
+            }
+            ViewData["producten"] = (from product in productList
                 where product.Prijs >= min && product.Prijs <= max
                 select product).ToList();
             ViewData["categorieen"] = Models.Categorie.RetrieveAll();

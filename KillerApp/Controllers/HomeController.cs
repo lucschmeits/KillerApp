@@ -10,6 +10,8 @@ namespace KillerApp.Controllers
     {
         public ActionResult Index()
         {
+            ViewData["producten"] = (from product in Models.Product.All()
+                select product).Reverse().Take(3).Reverse().ToList();
             return View();
         }
 

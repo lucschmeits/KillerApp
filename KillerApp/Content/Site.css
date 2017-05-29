@@ -765,6 +765,9 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
     text-transform: uppercase;
     font-weight: 700;
 }
+.oldprijs {
+    text-decoration: line-through;
+}
 /*Klant account CSS*/
 .myaccount-menu {
     list-style: none;

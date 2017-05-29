@@ -1,5 +1,7 @@
-﻿@{
+﻿@using KillerApp.Models
+@{
     ViewBag.Title = "Home Page";
+    var producten = ViewData["producten"] as List<Product>;
 }
 
 <div class="header-banner">
@@ -36,40 +38,40 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 collection-left img-opacity">
-                <a href="">
+                <a href="@Url.Action("Index", "Product")">
                     <img class="img-responsive" alt="collection" src="~/Images/collection.jpeg" />
                     <div class="collection-hover-details">
-                        <h4>Title</h4>
-                        <p>Category</p>
+                        <h4>Alle producten</h4>
+                        
                     </div>
                 </a>
             </div>
             <div class="col-md-6 collection-right ">
                 <div class="row">
                     <div class="col-sm-12 collection img-opacity">
-                        <a href="">
+                        <a href="@Url.Action("ProductCategorie", "Product", new {id = 10})">
                             <img class="img-responsive" alt="collection1" src="~/Images/collection1.jpeg" />
                             <div class="collection-hover-details">
-                                <h4>Title</h4>
-                                <p>Category</p>
+                                <h4>60-Second Fluoride</h4>
+                                
                             </div>
                         </a>
                     </div>
                     <div class="col-sm-6 img-opacity">
-                        <a href="">
+                        <a href="@Url.Action("ProductCategorie", "Product", new {id = 8})">
                             <img class="img-responsive" alt="collection2" src="~/Images/collection2.jpeg" />
                             <div class="collection-hover-details">
-                                <h4>Title</h4>
-                                <p>Category</p>
+                                <h4>ORCHID</h4>
+                              
                             </div>
                         </a>
                     </div>
                     <div class="col-sm-6 img-opacity">
-                        <a href="">
+                        <a href="@Url.Action("ProductCategorie", "Product", new {id = 4})">
                             <img class="img-responsive" alt="collection3" src="~/Images/collection3.jpeg" />
                             <div class="collection-hover-details">
-                                <h4>Title</h4>
-                                <p>Category</p>
+                                <h4>Spooky PUmpkin Antibacterial Hand Sanitizer</h4>
+                              
                             </div>
                         </a>
                     </div>
@@ -85,55 +87,31 @@
                 <h3>Latest products</h3>
             </div>
             <ul class="row latest-products">
-                <li class="col-md-4 product">
+                @if (producten != null)
+                {
+                    foreach (var product in producten)
+                    {
+                        <li class="col-md-4 product">
 
-                    <div class="product-product">
-                        <h5 class="product-price">&euro;349,99</h5>
-                        <a>
-                            <img class="img-responsive img-product" alt="product" src="../../Images/iphone.jpeg" />
-                        </a>
-                    </div>
-                    <div class="product-hover-icons">
-                        <a href="@Url.Action("Index", "Product")"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
-                        <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
-                    </div>
-                    <div class="product-hover-details">
-                        <h4>Title</h4>
-                        <p>Category</p>
-                    </div>
-                </li>
-                <li class="col-md-4 product">
-                    <div class="product-product">
-                        <h5 class="product-price">&euro;559,99</h5>
-                        <a>
-                            <img class="img-responsive  img-product" alt="product" src="../../Images/samsung.jpeg" />
-                        </a>
-                        <div class="product-hover-icons">
-                            <a href="@Url.Action("Index", "Product")"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
-                            <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
-                        </div>
-                        <div class="product-hover-details">
-                            <h4>Title</h4>
-                            <p>Category</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-md-4 product">
-                    <div class="product-product">
-                        <h5 class="product-price">&euro;299,99</h5>
-                        <a>
-                            <img class="img-responsive  img-product" alt="product" src="../../Images/iphone1.jpeg" />
-                        </a>
-                        <div class="product-hover-icons">
-                            <a href="@Url.Action("Index", "Product")"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
-                            <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
-                        </div>
-                        <div class="product-hover-details">
-                            <h4>Title</h4>
-                            <p>Category</p>
-                        </div>
-                    </div>
-                </li>
+                            <div class="product-product">
+                                <h5 class="product-price">&euro;@product.Prijs</h5>
+                                <a>
+                                    <img class="img-responsive img-product" alt="product" src="../../Images/iphone.jpeg"/>
+                                </a>
+                            </div>
+                            <div class="product-hover-icons">
+                                <a href="@Url.Action("Product", "Product", new {id = product.Id})"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
+                                <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                            </div>
+                            <div class="product-hover-details">
+                                <h4>@product.Naam</h4>
+                                <p>@product.Categorie.Naam</p>
+                            </div>
+                        </li>
+                    }
+                    
+                }
+             
             </ul>
         </div>
     </div>

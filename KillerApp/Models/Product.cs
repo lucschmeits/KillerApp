@@ -24,6 +24,8 @@ namespace KillerApp.Models
         public int Aantal { get; set; }
         public decimal GemiddeldeBeoordeling { get; set; }
 
+        public string NiewPrijs { get; set; }
+
         public static List<Product> All()
         {
             var sql = new ProductSQL();
