@@ -190,6 +190,7 @@ body {
 
 .product-product {
     background: #bd6b17;
+    margin-bottom: 5%;
 }
 
 .img-product {
@@ -758,6 +759,11 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
 
 .btn-send > i {
     margin-right: 10px;
+}
+.newprijs {
+    color: #b22222;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 /*Klant account CSS*/
 .myaccount-menu {

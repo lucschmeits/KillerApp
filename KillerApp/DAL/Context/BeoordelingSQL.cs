@@ -24,7 +24,7 @@ namespace KillerApp.DAL.Context
                 command1.Parameters.AddWithValue("@cijfer", b.Cijfer);
                 command1.Parameters.AddWithValue("@productId", b.Product.Id);
 
-                command1.ExecuteScalar();
+                command1.ExecuteNonQuery();
 
                 con.Close();
             }
@@ -70,7 +70,7 @@ namespace KillerApp.DAL.Context
                     b.Id = reader.GetInt32(0);
                     b.Titel = reader.GetString(1);
                     b.Omschrijving = reader.GetString(2);
-                    b.Cijfer = reader.GetDecimal(3);
+                    b.Cijfer = reader.GetInt32(3);
                     // b.Product =
                     returnList.Add(b);
                 }
@@ -100,7 +100,7 @@ namespace KillerApp.DAL.Context
                     b.Id = reader.GetInt32(0);
                     b.Titel = reader.GetString(1);
                     b.Omschrijving = reader.GetString(2);
-                    b.Cijfer = reader.GetDecimal(3);
+                    b.Cijfer = reader.GetInt32(3);
                     // b.Product =
                 }
                 con.Close();
@@ -154,7 +154,7 @@ namespace KillerApp.DAL.Context
                     b.Id = reader.GetInt32(0);
                     b.Titel = reader.GetString(1);
                     b.Omschrijving = reader.GetString(2);
-                    b.Cijfer = reader.GetDecimal(3);
+                    b.Cijfer = reader.GetInt32(3);
                     // b.Product =
                     returnList.Add(b);
                 }

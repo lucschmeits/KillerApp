@@ -1,7 +1,10 @@
 ﻿@{
     ViewBag.Title = "Producten";
+    var categorieen = ViewData["categorieen"] as List<Categorie>;
+    var producten = ViewData["producten"] as List<Product>;
 }
-@model IEnumerable<KillerApp.Models.Product>
+@using KillerApp.Models
+
 <div class="header-banner">
     <img src="../../Images/products.jpeg" class="img-responsive" alt="banner" />
 </div>
@@ -11,7 +14,14 @@
         <div class="row">
             <div class="col-sm-4 col-md-3 sidebar">
                 <div class="widget-prijs">
-                    <h5 class="product-filter">Filter by price</h5>
+                    <h5 class="product-filter">Search:</h5>
+                    @using (Html.BeginForm("Search", "Product"))
+                    {
+                        <div class="form-group">
+                            <input id="titel" name="search" class="form-control" type="text" placeholder="SEARCH" />
+                        </div>
+                        <button id="form-submit" class="btn btn-default btn-send" type="submit">SEARCH</button>
+                    }
                 </div>
                 <div class="prijs-filter widget">
                     <h5 class="product-filter">Price filter</h5>
@@ -26,12 +36,14 @@
                 <div class="categorie-filter widget">
                     <h5 class="product-filter">Catgories</h5>
                     <ul class="filter-list">
-                        <li><a href="#">catgeorie 1</a><span class="pull-right">(16)</span></li>
-                        <li><a href="#">catgeorie 2</a><span class="pull-right">(7)</span></li>
-                        <li><a href="#">catgeorie 3</a><span class="pull-right">(11)</span></li>
-                        <li><a href="#">catgeorie 4</a><span class="pull-right">(4)</span></li>
-                        <li><a href="#">catgeorie 5</a><span class="pull-right">(13)</span></li>
-                        <li><a href="#">catgeorie 6</a><span class="pull-right">(8)</span></li>
+                        @if (categorieen != null)
+                        {
+                            foreach (var categorie in categorieen)
+                            {
+                                <li><a href="@Url.Action("ProductCategorie", "Product", new {id = categorie.Id})">@categorie.Naam</a>@*<span class="pull-right">(16)</span>*@</li>
+                            }
+                        }
+                     
                     </ul>
                 </div>
             </div>
@@ -52,25 +64,29 @@
                     </span>
                 </p>
                 <ul class="product-list">
-                    @foreach (var product in Model)
+                    @if (producten != null)
                     {
-                        <li class="col-md-6 product">
-                            <div class="product-product">
-                                <h5 class="product-price">&euro;@Html.DisplayFor(model => product.Prijs)</h5>
-                                <a>
-                                    <img class="img-responsive  img-product" alt="product" src="../../Images/iphone1.jpeg" />
-                                </a>
-                                <div class="product-hover-icons">
-                                    <a href="@Url.Action("Product", "Product", new { id = product.Id })"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
-                                    <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                        foreach (var product in producten)
+                        {
+                            <li class="col-md-6 product">
+                                <div class="product-product">
+                                    <h5 class="product-price">&euro;@product.Prijs</h5>
+                                    <a>
+                                        <img class="img-responsive  img-product" alt="product" src="../../Images/iphone1.jpeg" />
+                                    </a>
+                                    <div class="product-hover-icons">
+                                        <a href="@Url.Action("Product", "Product", new { id = product.Id })"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
+                                        <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                                    </div>
+                                    <div class="product-hover-details">
+                                        <h4>@product.Naam</h4>
+                                        <p>@product.Categorie.Naam</p>
+                                    </div>
                                 </div>
-                                <div class="product-hover-details">
-                                    <h4>@Html.DisplayFor(model => product.Naam)</h4>
-                                    <p>@Html.DisplayFor(model => product.Categorie.Naam)</p>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
                     }
+                    
                 </ul>
             </div>
         </div>

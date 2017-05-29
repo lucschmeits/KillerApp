@@ -108,19 +108,19 @@ namespace KillerApp.Controllers
                 
                 var beheerder = (Beheerder)Session["beheerder"];
                 ViewData["Leveranciers"] = (from leverancier in Leverancier.RetrieveAll()
-                                            select leverancier).Take(5).ToList();
+                                            select leverancier).Reverse().Take(5).Reverse().ToList();
                 ViewData["Producten"] = (from product in Product.All()
-                    select product).Take(5).ToList();
+                    select product).Reverse().Take(5).Reverse().ToList();
                 ViewData["Klanten"] = (from klant in Models.Klant.RetrieveAll()
-                    select klant).Take(5).ToList();
+                    select klant).Reverse().Take(5).Reverse().ToList();
                 ViewData["Kortingen"] = (from korting in Korting.RetrieveAll()
-                    select korting).Take(5).ToList();
+                    select korting).Reverse().Take(5).Reverse().ToList();
                 ViewData["Coupons"] = (from coupon in Coupon.RetrieveAll()
-                    select coupon).Take(5).ToList();
+                    select coupon).Reverse().Take(5).Reverse().ToList();
                 ViewData["Orders"] = (from order in Models.Order.RetrieveAll()
-                    select order).Take(5).ToList();
+                    select order).Reverse().Take(5).Reverse().ToList();
                 ViewData["Beheerders"] = (from beheerd in Models.Beheerder.RetrieveAll()
-                    select beheerd).Take(5).ToList();
+                    select beheerd).Reverse().Take(5).Reverse().ToList();
                 return View("BeheerderHome", beheerder);
             }
 

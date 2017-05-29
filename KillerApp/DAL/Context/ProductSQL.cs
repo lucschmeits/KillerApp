@@ -74,7 +74,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Product";
+                var cmdString = "SELECT Product.* FROM Product";
                 var command = new SqlCommand(cmdString, con);
                 var reader = command.ExecuteReader();
 
@@ -90,6 +90,11 @@ namespace KillerApp.DAL.Context
                     p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
                     p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
                     p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    //if (!reader.IsDBNull(7))
+                    //{
+                    //    p.KortingId = reader.GetInt32(7);
+                    //}
+                   
                     if (!reader.IsDBNull(6))
                     {
                         p.Omschrijving = reader.GetString(6);
@@ -122,7 +127,7 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var cmdString = "SELECT * FROM Product WHERE id = @id";
+                var cmdString = "SELECT Product.* FROM Product WHERE id = @id";
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
@@ -140,6 +145,11 @@ namespace KillerApp.DAL.Context
                     p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
                     p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
                     p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    //if (!reader.IsDBNull(7))
+                    //{
+                    //    p.KortingId = reader.GetInt32(7);
+                    //}
+                  
                     if (!reader.IsDBNull(6))
                     {
                         p.Omschrijving = reader.GetString(6);
@@ -259,6 +269,61 @@ namespace KillerApp.DAL.Context
             {
                 throw ex;
             }
+        }
+
+        public List<Product> RetrieveProductByCategorie(int categorieId)
+        {
+            var categorieSql = new ProductCategorieSQL();
+            var categorieRepo = new ProductCategorieRepo(categorieSql);
+            var leverancierSql = new LeverancierSQL();
+            var leverancierRepo = new LeverancierRepo(leverancierSql);
+            var kortingSql = new KortingSQL();
+            var kortingRepo = new KortingRepo(kortingSql);
+            var afbeeldingSql = new AfbeeldingSQL();
+            var afbeeldingRepo = new AfbeeldingRepo(afbeeldingSql);
+            var beoordelingSql = new BeoordelingSQL();
+            var beoordelingRepo = new BeoordelingRepo(beoordelingSql);
+            var productList = new List<Product>();
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "SELECT Product.* FROM Product INNER JOIN ProductCategorie ON Product.categorieId = ProductCategorie.id WHERE ProductCategorie.id = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", categorieId);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var p = new Product();
+                    p.Id = reader.GetInt32(0);
+                    p.Naam = reader.GetString(1);
+                    p.Voorraad = reader.GetInt32(2);
+                    p.Prijs = reader.GetDecimal(3);
+                    p.Categorie = categorieRepo.RetrieveCategorie(reader.GetInt32(4));
+                    p.Leverancier = leverancierRepo.RetrieveLeverancier(reader.GetInt32(5));
+                    p.Kortingen = kortingRepo.RetrieveKortingByProduct(reader.GetInt32(0));
+                    p.Afbeeldingen = afbeeldingRepo.RetrieveAfbeeldingByProduct(reader.GetInt32(0));
+                    p.Beoordelingen = beoordelingRepo.BeoordelingByProduct(reader.GetInt32(0));
+                    //if (!reader.IsDBNull(7))
+                    //{
+                    //    p.KortingId = reader.GetInt32(7);
+                    //}
+
+                    if (!reader.IsDBNull(6))
+                    {
+                        p.Omschrijving = reader.GetString(6);
+                    }
+                    productList.Add(p);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+            return productList;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using KillerApp.Models;
 
@@ -12,25 +13,63 @@ namespace KillerApp.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var products = Models.Product.All();
-            return View("Producten", products);
+            ViewData["producten"] = Models.Product.All();
+            ViewData["categorieen"] = Models.Categorie.RetrieveAll();
+            return View("Producten");
         }
 
+        public ActionResult ProductCategorie(int id)
+        {
+            ViewData["producten"] = Models.Product.RetrieveProductByCategorie(id);
+            ViewData["categorieen"] = Models.Categorie.RetrieveAll();
+            return View("Producten");
+        }
+
+        public ActionResult Search(FormCollection form)
+        {
+            string search = form["search"];
+            ViewData["producten"] = (from product in Models.Product.All()
+                where product.Naam.Contains(search)
+                select product).ToList();
+            ViewData["categorieen"] = Models.Categorie.RetrieveAll();
+            return View("Producten");
+        }
         // GET Product/{id}
-        public ActionResult Product(int id)
+        //public ActionResult Product(int id)
+        //{
+        //    var product = new Product();
+            
+        //    var p = Models.Product.ProductById(id);
+        //    p.GemiddeldeBeoordeling = product.GemiddeldeScore(p);
+        //    if (p.Kortingen != null)
+        //    {
+        //        ViewData["newprijs"] = p.NewPrijs(p).ToString("C");
+        //    }
+        //    ViewData["product"] = p;
+        //    return View();
+        //}
+        
+        public ActionResult Product(int id, string melding)
         {
             var product = new Product();
-            
+
             var p = Models.Product.ProductById(id);
             p.GemiddeldeBeoordeling = product.GemiddeldeScore(p);
-            return View(p);
+            if (p.Kortingen != null)
+            {
+                ViewData["newprijs"] = p.NewPrijs(p).ToString("C");
+            }
+            ViewData["product"] = p;
+            ViewData["melding"] = melding;
+            return View();
         }
-
         public ActionResult New()
         {
             if (Session["beheerder"] != null)
             {
                 ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
+                ViewData["Leveranciers"] = Leverancier.RetrieveAll();
+                ViewData["Categorieen"] = Categorie.RetrieveAll();
                 return View("ProductNew");
             }
             return RedirectToAction("Index", "Account");
@@ -44,7 +83,7 @@ namespace KillerApp.Controllers
                 ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
                 ViewData["Leveranciers"] = Leverancier.RetrieveAll();
                 ViewData["Categorieen"] = Categorie.RetrieveAll();
-                ViewData["Kortingen"] = Korting.RetrieveAll();
+              
                 return View("ProductEdit");
             }
             return RedirectToAction("Index", "Account");
@@ -55,8 +94,14 @@ namespace KillerApp.Controllers
             if (Session["beheerder"] != null)
             {
                 var product = new Product();
-
-               
+                product.Categorie = new Categorie();
+                product.Leverancier = new Leverancier();
+                product.Naam = form["naam"];
+                product.Omschrijving = form["omschrijving"];
+                product.Prijs = decimal.Parse(form["prijs"]);
+                product.Categorie.Id = Convert.ToInt32(form["catId"]);
+                product.Leverancier.Id = Convert.ToInt32(form["levId"]);
+                product.Voorraad = Convert.ToInt32(form["voorraad"]);
                 Models.Product.CreateProduct(product);
                 return RedirectToAction("Producten", "Beheer");
             }
@@ -70,24 +115,14 @@ namespace KillerApp.Controllers
                
                 product.Categorie = new Categorie();
                 product.Leverancier = new Leverancier();
-                product.Kortingen = new List<Korting>();
+              
                 product.Id = id;
                 product.Naam = form["naam"];
                 product.Omschrijving = form["omschrijving"];
                 product.Prijs = decimal.Parse(form["prijs"]);
                 product.Categorie.Id = Convert.ToInt32(form["catId"]);
                 product.Leverancier.Id = Convert.ToInt32(form["levId"]);
-                var kortingIds = form.GetValues("kortingId");
-                if (kortingIds != null)
-                {
-                    foreach (var KortingId in kortingIds)
-                    {
-                        var korting = new Korting();
-                        korting.Id = Convert.ToInt32(KortingId);
-                        product.Kortingen.Add(korting);
-                    }
-                    Models.Product.UpdateKortingProduct(product.Kortingen, product.Id);
-                }
+              
                 Models.Product.UpdateProduct(product);
                 return RedirectToAction("Producten", "Beheer");
             }
@@ -102,6 +137,23 @@ namespace KillerApp.Controllers
                 return RedirectToAction("Producten", "Beheer");
             }
             return RedirectToAction("Index", "Account");
+        }
+
+        public ActionResult SaveBeoordeling(FormCollection form, int id)
+        {
+            if (Session["klant"] != null)
+            {
+                var beoordeling = new Beoordeling();
+                beoordeling.Titel = form["titel"];
+                beoordeling.Cijfer = Convert.ToInt32(form["cijfer"]);
+                beoordeling.Omschrijving = form["omschrijving"];
+                beoordeling.Product = Models.Product.ProductById(id);
+                Models.Beoordeling.CreateBeoordeling(beoordeling);
+               return RedirectToAction("Product", "Product", new {id});
+            }
+            var melding = "U moet inloggen om een review te plaatsen.";
+            return RedirectToAction("Product", "Product", new {id, melding});
+            //return Product(id, melding);
         }
     }
 }

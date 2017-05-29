@@ -21,6 +21,7 @@ namespace KillerApp.Controllers
             {
                 ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
                 ViewData["korting"] = Korting.RetrieveKortingById(id);
+                ViewData["producten"] = Product.All();
                 return View("KortingEdit");
             }
             return RedirectToAction("Index", "Account");
@@ -54,8 +55,17 @@ namespace KillerApp.Controllers
                 korting.Id = id;
                 korting.Percentage = decimal.Parse(form["percentage"]);
                 korting.Omschrijving = form["omschrijving"];
+                var productIds = form.GetValues("productId");
+                var productIdList = new List<int>();
+                if (productIds != null)
+                {
+                    foreach (var productid in productIds)
+                    {
+                        productIdList.Add(Convert.ToInt32(productid));
+                    }
+                }
                 
-               Korting.UpdateKorting(korting);
+                Korting.UpdateKorting(korting, productIdList);
                 return RedirectToAction("Korting", "Beheer");
             }
             return RedirectToAction("Index", "Account");

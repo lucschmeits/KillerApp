@@ -4,6 +4,7 @@
     ViewBag.Title = "KortingEdit";
     var korting = ViewData["korting"] as Korting;
     var beheerder = ViewData["Beheerder"] as Beheerder;
+    var producten = ViewData["producten"] as List<Product>;
 }
 
 <section id="leverancierId">
@@ -36,7 +37,28 @@
                         <div class="form-group">
                             <input id="omschrijving" name="omschrijving" type="text" class="form-control" value="@korting.Omschrijving" />
                         </div>
-                       
+                        <p>Producten:</p>
+                        <div class="form-group">
+                            <select name="productId" class="form-control" multiple="multiple">
+                                @if (producten != null)
+                                {
+
+                                    foreach (var product in producten)
+                                    {
+
+                                        if (Korting.CheckProduct(product, korting.Id))
+                                        {
+                                            <option selected="selected" value="@product.Id">@product.Naam</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@product.Id">@product.Naam</option>
+                                        }
+
+                                    }
+                                }
+                            </select>
+                        </div>
                         <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
                     }
 

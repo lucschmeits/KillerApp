@@ -36,14 +36,19 @@ namespace KillerApp.DAL.Repo
             _kortingInterface.DeleteKorting(id);
         }
 
-        public void UpdateKorting(Korting k)
+        public void UpdateKorting(Korting k, List<int> productIds)
         {
-            _kortingInterface.UpdateKorting(k);
+            _kortingInterface.UpdateKorting(k, productIds);
         }
 
         public Korting RetrieveKortingById(int id)
         {
            return _kortingInterface.RetrieveKortingById(id);
+        }
+
+        public List<Product> RetrieveProductsByKorting(int kortingId)
+        {
+            return _kortingInterface.RetrieveProductsByKorting(kortingId);
         }
     }
 }

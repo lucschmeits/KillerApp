@@ -1,7 +1,87 @@
-﻿
+﻿@using KillerApp.Models
+
 @{
     ViewBag.Title = "ProductNew";
+    var beheerder = ViewData["Beheerder"] as Beheerder;
+    var leveranciers = ViewData["Leveranciers"] as List<Leverancier>;
+    var categorieen = ViewData["Categorieen"] as List<Categorie>;
 }
 
-<h2>ProductNew</h2>
+<section id="leverancierId">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 leverancier-titel">
+                <h2>Product</h2>
+            </div>
+            <div class="col-md-2 personal-info">
+                @if (beheerder != null)
+                {
+                    <p>Naam : @beheerder.Naam</p>
+                    <p>Account Nr : @beheerder.Id</p>
+                    <p><a href="@Url.Action("Producten", "Beheer")">Back</a></p>
+                   
+                }
+
+            </div>
+            <div class="col-md-10 beheer-content">
+              
+                    @using (Html.BeginForm("Save", "Product", FormMethod.Post))
+                    {
+
+                        <p>Product Naam:</p>
+                        <div class="form-group">
+                            <input id="naam" name="naam" type="text" class="form-control" value="" />
+                        </div>
+                        <p>Omschrijving:</p>
+                        <div class="form-group">
+                            <input id="omschrijving" name="omschrijving" type="text" class="form-control" value="" />
+                        </div>
+                        <p>Prijs:</p>
+                        <div class="form-group">
+                            <input id="prijs" name="prijs" type="text" class="form-control" value="" />
+                        </div>
+                        <p>Voorraad:</p>
+                        <div class="form-group">
+                            <input id="voorraad" name="voorraad" type="text" class="form-control" value="" />
+                        </div>
+                        <p>Leverancier:</p>
+                        <div class="form-group">
+                            <select name="levId" class="form-control">
+                                @if (leveranciers != null)
+                                {
+                                    
+                                    foreach (var leverancier in leveranciers)
+                                    {
+                                        <option value="@leverancier.Id">@leverancier.Naam</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <p>Categorie:</p>
+                        <div class="form-group">
+                            <select name="catId" class="form-control">
+                                @if (categorieen != null)
+                                {
+                                   
+                                    foreach (var categorie in categorieen)
+                                    {
+                                        <option value="@categorie.Id">@categorie.Naam</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                       
+                        <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
+                    
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
 

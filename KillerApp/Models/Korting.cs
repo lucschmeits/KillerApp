@@ -35,11 +35,11 @@ namespace KillerApp.Models
             krepo.DeleteKorting(id);
         }
 
-        public static void UpdateKorting(Korting k)
+        public static void UpdateKorting(Korting k, List<int> productIds)
         {
             var ksql = new KortingSQL();
             var krepo = new KortingRepo(ksql);
-            krepo.UpdateKorting(k);
+            krepo.UpdateKorting(k, productIds);
         }
 
         public static void CreateKorting(Korting k)
@@ -49,5 +49,28 @@ namespace KillerApp.Models
             krepo.CreateKorting(k);
         }
 
+        public static List<Product> RetrieveProductsByKorting(int kortingId)
+        {
+            var ksql = new KortingSQL();
+            var krepo = new KortingRepo(ksql);
+           return krepo.RetrieveProductsByKorting(kortingId);
+        }
+        public static bool CheckProduct(Product product, int id)
+        {
+            foreach (Korting korting in product.Kortingen)
+            {
+                if (korting.Id == id)
+                {
+                    return true;
+                }
+                if (korting.Id == 0)
+                {
+                    return false;
+                }
+            }
+
+
+            return false;
+        }
     }
 }

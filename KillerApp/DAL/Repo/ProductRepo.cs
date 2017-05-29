@@ -50,5 +50,10 @@ namespace KillerApp.DAL.Repo
         {
             _productInterface.UpdateKortingProduct(kortingList, productId);
         }
+
+        public List<Product> RetrieveProductByCategorie(int categorieId)
+        {
+            return _productInterface.RetrieveProductByCategorie(categorieId);
+        }
     }
 }

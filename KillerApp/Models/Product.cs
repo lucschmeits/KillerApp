@@ -20,6 +20,7 @@ namespace KillerApp.Models
         public Categorie Categorie { get; set; }
         public Leverancier Leverancier { get; set; }
         public List<Korting> Kortingen { get; set; }
+        //public int KortingId { get; set; }
         public int Aantal { get; set; }
         public decimal GemiddeldeBeoordeling { get; set; }
 
@@ -67,6 +68,13 @@ namespace KillerApp.Models
             repo.DeleteProduct(id);
         }
 
+        public static List<Product> RetrieveProductByCategorie(int categorieId)
+        {
+            var sql = new ProductSQL();
+            var repo = new ProductRepo(sql);
+            return repo.RetrieveProductByCategorie(categorieId);
+        }
+
         public static bool CheckKorting(List<Korting> kortingLijst, int id)
         {
             foreach (var korting in kortingLijst)
@@ -81,21 +89,41 @@ namespace KillerApp.Models
         }
         public decimal GemiddeldeScore(Product product)
         {
-            if (product.Beoordelingen.Count == 0)
+            if (product.Beoordelingen != null)
             {
-                return 0;
-            }
-            if(product.Beoordelingen.Count > 0)
-            {
-                decimal totaal = 0;
-                foreach (var b in product.Beoordelingen)
+                if (product.Beoordelingen.Count == 0)
                 {
-                    totaal = b.Cijfer + totaal;
+                    return 0;
                 }
-                totaal = totaal / product.Beoordelingen.Count;
-                return totaal;
+                if (product.Beoordelingen.Count > 0)
+                {
+                    decimal totaal = 0;
+                    foreach (var b in product.Beoordelingen)
+                    {
+                        totaal = b.Cijfer + totaal;
+                    }
+                    totaal = totaal / product.Beoordelingen.Count;
+                    return totaal;
+                }
+            }
+           
+            return 0;
+        }
+
+        public decimal NewPrijs(Product product)
+        {
+            decimal nieuwPrijs = 0;
+            if (product.Kortingen != null)
+            {
+                foreach (var korting in product.Kortingen)
+                {
+                    nieuwPrijs = product.Prijs - (product.Prijs / 100 * korting.Percentage);
+                }
+                return nieuwPrijs;
             }
             return 0;
         }
+
+
     }
 }

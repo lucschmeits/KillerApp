@@ -6,7 +6,7 @@
     var beheerder = ViewData["Beheerder"] as Beheerder;
     var leveranciers = ViewData["Leveranciers"] as List<Leverancier>;
     var categorieen = ViewData["Categorieen"] as List<Categorie>;
-    var kortingen = ViewData["Kortingen"] as List<Korting>;
+  
 }
 <section id="leverancierId">
     <div class="container">
@@ -59,7 +59,7 @@
                                 }
                             </select>
                         </div>
-                        <p>Catgorie:</p>
+                        <p>Categorie:</p>
                         <div class="form-group">
                             <select name="catId" class="form-control">
                                 @if (categorieen != null)
@@ -72,7 +72,7 @@
                                 }
                             </select>
                         </div>
-                        <p>Kortingen:</p>
+                        @*<p>Kortingen:</p>
                         <div class="form-group">
                             <select name="kortingId" class="form-control" multiple="multiple">
                                 @if (kortingen != null)
@@ -93,7 +93,7 @@
                                     }
                                 }
                             </select>
-                        </div>
+                        </div>*@
                         <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
                     }
 

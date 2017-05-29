@@ -18,6 +18,8 @@ namespace KillerApp.DAL.Interface
 
         Korting RetrieveKortingById(int id);
 
-         void UpdateKorting(Korting k);
+         void UpdateKorting(Korting k, List<int> productIds);
+
+        List<Product> RetrieveProductsByKorting(int kortingId);
     }
 }
