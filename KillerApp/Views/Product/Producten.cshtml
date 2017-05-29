@@ -17,20 +17,31 @@
                     <h5 class="product-filter">Search:</h5>
                     @using (Html.BeginForm("Search", "Product"))
                     {
-                        <div class="form-group">
-                            <input id="titel" name="search" class="form-control" type="text" placeholder="SEARCH" />
-                        </div>
-                        <button id="form-submit" class="btn btn-default btn-send" type="submit">SEARCH</button>
+                      
+                            <div class="form-group">
+                                <input id="titel" name="search" class="form-control" type="text" placeholder="SEARCH" />
+                            </div>
+                        
+                        <button id="form-submit" class="btn btn-default btn-send" type="submit"><i class="glyphicon glyphicon-search"></i>SEARCH</button>
+                       
+                           
+                     
+                       
                     }
                 </div>
                 <div class="prijs-filter widget">
                     <h5 class="product-filter">Price filter</h5>
                     <ul class="filter-list">
-                        <li><a href="#">&euro; 100 - &euro; 200</a></li>
-                        <li><a href="#">&euro; 200 - &euro; 300</a></li>
-                        <li><a href="#">&euro; 300 - &euro; 400</a></li>
-                        <li><a href="#">&euro; 400 - &euro; 500</a></li>
-                        <li><a href="#">&euro; 500 - &euro; 600</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 0, max = 100})">&euro; 0 - &euro; 100</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 100, max = 200})">&euro; 100 - &euro; 200</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 200, max = 300})">&euro; 200 - &euro; 300</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 300, max = 400})">&euro; 300 - &euro; 400</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 400, max = 500})">&euro; 400 - &euro; 500</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 500, max = 600})">&euro; 500 - &euro; 600</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 600, max = 700})">&euro; 600 - &euro; 700</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 700, max = 800})">&euro; 700 - &euro; 800</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 800, max = 900})">&euro; 800 - &euro; 900</a></li>
+                        <li><a href="@Url.Action("Price", "Product", new {min = 900, max = 1000})">&euro; 900 - &euro; 1000</a></li>
                     </ul>
                 </div>
                 <div class="categorie-filter widget">

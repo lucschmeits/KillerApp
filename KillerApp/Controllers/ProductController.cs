@@ -34,6 +34,15 @@ namespace KillerApp.Controllers
             ViewData["categorieen"] = Models.Categorie.RetrieveAll();
             return View("Producten");
         }
+
+        public ActionResult Price(int min, int max)
+        {
+            ViewData["producten"] = (from product in Models.Product.All()
+                where product.Prijs >= min && product.Prijs <= max
+                select product).ToList();
+            ViewData["categorieen"] = Models.Categorie.RetrieveAll();
+            return View("Producten");
+        }
         // GET Product/{id}
         //public ActionResult Product(int id)
         //{
