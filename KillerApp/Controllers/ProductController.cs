@@ -30,7 +30,17 @@ namespace KillerApp.Controllers
 
         public ActionResult ProductCategorie(int id)
         {
-            ViewData["producten"] = Models.Product.RetrieveProductByCategorie(id);
+            var productList = new List<Product>();
+
+            foreach (var product in Models.Product.RetrieveProductByCategorie(id))
+            {
+                if (product.Kortingen != null)
+                {
+                    product.NiewPrijs = product.NewPrijs(product).ToString("C");
+                }
+                productList.Add(product);
+            }
+            ViewData["producten"] = productList;
             ViewData["categorieen"] = Models.Categorie.RetrieveAll();
             return View("Producten");
         }
