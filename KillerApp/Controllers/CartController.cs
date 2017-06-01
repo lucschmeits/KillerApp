@@ -100,11 +100,15 @@ namespace KillerApp.Controllers
                     var order = new Order();
                     order.Datum = DateTime.Now;
                     order.Klant = Klant.RetrieveKlant(klant.Id);
-                    if (form["coupon"] != null)
+                    if (form["coupon"] != "")
                     {
                         order.Coupon = Coupon.RetrieveCouponByCode(form["coupon"].ToString());
                     }
-                  
+                    else
+                    {
+                        order.Coupon = Coupon.RetrieveCoupon(5);
+                    }
+                    
                     if (cart != null)
                     {
                         for (int i = 0; i < cart.Bestellingen.Count; i++)
