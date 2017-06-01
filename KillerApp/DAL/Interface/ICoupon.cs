@@ -17,5 +17,8 @@ namespace KillerApp.DAL.Interface
         void DeleteCoupon(int id);
 
         void UpdateCoupon(Coupon c);
+
+        Coupon RetrieveCouponByCode(string code);
+
     }
 }

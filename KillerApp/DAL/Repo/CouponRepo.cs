@@ -40,5 +40,10 @@ namespace KillerApp.DAL.Repo
         {
             _couponInterface.UpdateCoupon(c);
         }
+
+        public Coupon RetrieveCouponByCode(string code)
+        {
+            return _couponInterface.RetrieveCouponByCode(code);
+        }
     }
 }

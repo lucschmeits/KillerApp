@@ -50,10 +50,10 @@
                     <div class="product-specs">
                         <div class="info">
                             <p><i class="glyphicon glyphicon-tag"></i><span>Price: &euro;@product.Prijs</span>
-                            @if (prijs.ToString() != "€ 0,00")
-                            {
-                                <span class="newprijs">Sale : @prijs</span> 
-                            }
+                                @if (prijs.ToString() != "€ 0,00")
+                                {
+                                    <span class="newprijs">Sale : @prijs</span> 
+                                }
                                 
                             </p>
                         </div>
@@ -67,14 +67,19 @@
                             <p><i class="glyphicon glyphicon-star-empty"></i><span>Reviews: @product.GemiddeldeBeoordeling</span></p>
                         </div>
                     </div>
-                    <div class="buy-product">
-                        <div class="options qty aantal">
-                            <input step="1" min="0" name="cart" value="1" title="Qty" class="qty" text="" size="4" type="number" max="99">
+                    @using (Html.BeginForm("AddToCart", "Cart", new {id = product.Id}))
+                    {
+                        <div class="buy-product">
+                            <div class="options qty aantal">
+                                <input step="1" min="0" name="aantal" value="1" title="Qty" class="qty" text="" size="4" type="number" max="99">
+                            </div>
+                            <button class="btn btn-primary btn-cart-a-orange" type="submit"><i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i><span> Add to Cart</span></button>
+                            <button class="btn btn-success btn-cart-a" type="submit"><i class="glyphicon glyphicon-heart-empty"></i><span> Buy Now</span></button>
+                            @*<a href="#" class="btn btn-primary btn-cart-a-orange"><i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i><span> Add to Cart</span></a>*@
+                            @*<a href="#" class="btn btn-success btn-cart-a"><i class="glyphicon glyphicon-heart-empty"></i><span> Buy Now</span></a>*@
                         </div>
-
-                        <a href="#" class="btn btn-primary btn-cart-a-orange"><i class="glyphicon glyphicon-shopping-cart menu-icon-cart"></i><span> Add to Cart</span></a>
-                        <a href="#" class="btn btn-success btn-cart-a"><i class="glyphicon glyphicon-heart-empty"></i><span> Buy Now</span></a>
-                    </div>
+                    }
+                   
                 </div>
             </div>
         </div>

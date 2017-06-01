@@ -23,10 +23,11 @@ namespace KillerApp.DAL.Context
                 // define / populate DataTable from your List here
                 tvp.Columns.Add("ProductId", typeof(int));
                 tvp.Columns.Add("Aantal", typeof(int));
+                tvp.Columns.Add("totaal", typeof(decimal));
 
                 foreach (var s in cart.Bestellingen)
                 {
-                    tvp.Rows.Add(s.ProductId, s.Aantal);
+                    tvp.Rows.Add(s.Product.Id, s.Aantal, s.Totaal);
                 }
 
                 SqlCommand cmd = new SqlCommand("dbo.OrdersProducts", con);
@@ -145,5 +146,7 @@ namespace KillerApp.DAL.Context
                 throw ex;
             }
         }
+
+  
     }
 }

@@ -9,5 +9,9 @@ namespace KillerApp.Models
     {
         public int Aantal { get; set; }
         public int ProductId { get; set; }
+
+        public Product Product { get; set; }
+
+        public decimal Totaal { get; set; }
     }
 }

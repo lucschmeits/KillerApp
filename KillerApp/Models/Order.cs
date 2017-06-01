@@ -39,5 +39,12 @@ namespace KillerApp.Models
             var orepo = new OrderRepo(osql);
             orepo.DeleteOrder(id);
         }
+
+        public static void CreateOrder(Order o, Shoppingcart cart)
+        {
+            var osql = new OrderSQL();
+            var orepo = new OrderRepo(osql);
+            orepo.CreateOrder(o, cart);
+        }
     }
 }

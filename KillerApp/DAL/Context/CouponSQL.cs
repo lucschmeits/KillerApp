@@ -135,5 +135,36 @@ namespace KillerApp.DAL.Context
                 throw ex;
             }
         }
+
+        public Coupon RetrieveCouponByCode(string code)
+        {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "SELECT * FROM Kortingscoupon WHERE code = @code";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@code", code);
+                var reader = command.ExecuteReader();
+                var c = new Coupon();
+                while (reader.Read())
+                {
+                    c.Id = reader.GetInt32(0);
+                    c.Percentage = reader.GetDecimal(1);
+                    c.Code = reader.GetString(2);
+                    if (!reader.IsDBNull(3))
+                    {
+                        c.Omschrijving = reader.GetString(3);
+                    }
+                }
+                con.Close();
+                return c;
+            }
+            catch (Exception ex)
+            {
+                //  throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+                throw ex;
+            }
+        }
     }
 }

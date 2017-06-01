@@ -48,5 +48,12 @@ namespace KillerApp.Models
             var crepo = new CouponRepo(csql);
             crepo.CreateCoupon(c);
         }
+
+        public static Coupon RetrieveCouponByCode(string code)
+        {
+            var csql = new CouponSQL();
+            var crepo = new CouponRepo(csql);
+            return crepo.RetrieveCouponByCode(code);
+        }
     }
 }

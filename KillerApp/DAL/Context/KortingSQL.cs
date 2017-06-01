@@ -121,7 +121,7 @@ namespace KillerApp.DAL.Context
 
         public List<Korting> RetrieveKortingByProduct(int id)
         {
-            var returnList = new List<Korting>();
+            List<Korting> returnList;
             try
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
@@ -130,7 +130,7 @@ namespace KillerApp.DAL.Context
                 var command = new SqlCommand(cmdString, con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
-
+                returnList = new List<Korting>();
                 while (reader.Read())
                 {
                     var k = new Korting();
