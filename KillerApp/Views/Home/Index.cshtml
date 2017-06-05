@@ -108,7 +108,7 @@
                             </div>
                             <div class="product-hover-icons">
                                 <a href="@Url.Action("Product", "Product", new {id = product.Id})"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
-                                <i class="glyphicon glyphicon-shopping-cart product-icon"></i>
+                                <a href="@Url.Action("AddToCart", "Cart", new {id = product.Id})"><i class="glyphicon glyphicon-shopping-cart product-icon"></i></a>
                             </div>
                             <div class="product-hover-details">
                                 <h4>@product.Naam</h4>

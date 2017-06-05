@@ -28,7 +28,14 @@ namespace KillerApp.Controllers
             if (Session["cart"] == null)
             {
                 var bestelling = new Bestelling();
-                bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                if (form.Count != 0)
+                {
+                    bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                }
+                else
+                {
+                    bestelling.Aantal = 1;
+                }
                 bestelling.Product = Product.ProductById(id);
                if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
                 {
@@ -58,7 +65,15 @@ namespace KillerApp.Controllers
             if (Session["cart"] != null)
             {
                 var bestelling = new Bestelling();
-                bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                if (form.Count != 0)
+                {
+                    bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                }
+                else
+                {
+                    bestelling.Aantal = 1;
+                }
+                
                 bestelling.Product = Product.ProductById(id);
                
                 if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
@@ -178,7 +193,8 @@ namespace KillerApp.Controllers
                 select bestelling).First();
            
             cart.Bestellingen.Remove(bestel);
-
+            var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
+            Session["totaal"] = totaal;
             return RedirectToAction("Index");
         }
 
