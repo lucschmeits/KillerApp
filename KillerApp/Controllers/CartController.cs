@@ -114,6 +114,7 @@ namespace KillerApp.Controllers
                         foreach (Bestelling bes in cart.Bestellingen)
                         {
                             productList.Add(bes.Product);
+                            
                         }
                     }
                   
@@ -167,5 +168,20 @@ namespace KillerApp.Controllers
             return Json(new { Url = redirectUrlProduct });
            
         }
+
+        public ActionResult Remove(int id)
+        {
+            var product = Product.ProductById(id);
+            var cart = Session["cart"] as Shoppingcart;
+            var bestel = (from bestelling in cart.Bestellingen
+                where bestelling.Product.Id == id
+                select bestelling).First();
+           
+            cart.Bestellingen.Remove(bestel);
+
+            return RedirectToAction("Index");
+        }
+
+     
     }
 }

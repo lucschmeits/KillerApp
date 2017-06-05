@@ -53,7 +53,7 @@
                                 <td>@Shoppingcart.GetTotaalProduct(bestelling.Product.Prijs, bestelling.Aantal)</td>
                             }
                                   
-                            <td class="remove"><a href="#x" class="btn btn-danger">×</a></td>
+                            <td class="remove"><a href="@Url.Action("Remove", "Cart", new {id = bestelling.Product.Id})" class="btn btn-danger">×</a></td>
                         </tr>
                             
                         
@@ -98,7 +98,7 @@
                     <div class="col-sm-6 cart-checkout">
 
                         <button class="btn btn-primary btn-cart-a-orange" type="submit"><i class="glyphicon glyphicon-log-in"></i> <span>Proceed to Checkout</span></button>
-                        <a href="#" class="btn btn-primary btn-cart-a"><i class="menu-icon-cart glyphicon glyphicon-shopping-cart"></i> <span>Continue Shopping</span></a>
+                        <a href="@Url.Action("Index", "Product")" class="btn btn-primary btn-cart-a"><i class="menu-icon-cart glyphicon glyphicon-shopping-cart"></i> <span>Continue Shopping</span></a>
                     </div>
                 </div>
             }
