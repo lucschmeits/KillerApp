@@ -153,10 +153,8 @@ namespace KillerApp.Controllers
             if (Session["cart"] != null)
             {
                 var cart = Session["cart"] as Shoppingcart;
-                var productList = new List<Product>();
-                if (Session["klant"] != null)
-                {
-                    var klant = (Klant)Session["klant"];
+               
+              
                     var order = new Order();
                     if (!string.IsNullOrEmpty(code))
                     {
@@ -173,9 +171,7 @@ namespace KillerApp.Controllers
                     var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
                     return Json(new { Url = redirectUrlCart });
                   
-                }
-                var redirectUrlAccount = new UrlHelper(Request.RequestContext).Action("Index", "Account");
-                return Json(new { Url = redirectUrlAccount });
+               
                
 
             }
@@ -186,7 +182,7 @@ namespace KillerApp.Controllers
 
         public ActionResult Remove(int id)
         {
-            var product = Product.ProductById(id);
+         
             var cart = Session["cart"] as Shoppingcart;
             var bestel = (from bestelling in cart.Bestellingen
                 where bestelling.Product.Id == id
@@ -198,6 +194,32 @@ namespace KillerApp.Controllers
             return RedirectToAction("Index");
         }
 
-     
+        public ActionResult UpdateCart(int id, int aantal)
+        {
+            if (Session["cart"] != null)
+            {
+                var cart = Session["cart"] as Shoppingcart;
+               
+               
+
+                        var bestel = (from bestelling in cart.Bestellingen
+                        where bestelling.Product.Id == id
+                        select bestelling).First();
+
+                    bestel.Aantal = aantal;
+
+                    var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
+                    Session["totaal"] = totaal;
+                  
+                    var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
+                    return Json(new { Url = redirectUrlCart });
+
+              
+
+
+            }
+            var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
+            return Json(new { Url = redirectUrlProduct });
+        }
     }
 }

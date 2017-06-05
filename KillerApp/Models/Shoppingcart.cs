@@ -34,8 +34,8 @@ namespace KillerApp.Models
             {
                 if (bestel.Product.Kortingen.Count > 0)
                 {
-                    var x = bestel.Product.NewPrijs(bestel.Product);
-                    totaal = totaal + x;
+                    var prijs = bestel.Product.NewPrijs(bestel.Product);
+                    totaal = totaal + prijs * bestel.Aantal;
                 }
                 else
                 {

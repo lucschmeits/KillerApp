@@ -33,7 +33,7 @@
                            
                         <tr class="cart-item">
                             <td class="image-cart"><a href="#"><img src="../../Images/one.jpg" alt=""></a></td>
-                            <td><a class="cart-product-title" href="@Url.Action("Product", "Product", new {id = bestelling.Product.Id})">@bestelling.Product.Naam</a></td>
+                            <td><a class="cart-product-title" id="id" aria-valuenow="@bestelling.Product.Id" href="@Url.Action("Product", "Product", new {id = bestelling.Product.Id})">@bestelling.Product.Naam</a></td>
                             @if (bestelling.Product.NiewPrijs != "€ 0,00")
                             {
                                 <td class="newprijs">@bestelling.Product.NiewPrijs</td>
@@ -43,7 +43,7 @@
                                 <td>&euro; @bestelling.Product.Prijs</td>
                             }
                                     
-                            <td class="qty"><input step="1" min="0" name="cart" value="@bestelling.Aantal" title="Qty" class="qty" size="4" type="number"></td>
+                            <td class="qty"><input step="1" min="0" name="cart" id="aantal" value="@bestelling.Aantal" title="Qty" class="qty" size="4" type="number"></td>
                             @if (bestelling.Product.NiewPrijs != "€ 0,00")
                             {
                                 <td class="newprijs">@Shoppingcart.GetTotaalProduct(bestelling.Product.NewPrijs(bestelling.Product), bestelling.Aantal)</td>
@@ -83,7 +83,7 @@
 
                     </div>
                     <div class="update-cart col-sm-6">
-                        <button class="pull-right btn btn-default btn-cart-grey" type="button"><i class="glyphicon glyphicon-refresh"></i> <span>Update Cart</span></button>
+                        <button id="update" class="pull-right btn btn-default btn-cart-grey" type="button"><i class="glyphicon glyphicon-refresh"></i> <span>Update Cart</span></button>
                     </div>
                 </div>
                 <div class="row">
