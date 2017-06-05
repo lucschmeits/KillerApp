@@ -35,7 +35,11 @@ namespace KillerApp.DAL.Context
                 SqlParameter tvparam = cmd.Parameters.AddWithValue("@List", tvp);
                 tvparam.SqlDbType = SqlDbType.Structured;
                 SqlParameter klantp = cmd.Parameters.AddWithValue("@klantId", o.Klant.Id);
-                SqlParameter coupon = cmd.Parameters.AddWithValue("@couponId", o.Coupon.Id);
+                
+                    SqlParameter coupon = cmd.Parameters.AddWithValue("@couponId", o.Coupon.Id);
+                
+               
+
                 // execute query, consume results, etc. here
                 cmd.ExecuteNonQuery();
                 con.Close();

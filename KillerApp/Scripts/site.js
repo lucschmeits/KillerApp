@@ -17,3 +17,23 @@ $(function () {
     }
     );
 });
+
+$(document).ready(function () {
+    $("#submit-coupon").click(UpdateCoupon);
+});
+function UpdateCoupon() {
+    var code = $("#coupon-code").val();
+   
+    $.ajax({
+        type: "POST",
+        url: "Cart/ApplyCoupon",
+        data: { code: code },
+        success: function (response) {
+            window.location.href = response.Url;
+        },
+        error: function () {
+        }
+    });
+   // alert(code);
+  
+} 

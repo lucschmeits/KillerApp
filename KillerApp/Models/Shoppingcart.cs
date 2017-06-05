@@ -25,7 +25,7 @@ namespace KillerApp.Models
             return totaal;
         }
 
-        public static string GetTotaalWinkelwagen(List<Bestelling> prijsList)
+        public static string GetTotaalWinkelwagen(List<Bestelling> prijsList, Coupon coupon)
         {
             decimal totaal = 0;
 
@@ -39,9 +39,14 @@ namespace KillerApp.Models
                 }
                 else
                 {
-                    totaal = totaal + bestel.Product.Prijs;
+                    totaal = totaal + bestel.Product.Prijs * bestel.Aantal;
                 }
 
+            }
+            if(coupon != null)
+            {
+                var min = totaal / 100 * coupon.Percentage;
+                totaal = totaal - min;
             }
             return totaal.ToString("C");
         }

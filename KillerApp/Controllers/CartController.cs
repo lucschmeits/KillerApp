@@ -50,7 +50,7 @@ namespace KillerApp.Controllers
                 }
                 Session["cart"] = shoppingCart;
                
-                var totaal = Shoppingcart.GetTotaalWinkelwagen(shoppingCart.Bestellingen);
+                var totaal = Shoppingcart.GetTotaalWinkelwagen(shoppingCart.Bestellingen, null);
                 Session["totaal"] = totaal;
                
                 return RedirectToAction("Index");
@@ -81,7 +81,7 @@ namespace KillerApp.Controllers
                 }
 
 
-                var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen);
+                var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
                 Session["totaal"] = totaal;
                 return RedirectToAction("Index");
             }
@@ -108,12 +108,12 @@ namespace KillerApp.Controllers
                     {
                         order.Coupon = Coupon.RetrieveCoupon(5);
                     }
-                    
+
                     if (cart != null)
                     {
-                        for (int i = 0; i < cart.Bestellingen.Count; i++)
+                        foreach (Bestelling bes in cart.Bestellingen)
                         {
-                            productList.Add(cart.Bestellingen[i].Product);
+                            productList.Add(bes.Product);
                         }
                     }
                   
@@ -128,6 +128,44 @@ namespace KillerApp.Controllers
                 return RedirectToAction("Index", "Account");
             }
             return null;
+        }
+
+       [HttpPost]
+        public ActionResult ApplyCoupon(string code)
+        {
+
+            if (Session["cart"] != null)
+            {
+                var cart = Session["cart"] as Shoppingcart;
+                var productList = new List<Product>();
+                if (Session["klant"] != null)
+                {
+                    var klant = (Klant)Session["klant"];
+                    var order = new Order();
+                    if (!string.IsNullOrEmpty(code))
+                    {
+                        order.Coupon = Coupon.RetrieveCouponByCode(code);
+                    }
+                    else
+                    {
+                        order.Coupon = Coupon.RetrieveCoupon(5);
+                    }
+
+                    var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, order.Coupon);
+                    Session["totaal"] = totaal;
+                    // return Json(code + true);
+                    var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
+                    return Json(new { Url = redirectUrlCart });
+                  
+                }
+                var redirectUrlAccount = new UrlHelper(Request.RequestContext).Action("Index", "Account");
+                return Json(new { Url = redirectUrlAccount });
+               
+
+            }
+            var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
+            return Json(new { Url = redirectUrlProduct });
+           
         }
     }
 }
