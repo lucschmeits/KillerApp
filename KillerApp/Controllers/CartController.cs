@@ -16,6 +16,7 @@ namespace KillerApp.Controllers
             {
                 ViewData["winkelmand"] = Session["cart"];
                 ViewData["totaal"] = Session["totaal"];
+                ViewData["order"] = Session["order"];
                 //var shoppingcart = (Shoppingcart) Session["cart"];
 
             }
@@ -164,7 +165,7 @@ namespace KillerApp.Controllers
                     {
                         order.Coupon = Coupon.RetrieveCoupon(5);
                     }
-
+                Session["order"] = order;
                     var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, order.Coupon);
                     Session["totaal"] = totaal;
                     // return Json(code + true);

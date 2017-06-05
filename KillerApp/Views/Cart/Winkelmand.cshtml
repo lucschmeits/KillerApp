@@ -4,6 +4,7 @@
     // var producten = ViewData["producten"] as List<Product>;
     var winkelmand = ViewData["winkelmand"] as Shoppingcart;
     var prijsTotaal = ViewData["totaal"] as string;
+    var order = ViewData["order"] as Order;
 }
 
 <div class="header-banner">
@@ -70,9 +71,17 @@
                 <div class="row">
                 
                     <div class="col-md-6">
-                    
                         <div class="input-group">
-                            <input class="form-control rounded" id="coupon-code" name="coupon" placeholder="COUPON CODE" type="text">
+                            @if (order != null)
+                            {
+                                <input class="form-control rounded" id="coupon-code" name="coupon" placeholder="COUPON CODE" type="text" value="@order.Coupon.Code">
+                            }
+                            else
+                            {
+                                <input class="form-control rounded" id="coupon-code" name="coupon" placeholder="COUPON CODE" type="text" value="">
+                            }
+
+                           
                             <span class="input-group-btn">
                                 <button class="btn btn-primary btn-cart" type="button" id="submit-coupon"><i class=" menu-icon-cart glyphicon glyphicon-tag"></i> <span>Apply Coupon</span></button>
                                 <label id="#result"></label>
