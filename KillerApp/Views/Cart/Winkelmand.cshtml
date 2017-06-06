@@ -33,7 +33,7 @@
                        
                            
                         <tr class="cart-item">
-                            <td class="image-cart"><a href="#"><img src="../../Images/one.jpg" alt=""></a></td>
+                            <td class="image-cart"><a href="@Url.Action("Product", "Product", new {id = bestelling.Product.Id})"><img src="@bestelling.Product.Afbeeldingen[0].Path" alt="@bestelling.Product.Afbeeldingen[0].Naam"></a></td>
                             <td><a class="cart-product-title" id="id" aria-valuenow="@bestelling.Product.Id" href="@Url.Action("Product", "Product", new {id = bestelling.Product.Id})">@bestelling.Product.Naam</a></td>
                             @if (bestelling.Product.NiewPrijs != "€ 0,00")
                             {
