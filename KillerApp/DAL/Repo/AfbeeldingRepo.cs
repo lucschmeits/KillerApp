@@ -21,9 +21,9 @@ namespace KillerApp.DAL.Repo
             return _afbeeldingInterface.RetrieveAll();
         }
 
-        public void CreateAfbeelding(Afbeelding a)
+        public int CreateAfbeelding(Afbeelding a)
         {
-            _afbeeldingInterface.CreateAfbeelding(a);
+           return _afbeeldingInterface.CreateAfbeelding(a);
         }
 
         public List<Afbeelding> RetrieveAfbeeldingByProduct(int id)
@@ -34,6 +34,11 @@ namespace KillerApp.DAL.Repo
         public void DeleteAfbeelding(int id)
         {
             _afbeeldingInterface.DeleteAfbeelding(id);
+        }
+
+        public void KoppelAfbeeldingProduct(int afbeeldingId, int productId)
+        {
+            _afbeeldingInterface.KoppelAfbeeldingProduct(afbeeldingId, productId);
         }
     }
 }

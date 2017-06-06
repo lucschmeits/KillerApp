@@ -10,10 +10,11 @@ namespace KillerApp.DAL.Interface
     {
         List<Afbeelding> RetrieveAll();
 
-        void CreateAfbeelding(Afbeelding a);
+        int CreateAfbeelding(Afbeelding a);
 
         List<Afbeelding> RetrieveAfbeeldingByProduct(int id);
 
         void DeleteAfbeelding(int id);
+        void KoppelAfbeeldingProduct(int afbeeldingId, int productId);
     }
 }

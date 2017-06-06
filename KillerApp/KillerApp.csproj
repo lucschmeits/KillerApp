@@ -209,6 +209,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+<Content Include="images\**" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -236,7 +237,6 @@
     <Content Include="Images\homebanner.jpeg" />
     <Content Include="Images\homebanner1.jpg" />
     <Content Include="Images\homebanner2.jpeg" />
-    <Content Include="Images\iphone.jpeg" />
     <Content Include="Images\iphone1.jpeg" />
     <Content Include="Images\laptop.jpg" />
     <Content Include="Images\laptop1.jpg" />
@@ -251,6 +251,7 @@
     <Content Include="Images\products.jpeg" />
     <Content Include="Images\samsung.jpeg" />
     <Content Include="Images\truck.jpg" />
+    <Content Include="Images\woman.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

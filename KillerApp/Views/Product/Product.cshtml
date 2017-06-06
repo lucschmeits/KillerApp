@@ -21,7 +21,21 @@
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <div class="item active">
+                            @if (product.Afbeeldingen.Count > 0)
+                            {
+                               
+                                <div class="item active">
+                                    <img src="@product.Afbeeldingen[0].Path" alt="@product.Afbeeldingen[0].Naam" class="img-responsive">
+                                </div>
+                                for (int i = 0; i < product.Afbeeldingen.Count - 1; i++)
+                                {
+                                    <div class="item">
+                                        <img src="@product.Afbeeldingen[i + 1].Path" alt="@product.Afbeeldingen[i + 1].Naam" class="img-responsive">
+                                    </div>
+                                }
+                                
+                            }
+                            @*<div class="item active">
                                 <img src="../../Images/laptop.jpg" alt="...">
                             </div>
                             <div class="item">
@@ -29,7 +43,7 @@
                             </div>
                             <div class="item">
                                 <img src="../../Images/laptop2.jpeg" alt="...">
-                            </div>
+                            </div>*@
                         </div>
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -100,7 +114,7 @@
                         <div id="product-features-tab-discription" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Lorem ipsum</h4>
+                                    <h4>@product.Omschrijving</h4>
                                 </div>
                             </div>
                         </div>

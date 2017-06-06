@@ -27,7 +27,7 @@
             <div class="col-md-10 beheer-content">
                 @if (product != null)
                 {
-                    using (Html.BeginForm("Update", "Product", new { id = product.Id }, FormMethod.Post))
+                    using (Html.BeginForm("Update", "Product", new { id = product.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
 
                         <p>Product Naam:</p>
@@ -72,28 +72,26 @@
                                 }
                             </select>
                         </div>
-                        @*<p>Kortingen:</p>
-                        <div class="form-group">
-                            <select name="kortingId" class="form-control" multiple="multiple">
-                                @if (kortingen != null)
-                                {
-
-                                    foreach (var korting in kortingen)
+                        <p>Afbeeldingen:</p>
+                        
+                            <div class="row">
+                                
+                           
+                                
+                                    @foreach (var afbeelding in product.Afbeeldingen)
                                     {
-
-                                        if (Product.CheckKorting(product.Kortingen, korting.Id))
-                                        {
-                                            <option selected="selected" value="@korting.Id">@korting.Percentage</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@korting.Id">@korting.Percentage</option>
-                                        }
+                                        <div class="col-md-2">
+                                            <img src="@afbeelding.Path" alt="@afbeelding.Naam" class="img-responsive">
+                                        </div>
 
                                     }
-                                }
-                            </select>
-                        </div>*@
+                               
+                            </div>
+                     
+                        <p>Afbeelding:</p>
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="foto"/>
+                        </div>
                         <button id="form-submit" class="btn btn-default btn-send" type="submit">Save</button>
                     }
 

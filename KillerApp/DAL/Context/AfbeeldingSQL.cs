@@ -10,9 +10,47 @@ namespace KillerApp.DAL.Context
 {
     public class AfbeeldingSQL : IAfbeelding
     {
-        public void CreateAfbeelding(Afbeelding a)
+        public int CreateAfbeelding(Afbeelding a)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "INSERT INTO Afbeelding (path, naam) VALUES (@path, @foto);SELECT CAST(scope_identity() AS int)";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@path", a.Path);
+                command.Parameters.AddWithValue("@foto", "foto");
+
+
+                var id = (int)command.ExecuteScalar();
+                con.Close();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void KoppelAfbeeldingProduct(int afbeeldingId, int productId)
+        {
+            try
+            {
+                var con = new SqlConnection(ConSQL.ConnectionString);
+                con.Open();
+                var cmdString = "INSERT INTO Product_Afbeelding (afbeeldingId, productId) VALUES (@afbeelding, @product)";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@afbeelding", afbeeldingId);
+                command.Parameters.AddWithValue("@product", productId);
+                command.ExecuteNonQuery();
+               
+                con.Close();
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void DeleteAfbeelding(int id)

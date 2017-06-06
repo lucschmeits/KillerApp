@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
@@ -154,8 +155,26 @@ namespace KillerApp.Controllers
             }
             return RedirectToAction("Index", "Account");
         }
-        public ActionResult Update(FormCollection form, int id)
+        public ActionResult Update(FormCollection form, int id, HttpPostedFileBase foto)
         {
+            
+            var path = "";
+            if (foto != null)
+            {
+                if (foto.ContentLength > 0)
+                {
+                    if (Path.GetExtension(foto.FileName).ToLower() == ".jpg" || Path.GetExtension(foto.FileName).ToLower() == ".png"
+                        || Path.GetExtension(foto.FileName).ToLower() == ".jpeg")
+                    {
+                        path = Path.Combine(Server.MapPath("~/Images"), foto.FileName);
+                        foto.SaveAs(path);
+                        var afbeelding = new Afbeelding();
+                        afbeelding.Path = "../../Images/" + foto.FileName;
+                        var afbeeldingId = Afbeelding.CreateAfbeelding(afbeelding);
+                        Afbeelding.KoppelAfbeeldingProduct(afbeeldingId, id);
+                    }
+                }
+            }
             if (Session["beheerder"] != null)
             {
                 var product = new Product();

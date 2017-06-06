@@ -54,6 +54,6 @@ function UpdateCart() {
         error: function () {
         }
     });
-     alert(id + " " + aantal);
+    // alert(id + " " + aantal);
 
 } 

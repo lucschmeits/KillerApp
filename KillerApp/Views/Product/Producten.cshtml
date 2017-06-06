@@ -94,9 +94,18 @@
                                         </h5>
                                     }
 
-                                    <a>
-                                        <img class="img-responsive  img-product" alt="product" src="../../Images/iphone1.jpeg"/>
-                                    </a>
+                                    @if (product.Afbeeldingen.Count > 0)
+                                    {
+                                        <a>
+                                            <img class="img-responsive img-product" alt="@product.Afbeeldingen[0].Naam" src="@product.Afbeeldingen[0].Path"/>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a>
+                                            <img class="img-responsive img-product" alt="foto" src="../../images/iphone1.jpeg" />
+                                        </a>
+                                    }
                                     <div class="product-hover-icons">
                                         <a href="@Url.Action("Product", "Product", new {id = product.Id})"><i class="glyphicon glyphicon-eye-open product-icon"></i></a>
                                         <a href="@Url.Action("AddToCart", "Cart", new {id = product.Id})"><i class="glyphicon glyphicon-shopping-cart product-icon"></i></a>

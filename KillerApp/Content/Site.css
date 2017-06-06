@@ -970,3 +970,7 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
 .navbar {
     min-height: 81px;
 }
+
+.img-productedit {
+    overflow: auto;
+}
