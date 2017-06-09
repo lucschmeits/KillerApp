@@ -106,7 +106,7 @@ namespace KillerApp.Models
                         totaal = b.Cijfer + totaal;
                     }
                     totaal = totaal / product.Beoordelingen.Count;
-                    return totaal;
+                    return Math.Round(totaal, 1); 
                 }
             }
            
