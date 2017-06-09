@@ -19,18 +19,25 @@
                 @if (order != null)
                 {
                     <p>Datum : @order.Datum</p>
-                    <p>Coupon : @if (order.Coupon != null)
-                                {
-                                    @order.Coupon.Percentage
-                                }
-                </p>
+                    if (order.Coupon.Percentage != decimal.Parse("0.00"))
+                    {
+                        <p>
+                            Coupon : @order.Coupon.Percentage % - @order.Coupon.Code
+                        </p>
+                    }
+
+
+
                     foreach (var product in order.Producten)
                     {
                         <p>Product @product.Id : @product.Naam   Prijs : &euro; @product.Prijs  Aantal : @product.Aantal</p>
                     }
 
                 }
-                
+                <p>Totaal : &euro; @if (order != null)
+                            {
+                                @order.Totaal;
+                            }</p>
             </div>
         </div>
     </div>

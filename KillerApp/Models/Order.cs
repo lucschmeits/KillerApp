@@ -15,6 +15,7 @@ namespace KillerApp.Models
         public List<Product> Producten { get; set; }
         public Klant Klant { get; set; }
 
+        public decimal Totaal { get; set; }
         public Coupon Coupon { get; set; }
 
 

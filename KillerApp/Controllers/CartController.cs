@@ -169,8 +169,8 @@ namespace KillerApp.Controllers
                     var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, order.Coupon);
                     Session["totaal"] = totaal;
                     // return Json(code + true);
-                    var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
-                    return Json(new { Url = redirectUrlCart });
+                   // var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
+                   // return Json(new { Url = redirectUrlCart });
                   
                
                
@@ -212,8 +212,8 @@ namespace KillerApp.Controllers
                     var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
                     Session["totaal"] = totaal;
                   
-                    var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
-                    return Json(new { Url = redirectUrlCart });
+                    //var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
+                   // return Json(new { Url = redirectUrlCart });
 
               
 

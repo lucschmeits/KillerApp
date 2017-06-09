@@ -78,7 +78,7 @@ namespace KillerApp.DAL.Context
                     {
                         o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
                     }
-                   
+                    o.Totaal = 100;
                     o.Klant = klantRepo.RetrieveKlant(reader.GetInt32(3));
                     o.Producten = productRepo.RetrieveProductByOrder(reader.GetInt32(0));
                     returnList.Add(o);
@@ -119,6 +119,7 @@ namespace KillerApp.DAL.Context
                     {
                         o.Coupon = couponRepo.RetrieveCoupon(reader.GetInt32(2));
                     }
+                    o.Totaal = reader.GetDecimal(4);
                     o.Klant = klantRepo.RetrieveKlant(reader.GetInt32(3));
                     o.Producten = productRepo.RetrieveProductByOrder(reader.GetInt32(0));
                 }

@@ -28,8 +28,8 @@ function UpdateCoupon() {
         type: "POST",
         url: "Cart/ApplyCoupon",
         data: { code: code },
-        success: function (response) {
-            window.location.href = response.Url;
+        success: function () {
+           location.reload();
         },
         error: function () {
         }
@@ -48,8 +48,8 @@ function UpdateCart() {
         type: "POST",
         url: "Cart/UpdateCart",
         data: { id: id, aantal : aantal},
-        success: function (response) {
-            window.location.href = response.Url;
+        success : function() {
+            location.reload();
         },
         error: function () {
         }
