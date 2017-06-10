@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -159,27 +160,31 @@ namespace KillerApp.DAL.Context
             {
                 var con = new SqlConnection(ConSQL.ConnectionString);
                 con.Open();
-                var query = "UPDATE Korting SET percentage = @percentage, omschrijving = @omschrijving WHERE id = @id";
-                var cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@id", k.Id);
-                cmd.Parameters.AddWithValue("@percentage", k.Percentage);
-                cmd.Parameters.AddWithValue("@omschrijving", k.Omschrijving);
-                cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                cmd.CommandText = "DELETE FROM Korting_Product WHERE kortingId = @id";
-                cmd.Parameters.AddWithValue("@id", k.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                foreach (var productId in productIds)
+                var query = "DELETE FROM Korting_Product WHERE kortingId = @id";
+                var command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@id", k.Id);
+                command.ExecuteNonQuery();
+                DataTable tvp = new DataTable();
+                // define / populate DataTable from your List here
+                tvp.Columns.Add("kortingId", typeof(int));
+                tvp.Columns.Add("productId", typeof(int));
+                foreach (var p in productIds)
                 {
-                    cmd.CommandText = "INSERT INTO Korting_Product (kortingId, productId) VALUES (@kortingId, @productId)";
-                    cmd.Parameters.AddWithValue("@kortingId", k.Id);
-                    cmd.Parameters.AddWithValue("@productId", productId);
-                    cmd.ExecuteNonQuery();
-                    cmd.Parameters.Clear();
-
+                    tvp.Rows.Add(k.Id, p);
                 }
+
+                SqlCommand cmd = new SqlCommand("dbo.KortingProducts", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter tvparam = cmd.Parameters.AddWithValue("@List", tvp);
+                tvparam.SqlDbType = SqlDbType.Structured;
+               
+                // execute query, consume results, etc. here
+                cmd.ExecuteNonQuery();
                 con.Close();
+
+
+
+                
             }
             catch (Exception ex)
             {
