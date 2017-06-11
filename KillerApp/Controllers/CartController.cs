@@ -25,137 +25,153 @@ namespace KillerApp.Controllers
 
         public ActionResult AddToCart(FormCollection form, int id)
         {
-          
-            if (Session["cart"] == null)
+            try
             {
-                var bestelling = new Bestelling();
-                if (form.Count != 0)
+                if (Session["cart"] == null)
                 {
-                    bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                    var bestelling = new Bestelling();
+                    if (form.Count != 0)
+                    {
+                        bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                    }
+                    else
+                    {
+                        bestelling.Aantal = 1;
+                    }
+                    bestelling.Product = Product.ProductById(id);
+                    if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
+                    {
+                        bestelling.Product.NiewPrijs = bestelling.Product.NewPrijs(bestelling.Product).ToString("C");
+                        bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(
+                            bestelling.Product.NewPrijs(bestelling.Product),
+                            bestelling.Aantal);
+                    }
+                    if (bestelling.Product.Kortingen == null || bestelling.Product.Kortingen.Count == 0)
+                    {
+                        bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.Prijs,
+                            bestelling.Aantal);
+                    }
+                    var shoppingCart = new Shoppingcart();
+                    shoppingCart.Bestellingen.Add(bestelling);
+                    if (Session["klant"] != null)
+                    {
+                        var klant = (Klant) Session["klant"];
+                        shoppingCart.KlantId = klant.Id;
+                    }
+                    Session["cart"] = shoppingCart;
+
+                    var totaal = Shoppingcart.GetTotaalWinkelwagen(shoppingCart.Bestellingen, null);
+                    Session["totaal"] = totaal;
+
+                    return RedirectToAction("Index");
                 }
-                else
+                if (Session["cart"] != null)
                 {
-                    bestelling.Aantal = 1;
-                }
-                bestelling.Product = Product.ProductById(id);
-               if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
-                {
-                    bestelling.Product.NiewPrijs = bestelling.Product.NewPrijs(bestelling.Product).ToString("C");
-                    bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.NewPrijs(bestelling.Product),
-                        bestelling.Aantal);
-                }
-                if (bestelling.Product.Kortingen == null || bestelling.Product.Kortingen.Count == 0)
-                {
-                    bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.Prijs,
-                        bestelling.Aantal);
-                }
-                var shoppingCart = new Shoppingcart();
-                shoppingCart.Bestellingen.Add(bestelling);
-                if (Session["klant"] != null)
-                {
-                    var klant =  (Klant)Session["klant"];
-                    shoppingCart.KlantId = klant.Id;
-                }
-                Session["cart"] = shoppingCart;
-               
-                var totaal = Shoppingcart.GetTotaalWinkelwagen(shoppingCart.Bestellingen, null);
-                Session["totaal"] = totaal;
-               
-                return RedirectToAction("Index");
-            }
-            if (Session["cart"] != null)
-            {
-                var bestelling = new Bestelling();
-                if (form.Count != 0)
-                {
-                    bestelling.Aantal = Convert.ToInt32(form["aantal"]);
-                }
-                else
-                {
-                    bestelling.Aantal = 1;
-                }
-                
-                bestelling.Product = Product.ProductById(id);
-               
-                if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
-                {
-                    bestelling.Product.NiewPrijs = bestelling.Product.NewPrijs(bestelling.Product).ToString("C");
-                    bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.NewPrijs(bestelling.Product),
-                        bestelling.Aantal);
-                }
-                if (bestelling.Product.Kortingen == null || bestelling.Product.Kortingen.Count == 0)
-                {
-                    bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.Prijs,
-                        bestelling.Aantal);
-                }
-                var cart = (Shoppingcart) Session["cart"];
-                cart.Bestellingen.Add(bestelling);
-                if (Session["klant"] != null)
-                {
-                    var klant = (Klant)Session["klant"];
-                    cart.KlantId = klant.Id;
-                }
+                    var bestelling = new Bestelling();
+                    if (form.Count != 0)
+                    {
+                        bestelling.Aantal = Convert.ToInt32(form["aantal"]);
+                    }
+                    else
+                    {
+                        bestelling.Aantal = 1;
+                    }
+
+                    bestelling.Product = Product.ProductById(id);
+
+                    if (bestelling.Product.Kortingen != null || bestelling.Product.Kortingen.Count >= 1)
+                    {
+                        bestelling.Product.NiewPrijs = bestelling.Product.NewPrijs(bestelling.Product).ToString("C");
+                        bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(
+                            bestelling.Product.NewPrijs(bestelling.Product),
+                            bestelling.Aantal);
+                    }
+                    if (bestelling.Product.Kortingen == null || bestelling.Product.Kortingen.Count == 0)
+                    {
+                        bestelling.Totaal = Shoppingcart.GetTotaalProductDecimal(bestelling.Product.Prijs,
+                            bestelling.Aantal);
+                    }
+                    var cart = (Shoppingcart) Session["cart"];
+                    cart.Bestellingen.Add(bestelling);
+                    if (Session["klant"] != null)
+                    {
+                        var klant = (Klant) Session["klant"];
+                        cart.KlantId = klant.Id;
+                    }
 
 
-                var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
-                Session["totaal"] = totaal;
-                return RedirectToAction("Index");
+                    var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
+                    Session["totaal"] = totaal;
+                    return RedirectToAction("Index");
+                }
+                return null;
             }
-            return null;
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Order(FormCollection form)
         {
-            if (Session["cart"] != null)
+            try
             {
-                var cart = Session["cart"] as Shoppingcart;
-                var productList = new List<Product>();
-                if (Session["klant"] != null)
+                if (Session["cart"] != null)
                 {
-                    var klant = (Klant)Session["klant"];
-                    var order = new Order();
-                    order.Datum = DateTime.Now;
-                    order.Klant = Klant.RetrieveKlant(klant.Id);
-                    if (form["coupon"] != "")
+                    var cart = Session["cart"] as Shoppingcart;
+                    var productList = new List<Product>();
+                    if (Session["klant"] != null)
                     {
-                        order.Coupon = Coupon.RetrieveCouponByCode(form["coupon"].ToString());
-                    }
-                    else
-                    {
-                        order.Coupon = Coupon.RetrieveCoupon(5);
-                    }
-
-                    if (cart != null)
-                    {
-                        foreach (Bestelling bes in cart.Bestellingen)
+                        var klant = (Klant) Session["klant"];
+                        var order = new Order();
+                        order.Datum = DateTime.Now;
+                        order.Klant = Klant.RetrieveKlant(klant.Id);
+                        if (form["coupon"] != "")
                         {
-                            productList.Add(bes.Product);
-                            
+                            order.Coupon = Coupon.RetrieveCouponByCode(form["coupon"].ToString());
                         }
+                        else
+                        {
+                            order.Coupon = Coupon.RetrieveCoupon(5);
+                        }
+
+                        if (cart != null)
+                        {
+                            foreach (Bestelling bes in cart.Bestellingen)
+                            {
+                                productList.Add(bes.Product);
+
+                            }
+                        }
+
+                        order.Producten = productList;
+
+                        Models.Order.CreateOrder(order, cart);
+                        Session["cart"] = null;
+                        return RedirectToAction("Klant", "Account");
                     }
-                  
-                    order.Producten = productList;
 
-                    Models.Order.CreateOrder(order, cart);
-                    Session["cart"] = null;
-                    return RedirectToAction("Klant", "Account");
+
+                    return RedirectToAction("Index", "Account");
                 }
-
-
-                return RedirectToAction("Index", "Account");
+                return null;
             }
-            return null;
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
        [HttpPost]
         public ActionResult ApplyCoupon(string code)
         {
-
-            if (Session["cart"] != null)
+            try
             {
-                var cart = Session["cart"] as Shoppingcart;
-               
-              
+                if (Session["cart"] != null)
+                {
+                    var cart = Session["cart"] as Shoppingcart;
+
+
                     var order = new Order();
                     if (!string.IsNullOrEmpty(code))
                     {
@@ -165,45 +181,48 @@ namespace KillerApp.Controllers
                     {
                         order.Coupon = Coupon.RetrieveCoupon(5);
                     }
-                Session["order"] = order;
+                    Session["order"] = order;
                     var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, order.Coupon);
                     Session["totaal"] = totaal;
-                    // return Json(code + true);
-                   // var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
-                   // return Json(new { Url = redirectUrlCart });
-                  
-               
-               
-
+                }
+                var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
+                return Json(new {Url = redirectUrlProduct});
             }
-            var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
-            return Json(new { Url = redirectUrlProduct });
-           
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Remove(int id)
         {
-         
-            var cart = Session["cart"] as Shoppingcart;
-            var bestel = (from bestelling in cart.Bestellingen
-                where bestelling.Product.Id == id
-                select bestelling).First();
-           
-            cart.Bestellingen.Remove(bestel);
-            var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
-            Session["totaal"] = totaal;
-            return RedirectToAction("Index");
+            try
+            {
+                var cart = Session["cart"] as Shoppingcart;
+                var bestel = (from bestelling in cart.Bestellingen
+                    where bestelling.Product.Id == id
+                    select bestelling).First();
+
+                cart.Bestellingen.Remove(bestel);
+                var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
+                Session["totaal"] = totaal;
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult UpdateCart(int id, int aantal)
         {
-            if (Session["cart"] != null)
+            try
             {
-                var cart = Session["cart"] as Shoppingcart;
-               
-               
+                if (Session["cart"] != null)
+                {
+                    var cart = Session["cart"] as Shoppingcart;
 
-                        var bestel = (from bestelling in cart.Bestellingen
+                    var bestel = (from bestelling in cart.Bestellingen
                         where bestelling.Product.Id == id
                         select bestelling).First();
 
@@ -211,16 +230,15 @@ namespace KillerApp.Controllers
 
                     var totaal = Shoppingcart.GetTotaalWinkelwagen(cart.Bestellingen, null);
                     Session["totaal"] = totaal;
-                  
-                    //var redirectUrlCart = new UrlHelper(Request.RequestContext).Action("Index", "Cart");
-                   // return Json(new { Url = redirectUrlCart });
 
-              
-
-
+                }
+                var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
+                return Json(new {Url = redirectUrlProduct});
             }
-            var redirectUrlProduct = new UrlHelper(Request.RequestContext).Action("Index", "Product");
-            return Json(new { Url = redirectUrlProduct });
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

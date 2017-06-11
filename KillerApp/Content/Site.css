@@ -974,3 +974,11 @@ table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table
 .img-productedit {
     overflow: auto;
 }
+
+.error {
+    overflow: auto;
+    margin: 20% 0 20% 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}

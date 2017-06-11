@@ -12,23 +12,37 @@ namespace KillerApp.Controllers
         // GET: Order
         public ActionResult Edit(int id)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                ViewData["order"] = Order.RetrieveOrder(id);
-                return View("OrderEdit");
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    ViewData["order"] = Order.RetrieveOrder(id);
+                    return View("OrderEdit");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
         public ActionResult Delete(int id)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-               
-                Order.DeleteOrder(id);
-                return RedirectToAction("Facturen", "Beheer");
+                if (Session["beheerder"] != null)
+                {
+
+                    Order.DeleteOrder(id);
+                    return RedirectToAction("Facturen", "Beheer");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

@@ -18,141 +18,226 @@ namespace KillerApp.Controllers
 
         public ActionResult Leverancier()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Leveranciers"] = Models.Leverancier.RetrieveAll();
-                ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Leveranciers"] = Models.Leverancier.RetrieveAll();
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Producten()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["producten"] = Product.All();
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["producten"] = Product.All();
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Klanten()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                ViewData["klanten"] = Klant.RetrieveAll();
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    ViewData["klanten"] = Klant.RetrieveAll();
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Accounts()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                ViewData["beheerders"] = Beheerder.RetrieveAll();
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    ViewData["beheerders"] = Beheerder.RetrieveAll();
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Facturen()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                ViewData["orders"] = Order.RetrieveAll();
-                return View();
+
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    ViewData["orders"] = Order.RetrieveAll();
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Kortingscodes()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["coupons"] = Coupon.RetrieveAll();
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["coupons"] = Coupon.RetrieveAll();
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Korting()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["kortingen"] = Models.Korting.RetrieveAll();
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                return View();
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["kortingen"] = Models.Korting.RetrieveAll();
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return View();
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Edit(int id)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                ViewData["BeheerderId"] = Models.Beheerder.RetrieveBeheerder(id);
-                return View("BeheerEdit");
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    ViewData["BeheerderId"] = Models.Beheerder.RetrieveBeheerder(id);
+                    return View("BeheerEdit");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Update(FormCollection form, int id)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                var beheerder = new Beheerder();
-                beheerder.Id = id;
-                beheerder.Naam = form["naam"];
-                beheerder.Email = form["email"];
-                beheerder.Wachtwoord = form["wachtwoord"];
-                Models.Beheerder.UpdateGebruiker(beheerder);
-                return RedirectToAction("Accounts", "Beheer");
+                if (Session["beheerder"] != null)
+                {
+                    var beheerder = new Beheerder();
+                    beheerder.Id = id;
+                    beheerder.Naam = form["naam"];
+                    beheerder.Email = form["email"];
+                    beheerder.Wachtwoord = form["wachtwoord"];
+                    Models.Beheerder.UpdateGebruiker(beheerder);
+                    return RedirectToAction("Accounts", "Beheer");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Delete(int id)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                Models.Beheerder.DeleteBeheerder(id);
-                return RedirectToAction("Accounts", "Beheer");
+                if (Session["beheerder"] != null)
+                {
+                    Models.Beheerder.DeleteBeheerder(id);
+                    return RedirectToAction("Accounts", "Beheer");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult New()
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                return View("BeheerNew");
+                if (Session["beheerder"] != null)
+                {
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return View("BeheerNew");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Save(FormCollection form)
         {
-            if (Session["beheerder"] != null)
+            try
             {
-                var beheerder = new Beheerder();
-                beheerder.Naam = form["naam"];
-                beheerder.Email = form["email"];
-                beheerder.Wachtwoord = form["wachtwoord"];
-                var id = Models.Gebruiker.CreateGebruiker(beheerder);
-                Models.Beheerder.CreateBeheerder(id);
-                ViewData["Beheerder"] = (Beheerder)Session["beheerder"];
-                return RedirectToAction("Accounts", "Beheer");
+                if (Session["beheerder"] != null)
+                {
+                    var beheerder = new Beheerder();
+                    beheerder.Naam = form["naam"];
+                    beheerder.Email = form["email"];
+                    beheerder.Wachtwoord = form["wachtwoord"];
+                    var id = Models.Gebruiker.CreateGebruiker(beheerder);
+                    Models.Beheerder.CreateBeheerder(id);
+                    ViewData["Beheerder"] = (Beheerder) Session["beheerder"];
+                    return RedirectToAction("Accounts", "Beheer");
+                }
+                return RedirectToAction("Index", "Account");
             }
-            return RedirectToAction("Index", "Account");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }
